@@ -2,26 +2,24 @@ import React, { useEffect, useState } from "react";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const testimonials = [
-    "Testimonial 1",
-    "Testimonial 2",
-    "Testimonial 3"
-  ];
-  
+  const testimonials = ["Testimonial 1", "Testimonial 2", "Testimonial 3"];
+
   useEffect(() => {
     const testimonInterval = setInterval(() => {
-      setCurrentSlide(prevSlide => (prevSlide + 1) % testimonials.length);
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % testimonials.length);
     }, 4500);
 
     return () => clearInterval(testimonInterval);
   }, [testimonials.length]);
 
   const handlePrevSlide = () => {
-    setCurrentSlide(prevSlide => (prevSlide - 1 + testimonials.length) % testimonials.length);
+    setCurrentSlide(
+      (prevSlide) => (prevSlide - 1 + testimonials.length) % testimonials.length
+    );
   };
 
   const handleNextSlide = () => {
-    setCurrentSlide(prevSlide => (prevSlide + 1) % testimonials.length);
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % testimonials.length);
   };
 
   const handleDotClick = (index: number) => {
@@ -75,7 +73,9 @@ const Testimonials = () => {
             {testimonials.map((_, index) => (
               <div
                 key={index}
-                className={`w-4 h-4 bg-gray-500 rounded-full cursor-pointer ${currentSlide === index ? "bg-gray-800" : ""}`}
+                className={`w-4 h-4 bg-gray-500 rounded-full cursor-pointer ${
+                  currentSlide === index ? "bg-gray-800" : ""
+                }`}
                 onClick={() => handleDotClick(index)}
               ></div>
             ))}
