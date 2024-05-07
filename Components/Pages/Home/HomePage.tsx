@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Header } from "@/Components";
 import Services from "./Services";
+import Footer from "@/Components/UI/Footer";
+import Shifts from "./Shifts";
+import Testimonials from "./Testimonials";
 
 // import { Header } from "@/Components";
 
@@ -37,19 +40,19 @@ const Sliders = () => {
         };
       case 1:
         return {
-          header: "Top notch Hire",
-          tagline: "Committed to delivering personalized care solutions.",
+          header: "Dedicated Professionals",
+          tagline: "Providing tailored care solutions with commitment",
         };
       case 2:
         return {
-          header: "Training",
+          header: "Regular Trainings",
           tagline: `We train prospective care workers on how \n
             to get the job done`,
         };
       case 3:
         return {
-          header: "101% Responsive ",
-          tagline: "Your trusted partner in quality care services.",
+          header: "Full Shifts, Zero stress ",
+          tagline: "Your health care needs, effortlessly met",
         };
       default:
         return {
@@ -64,7 +67,7 @@ const Sliders = () => {
     if (index === 0 || index === 1 || index === 2 || index === 3) {
       return (
         <Link href={"/care-professionals/how-it-works"} passHref>
-          <button className="-mt-4 px-[2em] py-[.8em] bg-gradient-to-r from-yellow-800 to-green-500 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out">
+         <button className="-mt-4 px-[2em] py-[.5em] bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out">
             Learn more
           </button>
         </Link>
@@ -83,7 +86,7 @@ const Sliders = () => {
           <h1 className="text-[1em] lg:text-[3em] md:text-[2rem]   leading-[.9em]  ">
             {text?.header}
           </h1>
-          <div className="flex items-center font-normal justify-left ">
+          <div className="flex items-center font-normal -mt-2 justify-left ">
             <p className="my-8 text-base md:text-xl w-full md:w-[50%]">
               {text.tagline}
             </p>
@@ -141,6 +144,9 @@ const HomePage = () => {
       <Header />
       <Sliders />
       <Services />
+      <Shifts />
+      <Testimonials />
+      <Footer />
       
       
     </main>

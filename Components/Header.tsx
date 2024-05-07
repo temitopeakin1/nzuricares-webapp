@@ -32,24 +32,20 @@ const navigation = [
     href: "/staffing",
     subMenus: [
       {
-        name: "Find a Care",
-        href: "/staffing/get-a-care-personnel",
+        name: "Careers",
+        href: "/staffing/Carers",
       },
       {
-        name: "Care worker",
-        href: "/staffing/care-workers",
+        name: "Health Care Assistants",
+        href: "/staffing/health-care-assistants",
       },
       {
-        name: "Care worker",
-        href: "/staffing/manage-agencies",
+        name: "Support Workers",
+        href: "/staffing/support-workers",
       },
       {
-        name: "Care worker",
-        href: "/staffing/find-a-care",
-      },
-      {
-        name: "Care worker",
-        href: "/staffing/trainings",
+        name: "Nurses",
+        href: "/staffing/nurses",
       },
     ],
   },
@@ -100,19 +96,19 @@ const Header = () => {
   return (
     <div
       className={`fixed top-0 z-50 w-full flex justify-between md:px-16 ${
-        isScrolled ? "p-1" : "p-2"
+        isScrolled ? "p-4" : "p-2"
       } items-center bg-white`}
     >
       <Image
-        src={"/images/logo.svg"}
+        src={"/images/logo.png"}
         alt={"logo"}
-        height={100}
-        width={100}
+        height={250}
+        width={200}
         className={`
           ${
             isScrolled
               ? "w-[20%] md:w-[8%] lg:w-[6%] transition-all duration-200 ease-in-out  "
-              : "w-1/1 transition-all duration-200 ease-in-out "
+              : "w-1/1 transition-all duration-200 ease-in-out"
           }
         `}
       />
@@ -206,7 +202,7 @@ const Header = () => {
         })}
         {/* Styling for the Signup button */}
         <Link href="/Signup">
-          <div className="bg-green-800 text-white px-4 py-2 rounded-full">
+          <div className="bg-primary text-white px-4 py-2 rounded-full">
             Sign Up
           </div>
         </Link>

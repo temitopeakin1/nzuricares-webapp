@@ -18,11 +18,14 @@ const config: Config = {
         body: ['Montserrat', 'sans-serif'],
         sans: ['Lato', 'sans-serif'],
         serif: ["Inter", "sans-serif"],
+        satoshi: ['Satoshi', 'sans-serif'],
+        title: ['Manrope', 'sans-serif'],
+        tagline: ["Briem Hand", 'cursive']
       },
 
       colors: {
         primary: {
-          DEFAULT: '#006400',
+          DEFAULT: '#3A8766',
           dark: "#E6E6E6",
         },
         secondary: {
@@ -48,6 +51,9 @@ const config: Config = {
         "accent-lightest": {
           DEFAULT: "#FFC700",
           dark: "#E6B800",
+        },
+        "footer-color": {
+          DEFAULT: "#FAF9F6"
         },
       },
     },
