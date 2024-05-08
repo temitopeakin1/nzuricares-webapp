@@ -5,7 +5,7 @@ import { Header } from "@/Components";
 import Services from "./Services";
 import Footer from "@/Components/UI/Footer";
 import Shifts from "./Shifts";
-import Testimonials from "./Testimonials";
+import FancyTestimonial from "./FancyTestimonial";
 
 // import { Header } from "@/Components";
 
@@ -67,7 +67,7 @@ const Sliders = () => {
     if (index === 0 || index === 1 || index === 2 || index === 3) {
       return (
         <Link href={"/care-professionals/how-it-works"} passHref>
-         <button className="-mt-4 px-[2em] py-[.5em] bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out">
+          <button className="-mt-4 px-[2em] py-[.5em] bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out">
             Learn more
           </button>
         </Link>
@@ -78,7 +78,10 @@ const Sliders = () => {
 
   return (
     <div
-      style={{ backgroundImage: `url(${bgImage})`, backgroundPosition: 'center top 28%' }}
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundPosition: "center top 28%",
+      }}
       className={`${bgImage} bg-cover bg-center h-[50vh] md:h-[90vh] bg-opacity-100  flex justify-center items-center relative transition-all duration-500 ease-in-out`}
     >
       <div className="w-full ">
@@ -145,10 +148,8 @@ const HomePage = () => {
       <Sliders />
       <Services />
       <Shifts />
-      <Testimonials />
+      <FancyTestimonial testimonials={[]} />
       <Footer />
-      
-      
     </main>
   );
 };

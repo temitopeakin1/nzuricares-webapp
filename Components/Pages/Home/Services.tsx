@@ -23,9 +23,9 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ imageUrl, title, description 
 
 const Services = () => {
   return (
-    <div className="py-24 text-center" >
-      <h1 className="mt-8 font-medium lg:text-3xl text-blue-800 ">Health Care Services</h1>
-      <p className="mt-4 lg:text-sm md:text-xs">
+    <div className="py-16 text-center" >
+      <h1 className="mt-2 font-medium lg:text-3xl text-blue-800 ">Health Care Services</h1>
+      <p className="mt-2 lg:text-sm md:text-sm font-satoshi">
         We are one of the leading providers of domiciliary care and health care
         staffing services.
       </p>
