@@ -5,13 +5,13 @@ import Image from "next/image";
 import { Transition } from "@headlessui/react";
 
 interface Testimonial {
-  img: string;
+  image: string;
   quote: string;
   name: string;
   role: string;
 }
 
-export default function FancyTestimonial({}: { testimonials: Testimonial[] }) {
+export default function Testimonial({}: { testimonials: Testimonial[] }) {
   const testimonialsRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<number>(0);
   const [autorotate, setAutorotate] = useState<boolean>(true);
@@ -19,28 +19,28 @@ export default function FancyTestimonial({}: { testimonials: Testimonial[] }) {
 
   const testimonials: Testimonial[] = [
     {
-      img: "/images/person-1.jpg",
+      image: "/images/person-1.jpg",
       quote:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
       name: "John Doe",
       role: "Exec",
     },
     {
-      img: "/images/person-1.jpg",
+      image: "/images/person-1.jpg",
       quote:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
       name: "Mary Clark",
       role: "Founder",
     },
     {
-      img: "/images/person-1.jpg",
+      image: "/images/person-1.jpg",
       quote:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
       name: "Jane Doe",
       role: "Excecutive",
     },
     {
-      img: "/images/person-1.jpg",
+      image: "/images/person-1.jpg",
       quote:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
       name: "Theresa Doe",
@@ -92,7 +92,7 @@ export default function FancyTestimonial({}: { testimonials: Testimonial[] }) {
                 >
                   <Image
                     className="relative top-11 left-1/2 -translate-x-1/2 rounded-full"
-                    src={testimonial.img}
+                    src={testimonial.image}
                     width={100}
                     height={100}
                     alt={testimonial.name}
