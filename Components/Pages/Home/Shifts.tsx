@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Shifts = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center bg-gray-100 py-32 lg:px-16">
+    <div className="flex flex-col lg:flex-row items-center justify-center bg-gray-100 py-32 lg:px-32">
       <div className="lg:w-1/2 lg:pr-8 rounded">
         <Image src={"/images/shift.jpg"} alt={"Shift"} width={500} height={700} className="rounded-lg" />
       </div>
@@ -16,7 +16,7 @@ const Shifts = () => {
           your shift preferences to explore availability in your area.
         </p>
         <div className="text-center lg:text-left mt-6">
-          <Link href="/learn-more" className="text-white bg-primary px-4 py-2 rounded-full inline-block">
+          <Link href="/staffing" className="text-white bg-primary px-4 py-2 rounded-full inline-block">
             Learn More
           </Link>
         </div>

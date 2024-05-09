@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 const company = [
   {
@@ -18,37 +19,46 @@ const company = [
 ];
 const resources = [
   {
-    name: "Care workers",
-    link: "/staffing/care-workers",
+    name: "Services",
+    link: "/staffing/services",
   },
   {
-    name: "Care workers",
-    link: "/staffing/care-workers",
+    name: "Careers",
+    link: "/staffing/careers",
   },
   {
-    name: "Care workers",
-    link: "/staffing/care-workers",
+    name: "Health Care Assistants",
+    link: "/staffing/health-care-assistance",
   },
   {
-    name: "Care workers",
-    link: "/staffing/care-workers",
+    name: "Nurses",
+    link: "/staffing/nurses",
   },
 ];
-
+const contacts = [
+  {
+    name: "Get in Touch",
+    link: "/contact-us",
+  },
+  {
+    name: "Request a Reference",
+    link: "/request-a-reference",
+  },
+];
 const Footer = () => {
   return (
     <div className="mt-8 md:mt-11 bg-footer-color md:px-16 p-4 text-black pt-14">
-      <div className="flex flex-col md:flex-row pb-[12em] -mt-2">
+      <div className="flex flex-col md:flex-row pb-[6em]">
         <div className="flex-1 align-baseline">
           <Image src={"/images/logo.png"} alt="Logo" width={200} height={200} />
-          <p className="mt-1 px-4 text-base font-semibold">
-            Your Wellbeing is our priority
+          <p className="mt-1 text-base font-normal italic">
+            Your wellbeing is our priority
           </p>
         </div>
         {/* company section */}
         <div className="flex-1 flex flex-col mt-4 md:mt-0 md:ml-36 md:mr-8">
           <div>
-            <p className="font-bold mb-4">Company</p>
+            <p className="font-bold mb-4 text-blue-800">Company</p>
             <div className="grid grid-cols-1">
               {company.map((link, index) => (
                 <Link key={index} href={link.link} passHref>
@@ -63,7 +73,7 @@ const Footer = () => {
         {/* resources section */}
         <div className="flex-1 flex flex-col mt-4 md:mt-0 md:ml-8 md:mr-8">
           <div>
-            <p className="font-bold mb-4">Resources</p>
+            <p className="font-bold mb-4 text-blue-800">Resources</p>
             <div className="grid grid-cols-1">
               {resources.map((link, index) => (
                 <Link key={index} href={link.link} passHref>
@@ -78,10 +88,48 @@ const Footer = () => {
         {/* contact section */}
         <div className="flex-1 flex flex-col mt-4 md:mt-0 md:ml-8 md:mr-8">
           <div>
-            <p className="font-bold mb-4">Contacts</p>
+            <p className="mb-4 font-bold text-blue-800">Contact Us</p>
             {/* Add your contact information here */}
+            <div className="grid grid-cols-1">
+              {contacts.map((link, index) => (
+                <Link key={index} href={link.link} passHref>
+                  <p className="mt-2 pr-8 hover:underline cursor-pointer">
+                    {link.name}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-row items-center gap-6 mt-8 -ml-2 md:mt-4">
+            <button className="bg-none group hover:bg-primary rounded-full p-1 transition-all ease-in-out duration-300">
+              <FaFacebookF className="text-xl group-hover:text-white" />
+            </button>
+            <button className="bg-none group hover:bg-primary rounded-full p-1 transition-all ease-in-out duration-300">
+              <FaTwitter className="text-xl group-hover:text-white" />
+            </button>
+            <button className="bg-none group hover:bg-primary rounded-full p-1 transition-all ease-in-out duration-300">
+              <FaLinkedinIn className="text-xl group-hover:text-white" />
+            </button>
           </div>
         </div>
+      </div>
+      <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col md:flex-row">
+          <Link href="/">
+            <button className="text-sm text-left font-normal pr-4 md:pr-8 mb-2 md:mb-0">
+              Terms and conditions
+            </button>
+          </Link>
+          <Link href="/">
+            <button className="text-sm text-left font-normal md:ml-4">
+              Privacy Policy
+            </button>
+          </Link>
+        </div>
+        <p className="text-sm text-center md:text-right font-semibold mt-2 md:mt-0">
+          © 2024 <Link href="/">Nzuricares</Link> All right reserved.
+        </p>
       </div>
     </div>
   );

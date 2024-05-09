@@ -18,8 +18,8 @@ const navigation = [
         href: "/care-professionals/how-it-works",
       },
       {
-        name: "Top Jobs",
-        href: "/care-professionals/top-jobs",
+        name: "Services",
+        href: "/care-professionals/services",
       },
       {
         name: "Social Care Registration",
@@ -57,6 +57,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState<number | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const navUrl = usePathname();
   const router = useRouter();
@@ -91,6 +92,10 @@ const Header = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
   };
 
   return (
@@ -201,10 +206,13 @@ const Header = () => {
           );
         })}
         {/* Styling for the Signup button */}
-        <Link href="/Signup">
-          <div className="bg-primary text-white px-4 py-2 rounded-full">
+        <Link href="/signup">
+          <button
+            onClick={toggleModal}
+            className="bg-primary text-white px-4 py-2 rounded-full"
+          >
             Sign Up
-          </div>
+          </button>
         </Link>
       </div>
     </div>

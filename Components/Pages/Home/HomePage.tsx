@@ -5,7 +5,7 @@ import { Header } from "@/Components";
 import Services from "./Services";
 import Footer from "@/Components/UI/Footer";
 import Shifts from "./Shifts";
-import FancyTestimonial from "./FancyTestimonial";
+import Testimonial from "./Testimonial";
 
 // import { Header } from "@/Components";
 
@@ -148,7 +148,7 @@ const HomePage = () => {
       <Sliders />
       <Services />
       <Shifts />
-      <FancyTestimonial testimonials={[]} />
+      <Testimonial testimonials={[]} />
       <Footer />
     </main>
   );
