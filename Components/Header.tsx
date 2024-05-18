@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,9 +7,6 @@ import { AiOutlineClose } from "react-icons/ai";
 import { RiEqualLine } from "react-icons/ri";
 import { CgChevronDown, CgChevronUp } from "react-icons/cg";
 import { usePathname, useRouter } from "next/navigation";
-import { MdOutlineCancel } from "react-icons/md";
-import Signup from "./Signup";
-import Page from "@/app/(auth)/login/page";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -60,8 +58,6 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState<number | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isModalVisible, setModalVisible] = useState(false);
-  // const [isSignupSuccessful, setIsSignupSuccessful] = useState(false);
 
   const navUrl = usePathname();
   const router = useRouter();
@@ -97,14 +93,14 @@ const Header = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  // toggle modal for signup button
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
+
+  const handleSignupClick = () => {
+    router.push("/signup");
   };
 
-  // const handleSignUpSuccess =() => {
-  //   setIsSignupSuccessful(isSignupSuccessful)
-  // }
+  const handleLoginClick = () => {
+    router.push("/login");
+  };
 
   return (
     <div
@@ -213,36 +209,20 @@ const Header = () => {
             </div>
           );
         })}
-        {/* Styling for the Signup button */}
 
         <button
-          onClick={toggleModal}
+          onClick={handleLoginClick}
+          className="bg-transparent border border-primary text-primary px-4 py-2 rounded-full"
+        >
+          Login
+        </button>
+        <button
+          onClick={handleSignupClick}
           className="bg-primary text-white px-4 py-2 rounded-full"
         >
           Sign Up
         </button>
       </div>
-      {/* Conditionally render the Signup modal */}
-      {/* {isModalVisible && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
-          {isSignupSuccessful ? (
-            <Page /> // Render Login component on successful signup
-          ) : (
-            <Signup onSignUpSuccess={handleSignUpSuccess} onCancel={toggleModal} /> // Render Signup component otherwise
-          )}
-        </div>
-      )} */}
-       {isModalVisible && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
-          <Signup onCancel={toggleModal}/>
-          <button
-            onClick={toggleModal}
-            className="relative right-8 rounded-full"
-          >
-            <MdOutlineCancel className="text-xl -mt-72" />
-          </button>
-        </div>
-      )}
     </div>
   );
 };

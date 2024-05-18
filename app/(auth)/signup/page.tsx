@@ -1,7 +1,5 @@
-import Signup from "@/Components/Signup";
+import Signup from "@/Components/Pages/Signup";
 
 export default function SignupRoute() {
-  return <Signup onCancel={function (): void {
-      throw new Error("Function not implemented.");
-  } } />;
+  return <Signup />;
 }
