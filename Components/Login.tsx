@@ -61,9 +61,10 @@ const Login = () => {
           className="items-center"
         />
         <p className="mt-2 font-serif font-normal">Welcome back,</p>
-        <p className="mt-2 text-2xl font-body font-semibold">Login to your Account</p>
+        <p className="mt-2 text-2xl font-body font-semibold">
+          Login to your Account
+        </p>
       </div>
-
 
       <form
         onSubmit={handleSubmit}
@@ -78,6 +79,7 @@ const Login = () => {
             id="email"
             name="email"
             value={formData.email}
+            placeholder="name@example.com"
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
             required
@@ -97,18 +99,21 @@ const Login = () => {
             required
           />
         </div>
+        <button className="absolute -mt-2 right-8 text-red-800 font-satoshi ">
+          Forgot password?
+        </button>
         <button
           type="submit"
-          className="w-full py-2 px-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
+          className="w-full mt-8 py-2 px-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
         >
           Login
         </button>
         <p className="mt-4 text-center text-gray-600">
-             New to Nzuricares?{" "}
-              <Link href="/" className="text-blue-700 font-semibold">
-                SignUp
-              </Link>
-            </p>
+          Don’t have an Account?{" "}
+          <Link href="/" className="text-blue-700 font-semibold">
+            SignUp
+          </Link>
+        </p>
       </form>
     </div>
   );

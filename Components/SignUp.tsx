@@ -5,6 +5,7 @@ import { useState } from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import Image from "next/image";
 
+
 interface formData {
   username: string;
   email: string;
