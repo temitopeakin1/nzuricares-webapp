@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import Image from "next/image";
+import { registerUserAction } from "@/app/data/actions/auth-actions";
 
 
 interface formData {
@@ -98,8 +99,7 @@ const Signup: React.FC<SignUpProps> = ({ onSignUpSuccess, onCancel }) => {
             onClick={onCancel}
           />
           <div className="text-left text-2xl font-semibold">Register Account</div>
-          <form
-            onSubmit={handleSubmit}
+          <form action={registerUserAction}
             className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50"
           >
             <div className="mb-4">
