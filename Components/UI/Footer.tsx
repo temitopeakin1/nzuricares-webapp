@@ -128,7 +128,7 @@ const Footer = () => {
           </Link>
         </div>
         <p className="text-sm text-center md:text-right font-semibold mt-2 md:mt-0">
-          © 2024 <Link href="/">Nzuricares</Link> All right reserved.
+          © 2024 <Link href="/">Nzurihealthcare</Link> All right reserved.
         </p>
       </div>
     </div>

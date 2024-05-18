@@ -6,6 +6,9 @@ import { AiOutlineClose } from "react-icons/ai";
 import { RiEqualLine } from "react-icons/ri";
 import { CgChevronDown, CgChevronUp } from "react-icons/cg";
 import { usePathname, useRouter } from "next/navigation";
+import { MdOutlineCancel } from "react-icons/md";
+import Signup from "./Signup";
+import Page from "@/app/(auth)/login/page";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -33,19 +36,19 @@ const navigation = [
     subMenus: [
       {
         name: "Careers",
-        href: "/staffing/Carers",
+        href: "/staffing/careers",
       },
       {
-        name: "Health Care Assistants",
-        href: "/staffing/health-care-assistants",
-      },
-      {
-        name: "Support Workers",
-        href: "/staffing/support-workers",
+        name: "Care workers",
+        href: "/staffing/care-workers",
       },
       {
         name: "Nurses",
         href: "/staffing/nurses",
+      },
+      {
+        name: "Support Workers",
+        href: "/staffing/support-workers",
       },
     ],
   },
@@ -58,6 +61,7 @@ const Header = () => {
   const [activeSubMenu, setActiveSubMenu] = useState<number | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
+  const [isSignupSuccessful, setIsSignupSuccessful] = useState(false);
 
   const navUrl = usePathname();
   const router = useRouter();
@@ -93,10 +97,14 @@ const Header = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
+  // toggle modal for signup button
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+
+  const handleSignUpSuccess =() => {
+    setIsSignupSuccessful(isSignupSuccessful)
+  }
 
   return (
     <div
@@ -206,15 +214,24 @@ const Header = () => {
           );
         })}
         {/* Styling for the Signup button */}
-        <Link href="/signup">
-          <button
-            onClick={toggleModal}
-            className="bg-primary text-white px-4 py-2 rounded-full"
-          >
-            Sign Up
-          </button>
-        </Link>
+
+        <button
+          onClick={toggleModal}
+          className="bg-primary text-white px-4 py-2 rounded-full"
+        >
+          Sign Up
+        </button>
       </div>
+      {/* Conditionally render the Signup modal */}
+      {isModalVisible && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+          {isSignupSuccessful ? (
+            <Page /> // Render Login component on successful signup
+          ) : (
+            <Signup onSignUpSuccess={handleSignUpSuccess} onCancel={toggleModal} /> // Render Signup component otherwise
+          )}
+        </div>
+      )}
     </div>
   );
 };

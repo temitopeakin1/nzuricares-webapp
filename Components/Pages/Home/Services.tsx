@@ -8,7 +8,11 @@ interface ServiceItemProps {
   description: string;
 }
 
-const ServiceItem: React.FC<ServiceItemProps> = ({ imageUrl, title, description }) => {
+const ServiceItem: React.FC<ServiceItemProps> = ({
+  imageUrl,
+  title,
+  description,
+}) => {
   return (
     <div className="flex flex-col items-center w-72 p-4 mx-4 my-2 bg-white rounded-lg shadow-md">
       <Image src={imageUrl} alt="Service" width={250} height={250} />
@@ -23,8 +27,10 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ imageUrl, title, description 
 
 const Services = () => {
   return (
-    <div className="py-16 text-center" >
-      <h1 className="mt-2 font-medium lg:text-3xl text-blue-800 ">Health Care Services</h1>
+    <div className="py-16 text-center">
+      <h1 className="mt-2 font-medium lg:text-3xl text-blue-800 ">
+        Health Care Recruitment Services
+      </h1>
       <p className="mt-2 lg:text-sm md:text-sm font-satoshi">
         We are one of the leading providers of domiciliary care and health care
         staffing services.
@@ -37,8 +43,9 @@ const Services = () => {
         />
         <ServiceItem
           imageUrl={"/images/service-2.jpg"}
-          title="Pediatric"
-          description="Children receive the necessary assistance they need at home to have a safe, healthy, and happy childhood."
+          title="Personalized Care"
+          description="Our Implementation is a patient-centered approach that emphasizes personalized
+          treatment plans."
         />
         <ServiceItem
           imageUrl={"/images/service-3.jpg"}
@@ -47,8 +54,8 @@ const Services = () => {
         />
         <ServiceItem
           imageUrl={"/images/service-4.jpg"}
-          title="Conditions treated"
-          description="Patients with a variety of conditions including disease, cancer, neurological and respiratory disorders and more."
+          title="Holistic Wellness"
+          description="We offer integrated healthcare services that addresses physical, mental and emotional health"
         />
       </div>
     </div>
