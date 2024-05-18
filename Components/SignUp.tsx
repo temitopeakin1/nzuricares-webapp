@@ -5,6 +5,7 @@ import { useState } from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import Image from "next/image";
 import { registerUserAction } from "@/app/data/actions/auth-actions";
+import { CgWindows } from "react-icons/cg";
 
 
 interface formData {
@@ -15,11 +16,10 @@ interface formData {
 }
 
 interface SignUpProps {
-  onSignUpSuccess: (isSuccess: boolean) => void;
   onCancel: () => void; // Add onCancel prop
 }
 
-const Signup: React.FC<SignUpProps> = ({ onSignUpSuccess, onCancel }) => {
+const Signup = ({ onCancel }: SignUpProps) => {
   const [formData, setFormData] = useState<formData>({
     username: "",
     email: "",
@@ -62,8 +62,7 @@ const Signup: React.FC<SignUpProps> = ({ onSignUpSuccess, onCancel }) => {
     }
 
     if (Object.keys(newErrors).length === 0) {
-      setIsSignedUp(true);
-      onSignUpSuccess(true);
+      window.location.href = "/login"
     }
 
     setErrors(newErrors);

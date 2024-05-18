@@ -61,7 +61,7 @@ const Header = () => {
   const [activeSubMenu, setActiveSubMenu] = useState<number | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
-  const [isSignupSuccessful, setIsSignupSuccessful] = useState(false);
+  // const [isSignupSuccessful, setIsSignupSuccessful] = useState(false);
 
   const navUrl = usePathname();
   const router = useRouter();
@@ -102,9 +102,9 @@ const Header = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const handleSignUpSuccess =() => {
-    setIsSignupSuccessful(isSignupSuccessful)
-  }
+  // const handleSignUpSuccess =() => {
+  //   setIsSignupSuccessful(isSignupSuccessful)
+  // }
 
   return (
     <div
@@ -223,13 +223,24 @@ const Header = () => {
         </button>
       </div>
       {/* Conditionally render the Signup modal */}
-      {isModalVisible && (
+      {/* {isModalVisible && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
           {isSignupSuccessful ? (
             <Page /> // Render Login component on successful signup
           ) : (
             <Signup onSignUpSuccess={handleSignUpSuccess} onCancel={toggleModal} /> // Render Signup component otherwise
           )}
+        </div>
+      )} */}
+       {isModalVisible && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+          <Signup onCancel={toggleModal}/>
+          <button
+            onClick={toggleModal}
+            className="relative right-8 rounded-full"
+          >
+            <MdOutlineCancel className="text-xl -mt-72" />
+          </button>
         </div>
       )}
     </div>
