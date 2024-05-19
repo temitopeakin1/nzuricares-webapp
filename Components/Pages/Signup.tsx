@@ -7,6 +7,9 @@ import { registerUserAction } from "@/app/data/actions/auth-actions";
 import Link from "next/link";
 import { MdOutlineCancel } from "react-icons/md";
 import { useFormState } from "react-dom";
+import { ZodErrors } from "@/app/components/custom/ZodErrors";
+
+
 
 interface formData {
   username: string;
@@ -26,13 +29,16 @@ const Signup = () => {
   // variable to store the initial state
   const INITIAL_STATE = {
     data: null,
-  }; 
+  };
 
   const handleCancel = () => {
     router.push("/");
   };
 
-  const [formState, formAction] = useFormState(registerUserAction, INITIAL_STATE);
+  const [formState, formAction] = useFormState(
+    registerUserAction,
+    INITIAL_STATE
+  );
   console.log(formState);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const router = useRouter();
@@ -47,32 +53,32 @@ const Signup = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newErrors: { [key: string]: string } = {};
+    // const newErrors: { [key: string]: string } = {};
 
-    if (!formData.username.trim()) {
-      newErrors.username = "Username is required";
-    }
+    // if (!formData.username.trim()) {
+    //   newErrors.username = "Username is required";
+    // }
 
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-      newErrors.email = "Invalid email format";
-    }
+    // if (!formData.email.trim()) {
+    //   newErrors.email = "Email is required";
+    // } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+    //   newErrors.email = "Invalid email format";
+    // }
 
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-    }
+    // if (!formData.password) {
+    //   newErrors.password = "Password is required";
+    // }
 
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
-    }
+    // if (formData.password !== formData.confirmPassword) {
+    //   newErrors.confirmPassword = "Passwords do not match";
+    // }
 
-    if (Object.keys(newErrors).length === 0) {
+    if (Object.keys(ZodErrors).length === 0) {
       // Call the registerUserAction or any API call here
       router.push("/login");
     }
 
-    setErrors(newErrors);
+    setErrors(errors);
   };
 
   return (
@@ -99,12 +105,10 @@ const Signup = () => {
               value={formData.username}
               placeholder="JohnDoe"
               onChange={handleChange}
-              className="w-full px-8 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
               required
             />
-            {errors.username && (
-              <p className="text-red-500 text-sm mt-2">{errors.username}</p>
-            )}
+            <ZodErrors error={formState?.zodErrors?.username} />
           </div>
           <div className="mb-4">
             <label htmlFor="email" className="font-semibold">
@@ -120,9 +124,7 @@ const Signup = () => {
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
               required
             />
-            {errors.email && (
-              <p className="text-red-500 text-sm mt-2">{errors.email}</p>
-            )}
+           <ZodErrors error={formState?.zodErrors?.email} />
           </div>
           <div className="mb-4">
             <label htmlFor="password" className="block mb-1 font-semibold">
@@ -137,9 +139,7 @@ const Signup = () => {
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
               required
             />
-            {errors.password && (
-              <p className="text-red-500 text-sm mt-2">{errors.password}</p>
-            )}
+           <ZodErrors error={formState?.zodErrors?.password} />
           </div>
           <div className="mb-4">
             <label
@@ -157,11 +157,7 @@ const Signup = () => {
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
               required
             />
-            {errors.confirmPassword && (
-              <p className="text-red-500 text-sm mt-2">
-                {errors.confirmPassword}
-              </p>
-            )}
+           <ZodErrors error={formState?.zodErrors?.confirmPassword} />
           </div>
           <button
             type="submit"
