@@ -6,6 +6,7 @@ import Image from "next/image";
 import { registerUserAction } from "@/app/data/actions/auth-actions";
 import Link from "next/link";
 import { MdOutlineCancel } from "react-icons/md";
+import { useFormState } from "react-dom";
 
 interface formData {
   username: string;
@@ -22,9 +23,17 @@ const Signup = () => {
     confirmPassword: "",
   });
 
+  // variable to store the initial state
+  const INITIAL_STATE = {
+    data: null,
+  }; 
+
   const handleCancel = () => {
     router.push("/");
   };
+
+  const [formState, formAction] = useFormState(registerUserAction, INITIAL_STATE);
+  console.log(formState);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const router = useRouter();
 
@@ -76,7 +85,7 @@ const Signup = () => {
         />
         <h2 className="text-2xl font-semibold mt-4">Register Account</h2>
         <form
-          action={registerUserAction}
+          action={formAction}
           className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50"
         >
           <div className="mb-4">
