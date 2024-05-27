@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 interface formData {
   email: string;
@@ -15,10 +16,9 @@ const Login = () => {
     password: "",
   });
 
-  // state variables
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
 
-  // handle change method
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -27,16 +27,19 @@ const Login = () => {
     }));
   };
 
-  // handle submit method
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    //console.log("Form Submitted:" , formData )
+  const handlePasswordVisibility = () => {
+    setPasswordVisibility(!passwordVisibility);
+  };
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     const newErrors: { [key: string]: string } = {};
+    //setErrors(null)
 
     if (!formData.email.trim()) {
-      newErrors.email = "Enail is required";
-    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
       newErrors.email = "Email is required";
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      newErrors.email = "Invalid email format";
     }
 
     if (!formData.password) {
@@ -65,7 +68,6 @@ const Login = () => {
           Login to your Account
         </p>
       </div>
-
       <form
         onSubmit={handleSubmit}
         className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50"
@@ -82,22 +84,40 @@ const Login = () => {
             placeholder="name@example.com"
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
-            required
           />
+          {errors.email && (
+            <p className="text-red-500 text-sm mt-2">{errors.email}</p>
+          )}
         </div>
         <div className="mb-4">
           <label htmlFor="password" className="block mb-1 font-semibold">
             Password
           </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
-            required
-          />
+          <div className="flex relative">
+            <input
+              type={passwordVisibility ? "text" : "password"}
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+            />
+            <button
+              type="button"
+              onClick={handlePasswordVisibility}
+              className="absolute right-3 top-2.5"
+              style={{ color: "#000000" }}
+            >
+              {passwordVisibility ? (
+                <AiOutlineEye />
+              ) : (
+                <AiOutlineEyeInvisible />
+              )}
+            </button>
+          </div>
+          {errors.password && (
+            <p className="text-red-500 text-sm mt-2">{errors.password}</p>
+          )}
         </div>
         <button className="absolute -mt-2 right-8 text-red-800 font-satoshi ">
           Forgot password?

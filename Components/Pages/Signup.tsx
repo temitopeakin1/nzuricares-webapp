@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { registerUserAction } from "@/app/data/actions/auth-actions";
+import { signup } from "@/app/data/actions/auth-actions";
 import Link from "next/link";
 import { MdOutlineCancel } from "react-icons/md";
 import { useFormState } from "react-dom";
 import { ZodErrors } from "@/app/components/custom/ZodErrors";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 
 
@@ -25,6 +26,8 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+  const [passwordVisibility, setPasswordVisiility] = useState(false);
+  const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(false);
 
   // variable to store the initial state
   const INITIAL_STATE = {
@@ -35,12 +38,20 @@ const Signup = () => {
     router.push("/");
   };
 
+ const handlePasswordVisibility = () => {
+    setPasswordVisiility(!passwordVisibility);
+  }; 
+
+  const handleConfirmPasswordVisibility = () => {
+    setConfirmPasswordVisibility(!confirmPasswordVisibility)
+  }
+
   const [formState, formAction] = useFormState(
-    registerUserAction,
+    signup,
     INITIAL_STATE
   );
   console.log(formState);
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  //const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,7 +89,7 @@ const Signup = () => {
       router.push("/login");
     }
 
-    setErrors(errors);
+    //setErrors(errors);
   };
 
   return (
@@ -124,22 +135,36 @@ const Signup = () => {
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
               required
             />
-           <ZodErrors error={formState?.zodErrors?.email} />
+            <ZodErrors error={formState?.zodErrors?.email} />
           </div>
           <div className="mb-4">
             <label htmlFor="password" className="block mb-1 font-semibold">
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
-              required
-            />
-           <ZodErrors error={formState?.zodErrors?.password} />
+            <div className="flex">
+              <input
+                type={passwordVisibility ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                required
+              />
+              <button
+                type="button"
+                onClick={handlePasswordVisibility}
+                className="absolute ml-72 pl-4 mt-2.5"
+                style={{ color: "#000000" }}
+              >
+                {passwordVisibility ? (
+                  <AiOutlineEye />
+                ) : (
+                  <AiOutlineEyeInvisible />
+                )}
+              </button>
+            </div>
+            <ZodErrors error={formState?.zodErrors?.password} />
           </div>
           <div className="mb-4">
             <label
@@ -148,16 +173,30 @@ const Signup = () => {
             >
               Confirm Password
             </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
-              required
-            />
-           <ZodErrors error={formState?.zodErrors?.confirmPassword} />
+            <div className="flex">
+              <input
+                type={confirmPasswordVisibility ? "text" : "password"}
+                id="confirmPassword"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                required
+              />
+              <button
+                type="button"
+                onClick={handleConfirmPasswordVisibility}
+                className="absolute ml-72 pl-4 mt-2.5"
+                style={{ color: "#000000" }}
+              >
+                {passwordVisibility ? (
+                  <AiOutlineEye />
+                ) : (
+                  <AiOutlineEyeInvisible />
+                )}
+              </button>
+            </div>
+            <ZodErrors error={formState?.zodErrors?.confirmPassword} />
           </div>
           <button
             type="submit"

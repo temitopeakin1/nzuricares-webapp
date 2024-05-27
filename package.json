@@ -10,6 +10,11 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.0.3",
+    "@nextui-org/accordion": "^2.0.32",
+    "@nextui-org/react": "^2.3.6",
+    "@supabase/ssr": "^0.3.0",
+    "@supabase/supabase-js": "^2.43.2",
+    "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.378.0",

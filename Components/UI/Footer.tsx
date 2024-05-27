@@ -58,7 +58,7 @@ const Footer = () => {
         {/* company section */}
         <div className="flex-1 flex flex-col mt-4 md:mt-0 md:ml-36 md:mr-8">
           <div>
-            <p className="font-bold mb-4 text-blue-800">Company</p>
+            <p className="font-bold mb-4 text-blue-800 font-title">Company</p>
             <div className="grid grid-cols-1">
               {company.map((link, index) => (
                 <Link key={index} href={link.link} passHref>
@@ -73,7 +73,7 @@ const Footer = () => {
         {/* resources section */}
         <div className="flex-1 flex flex-col mt-4 md:mt-0 md:ml-8 md:mr-8">
           <div>
-            <p className="font-bold mb-4 text-blue-800">Resources</p>
+            <p className="font-bold mb-4 text-blue-800 font-title">Resources</p>
             <div className="grid grid-cols-1">
               {resources.map((link, index) => (
                 <Link key={index} href={link.link} passHref>
@@ -88,7 +88,7 @@ const Footer = () => {
         {/* contact section */}
         <div className="flex-1 flex flex-col mt-4 md:mt-0 md:ml-8 md:mr-8">
           <div>
-            <p className="mb-4 font-bold text-blue-800">Contact Us</p>
+            <p className="mb-4 font-bold text-blue-800 font-title">Contact Us</p>
             {/* Add your contact information here */}
             <div className="grid grid-cols-1">
               {contacts.map((link, index) => (

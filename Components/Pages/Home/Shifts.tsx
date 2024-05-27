@@ -9,7 +9,7 @@ const Shifts = () => {
         <Image src={"/images/shift.jpg"} alt={"Shift"} width={500} height={700} className="rounded-lg" />
       </div>
       <div className="lg:w-1/2 lg:pl-8">
-      <h2 className="text-center lg:text-left px-4 lg:px-0 font-title font-semibold text-4xl md:text-5xl lg:text-4xl pb-4">Discover Shift Opportunities</h2>
+      <h2 className="text-center lg:text-left px-4 lg:px-0 font-title font-bold text-2xl md:text-2xl lg:text-2xl pb-4">Discover Shift Opportunities</h2>
         <p className="text-justify lg:text-left px-4 lg:px-0">
           Join our Dedicated platform to connect with nursing professionals, caregivers, and
           support workers seeking fulfilling shifts.<br /> Register now and personalize

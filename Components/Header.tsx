@@ -212,7 +212,7 @@ const Header = () => {
 
         <button
           onClick={handleLoginClick}
-          className="bg-transparent border border-primary text-primary px-4 py-2 rounded-full"
+          className="bg-transparent border font-semibold border-primary text-primary px-4 py-2 rounded-full"
         >
           Login
         </button>

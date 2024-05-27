@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Righteous&display=swap');@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pacifico&family=Righteous&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -92,4 +95,24 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* components/CurvySlashText.module.css */
+
+.container {
+  position: relative;
+}
+
+.text {
+  text-align: center;
+}
+
+.curvySlash {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px; /* Adjust the width of the curvy slash */
+  height: 20px; /* Adjust the height of the curvy slash */
+  background: linear-gradient(135deg, transparent 75%, black 75%);
 }

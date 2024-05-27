@@ -80,13 +80,13 @@ const Sliders = () => {
     <div
       style={{
         backgroundImage: `url(${bgImage})`,
-        backgroundPosition: "center top 28%",
+        backgroundPosition: "center top 20%",
       }}
-      className={`${bgImage} bg-cover bg-center h-[50vh] md:h-[90vh] bg-opacity-100  flex justify-center items-center relative transition-all duration-500 ease-in-out`}
+      className={`${bgImage} bg-cover bg-center h-[50vh] md:h-[90vh] bg-black bg-opacity-10  flex justify-center items-center relative transition-all duration-500 ease-in-out`}
     >
       <div className="w-full ">
-        <div className="px-24 mt-32 text-white font-semibold justify-left ">
-          <h1 className="text-[1em] lg:text-[3em] md:text-[2rem]   leading-[.9em]  ">
+        <div className="px-24 mt-32 text-white font-normal justify-left ">
+          <h1 className="text-[1em] lg:text-[3em] md:text-[2rem]   leading-[.9em] font-sans  ">
             {text?.header}
           </h1>
           <div className="flex items-center font-normal -mt-2 justify-left ">
