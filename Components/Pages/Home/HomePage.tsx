@@ -7,8 +7,6 @@ import Footer from "@/Components/UI/Footer";
 import Shifts from "./Shifts";
 import Testimonial from "./Testimonial";
 
-// import { Header } from "@/Components";
-
 const Sliders = () => {
   const images = [
     "/images/bgSlider-1.jpg",
@@ -82,7 +80,7 @@ const Sliders = () => {
         backgroundImage: `url(${bgImage})`,
         backgroundPosition: "center top 20%",
       }}
-      className={`${bgImage} bg-cover bg-center h-[50vh] md:h-[90vh] bg-black bg-opacity-10  flex justify-center items-center relative transition-all duration-500 ease-in-out`}
+      className={`${bgImage} bg-cover bg-center h-[50vh] md:h-[90vh] bg-black bg-opacity-2  flex justify-center items-center relative transition-all duration-500 ease-in-out`}
     >
       <div className="w-full ">
         <div className="px-24 mt-32 text-white font-normal justify-left ">

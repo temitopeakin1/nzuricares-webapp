@@ -116,3 +116,15 @@ body {
   height: 20px; /* Adjust the height of the curvy slash */
   background: linear-gradient(135deg, transparent 75%, black 75%);
 }
+
+@keyframes moveForwardAndBackward {
+  0% {
+    transform: translateX(0); /* Start position */
+  }
+  50% {
+    transform: translateX(10px); /* Move forward */
+  }
+  100% {
+    transform: translateX(0); /* Move backward to initial position */
+  }
+}

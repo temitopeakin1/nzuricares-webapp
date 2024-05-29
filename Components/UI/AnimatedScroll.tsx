@@ -22,7 +22,7 @@ const AnimatedScroll: React.FC<AnimatedProps> = ({ targetId }) => {
       aria-label="Scroll-down"
     >
       <svg
-        className="scroll-svg large-arrow text-white border border-white rounded-full"
+        className="scroll-svg animate bounce large-arrow text-white border border-white rounded-full"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

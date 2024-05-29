@@ -1,7 +1,11 @@
 import { Header } from "@/Components";
 import Accordion from "@/Components/UI/Accordion";
+import AnimatedArrow from "@/Components/UI/AnimatedArrow";
 import AnimatedScroll from "@/Components/UI/AnimatedScroll";
 import Footer from "@/Components/UI/Footer";
+import Hero from "@/Components/UI/Hero";
+
+import ProcessStep from "@/Components/UI/ProcessStep";
 import React from "react";
 
 const accordion_data = [
@@ -46,22 +50,64 @@ const Page = () => {
       >
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <h1 className="text-3xl md:text-3xl sm:text-xl font-normal text-white text-center px-2 mt-48 font-sans">
-          Discover How Our Seamless Processes Make a Difference <br /> Follow the Steps Below!
+            Discover How Our Seamless Processes Make a Difference <br /> Follow
+            the Steps Below!
           </h1>
           <div className="flex items-center justify-center text-center">
-          <AnimatedScroll targetId="faq-section" />
+            <AnimatedScroll targetId="faq-section" />
           </div>
         </div>
         <div className="h-[80vh]"></div> {/* Adjust height as needed */}
       </div>
+
+      <div className="flex flex-col items-center justify-center">
+        <div className="bg-[#FAFAFA] flex items-center justify-center py-16">
+          <div className="w-[92%] md:w-[80%] md:grid grid-cols-3 items-center  ">
+            <h1 className="text-blue-800 font-bold lg:text-2xl md:text-3xl mb-3 md:mb-0 font-title">
+              About Nzuricares
+            </h1>
+            <p className="leading-8 md:leading-10 text-justify col-span-2 font-body">
+              We are a CareProvider Recruitment firm, We provide accessible,
+              high-quality healthcare services that promote wellness, empower
+              individuals, and enhance the quality of life for all members of
+              our community.”
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="py-16 text-center">
+        <h1 className="mt-2 font-bold lg:text-2xl text-blue-800 font-title">
+          Our Processes
+        </h1>
+        <div className="w-full flex flex-col relative">
+          <div className="w-full flex items-center justify-center relative mt-8 space-x-8 font-body">
+            <ProcessStep
+              title="Sign up"
+              description="Sign up to register an account"
+            />
+            <AnimatedArrow />
+            <ProcessStep
+              title="Login"
+              description="Login to register profile"
+            />
+            <AnimatedArrow />
+            <ProcessStep title="Register" description="Register your profile" />
+            <AnimatedArrow />
+            <ProcessStep
+              title="Get a message"
+              description="Get a call or message from the Team"
+            />
+          </div>
+        </div>
+      </div>
       <div className="flex flex-col items-center justify-center mt-12 px-4 bg-gray-50">
-        <div className="w-full md:w-[60%] mb-8">
-          <h2 className="text-2xl font-bold text-center mt-16">
+        <div className="w-full md:w-[80%] mb-8">
+          <h2 className="text-2xl font-bold text-center mt-16 font-title">
             Got questions? We’ve got answers
           </h2>
           <p className="text-lg mt-2 text-center mb-8 md:mb-4">
-            See if we’ve answered it here. It’s usually the fastest way to get
-            the info you need.
+            FAQ, See if we’ve answered your questions
           </p>
           {accordion_data.map((item) => (
             <Accordion
@@ -72,6 +118,7 @@ const Page = () => {
           ))}
         </div>
       </div>
+      <Hero />
       <Footer />
     </div>
   );

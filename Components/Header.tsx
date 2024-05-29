@@ -29,24 +29,20 @@ const navigation = [
     ],
   },
   {
-    name: "Staffing",
-    href: "/staffing",
+    name: "Company",
+    href: "/company",
     subMenus: [
       {
+        name: "About Us",
+        href: "/company/about-us",
+      },
+      {
         name: "Careers",
-        href: "/staffing/careers",
+        href: "/company/careers",
       },
       {
-        name: "Care workers",
-        href: "/staffing/care-workers",
-      },
-      {
-        name: "Nurses",
-        href: "/staffing/nurses",
-      },
-      {
-        name: "Support Workers",
-        href: "/staffing/support-workers",
+        name: "Staffing",
+        href: "/company/staffing",
       },
     ],
   },
@@ -104,7 +100,7 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed top-0 z-50 w-full flex justify-between md:px-16 ${
+      className={`fixed top-0 z-50 w-full flex justify-between md:px-16 font-title ${
         isScrolled ? "p-4" : "p-2"
       } items-center bg-white`}
     >
@@ -136,7 +132,7 @@ const Header = () => {
       <div
         className={`${
           isMenuOpen
-            ? "absolute top-0 left-0 w-full h-screen bg-white z-50 flex flex-col gap-4 justify-center items-center"
+            ? "absolute top-0 left-0 w-full h-screen bg-white z-50 flex flex-col gap-4 justify-center items-center font-title"
             : "md:flex hidden"
         } gap-4 md-flex `}
       >
@@ -170,7 +166,7 @@ const Header = () => {
                   if (!link.subMenus) router.push(link.href);
                   link.subMenus ? toggleSubMenu(index) : setIsMenuOpen(false);
                 }}
-                className={`text-base font-semibold text-primary  hover:font-bold  flex gap-x-2 items-center cursor-pointer   hover:text-secondary px-4 py-2 ${
+                className={`text-base font-semibold text-primary  hover:font-bold  flex gap-x-2 items-center cursor-pointer  font-title hover:text-secondary px-4 py-2 ${
                   isActive && "underline font-bold text-secondary"
                 }`}
               >
