@@ -18,7 +18,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
       <Image src={imageUrl} alt="Service" width={250} height={250} />
       <p className="mt-4 text-lg font-semibold">{title}</p>
       <p className="mt-2 text-sm font-body">{description}</p>
-      <Link href="/read-more" className="mt-4 text-blue-500">
+      <Link href="/care-professionals/services" className="mt-4 text-blue-500">
         Read more
       </Link>
     </div>

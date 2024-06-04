@@ -6,6 +6,7 @@ import Services from "./Services";
 import Footer from "@/Components/UI/Footer";
 import Shifts from "./Shifts";
 import Testimonial from "./Testimonial";
+import Subscribe from "@/Components/UI/Subscribe";
 
 const Sliders = () => {
   const images = [
@@ -147,6 +148,7 @@ const HomePage = () => {
       <Services />
       <Shifts />
       <Testimonial testimonials={[]} />
+      <Subscribe />
       <Footer />
     </main>
   );
