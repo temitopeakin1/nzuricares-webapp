@@ -1,12 +1,17 @@
+'use client';
+
+
 import { Header } from "@/Components";
 import Accordion from "@/Components/UI/Accordion";
 import AnimatedArrow from "@/Components/UI/AnimatedArrow";
 import AnimatedScroll from "@/Components/UI/AnimatedScroll";
+import FadeIn from "@/Components/UI/FadeIn";
 import Footer from "@/Components/UI/Footer";
 import Hero from "@/Components/UI/Hero";
 
 import ProcessStep from "@/Components/UI/ProcessStep";
-import React from "react";
+import { useEffect, useState } from "react";
+
 
 const accordion_data = [
   {
@@ -37,6 +42,16 @@ const accordion_data = [
 ];
 
 const Page = () => {
+  const [showUnderline, setShowUnderline] = useState(false);
+
+ // for the circle animation on text
+ useEffect(() => {
+  setTimeout(() => {
+    setShowUnderline(true);
+  }, 1000); // Adjust the delay as needed
+}, []);
+
+
   return (
     <div>
       <Header />
@@ -44,18 +59,23 @@ const Page = () => {
         className="w-full relative bg-cover bg-center"
         style={{
           backgroundImage: "url(/images/nurse.jpg)",
-          backgroundPosition: "center top", // Adjust this value as needed
-          backgroundSize: "cover", // This ensures the image covers the entire div
+          backgroundPosition: "center top",
+          backgroundSize: "cover", 
         }}
       >
-        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <h1 className="text-3xl md:text-3xl sm:text-xl font-normal text-white text-center px-2 mt-48 font-sans">
-            Discover How Our Seamless Processes Make a Difference <br /> Follow
-            the Steps Below!
-          </h1>
-          <div className="flex items-center justify-center text-center">
-            <AnimatedScroll targetId="faq-section" />
-          </div>
+        <div className="absolute inset-0 flex items-center justify-start bg-black bg-opacity-50">
+        <FadeIn duration={4}>
+            <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
+              Discover how our <br />
+              <span className="relative inline-block">
+                seamless processes 
+                {showUnderline && (
+                  <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
+                )}
+              </span> <br />
+              make a difference
+            </h1>
+          </FadeIn>
         </div>
         <div className="h-[80vh]"></div> {/* Adjust height as needed */}
       </div>

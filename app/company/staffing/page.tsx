@@ -1,10 +1,19 @@
 "use client";
 
 import { Header } from "@/Components";
-import React from "react";
-import FadeIn from "@/Components/UI/FadeIn"; // Adjust the path based on your folder structure
+import React, { useEffect, useState } from "react";
+import FadeIn from "@/Components/UI/FadeIn"; 
 
 const Page = () => {
+  const [showUnderline, setShowUnderline] = useState(false);
+
+  // for the circle animation on text
+  useEffect(() => {
+    setTimeout(() => {
+      setShowUnderline(true);
+    }, 1000); // Adjust the delay as needed
+  }, []);
+
   return (
     <div>
       <Header />
@@ -17,13 +26,15 @@ const Page = () => {
         }}
       >
         <div className="absolute inset-0 flex items-center justify-start bg-black bg-opacity-50">
-          <FadeIn duration={8}>
+          <FadeIn duration={4}>
             <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
               The hassle-free solution
               <br /> for{" "}
               <span className="relative inline-block">
                 staffing needs
-                <span className="absolute h-0.5 w-0 bg-secondary rounded-full animate-pulse -z-1"></span>
+                {showUnderline && (
+                  <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
+                )}
               </span>
             </h1>
           </FadeIn>
