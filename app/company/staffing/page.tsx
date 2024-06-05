@@ -110,9 +110,22 @@ const Page = () => {
           NHS trusts, we’ve got you covered.
         </p>
         <div className="flex justify-center bg-primary rounded-xl mt-16 max-w-screen-lg mx-auto p-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 divide-x-2 divide-white">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center mx-auto">
             {careSettings.map((value, index) => (
-              <CareSettings key={index} icon={value.icon} title={value.title} />
+              <div
+                key={index}
+                className={`relative ${
+                  index % 2 !== 0 && index !== 3
+                    ? "sm:border-l-2 sm:border-gray-300"
+                    : ""
+                } ${
+                  index >= 2 && index % 3 !== 0
+                    ? "md:border-l-2 md:border-gray-300"
+                    : ""
+                }`}
+              >
+                <CareSettings icon={value.icon} title={value.title} />
+              </div>
             ))}
           </div>
         </div>

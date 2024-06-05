@@ -84,12 +84,12 @@ const Sliders = () => {
       className={`${bgImage} bg-cover bg-center h-[50vh] md:h-[90vh] bg-black bg-opacity-2  flex justify-center items-center relative transition-all duration-500 ease-in-out`}
     >
       <div className="w-full ">
-        <div className="px-24 mt-32 text-white font-normal justify-left ">
-          <h1 className="text-[1em] lg:text-[3em] md:text-[2rem]   leading-[.9em] font-sans  ">
+        <div className="px-4 md:px-24 mt-8 md:mt-32 text-white font-normal justify-left text-center md:text-left">
+          <h1 className="text-[2em] lg:text-[3em] md:text-[2rem]   leading-[.9em] font-sans  ">
             {text?.header}
           </h1>
           <div className="flex items-center font-normal -mt-2 justify-left ">
-            <p className="my-8 text-base md:text-xl w-full md:w-[50%]">
+            <p className="my-8 text-base md:text-xl w-full md:w-[100%]">
               {text.tagline}
             </p>
           </div>

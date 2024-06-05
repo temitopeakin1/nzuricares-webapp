@@ -49,7 +49,7 @@ const Footer = () => {
   return (
     <div className="mt-8 md:mt-11 bg-footer-color md:px-16 p-4 text-black pt-14">
       <div className="flex flex-col md:flex-row pb-[6em]">
-        <div className="flex-1 align-baseline">
+        <div className="flex-1 align-baseline mt-2 md:mt-0 md:ml-0">
           <Image src={"/images/logo.png"} alt="Logo" width={200} height={200} />
           <p className="mt-.5 ml-6 text-base font-pacifico">
             Your wellbeing is our priority
