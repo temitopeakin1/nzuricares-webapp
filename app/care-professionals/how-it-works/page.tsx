@@ -71,7 +71,7 @@ const Page = () => {
                   <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
                 )}
               </span>
-              <br /> makes a difference
+              <br /> makes the difference
             </h1>
           </FadeIn>
         </div>
