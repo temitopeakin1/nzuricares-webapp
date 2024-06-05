@@ -66,12 +66,12 @@ const Page = () => {
               <span className="relative inline-block mr-4">
                 {" "}
                 {/* Added mr-4 class */}
-                seamless processes
+                seamless
                 {showUnderline && (
                   <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
                 )}
               </span>
-              <br /> makes the difference
+              <br /> processes makes the difference
             </h1>
           </FadeIn>
         </div>

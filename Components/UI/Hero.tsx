@@ -43,23 +43,24 @@ const Hero: React.FC = () => {
 
   return (
     <div className="hero relative overflow-hidden h-[400px] -mb-16">
-      <div ref={imageRef} className="hero-image absolute inset-0 z-0">
+      <div
+        ref={imageRef}
+        className="hero-image absolute inset-0 bg-black bg-opacity-50 z-0"
+      >
         <Image
-          src="/images/bgSlider-4.jpg" // Replace with your image path
+          src="/images/bgSlider-4.jpg"
           alt="Hero Image"
           layout="fill"
           objectFit="cover"
         />
       </div>
       <div className="hero-content relative z-10 flex flex-col items-center justify-center min-h-screen text-white px-4">
-        <h1 className="text-base md:text-5xl lg:text-4xl font-normal -mt-48 text-center text-white font-pacifico">
+        <h1 className="text-2xl md:text-5xl lg:text-4xl font-normal -mt-48 text-center text-white font-sans">
           We have the best professionals at our disposal
         </h1>
-        <Link href="/contact"> 
-          <button
-            className="text-lg md:text-xl lg:text-2xl border border-spacing-8 text-center text-white rounded-md mt-8 font-serif"
-            >
-            talk to Us today
+        <Link href="/contact">
+        <button className="mt-4 px-[2em] py-[.5em] mx-1 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans">
+            Contact us
           </button>
         </Link>
       </div>
