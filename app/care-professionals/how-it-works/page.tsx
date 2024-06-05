@@ -1,17 +1,14 @@
-'use client';
-
+"use client";
 
 import { Header } from "@/Components";
 import Accordion from "@/Components/UI/Accordion";
 import AnimatedArrow from "@/Components/UI/AnimatedArrow";
-import AnimatedScroll from "@/Components/UI/AnimatedScroll";
 import FadeIn from "@/Components/UI/FadeIn";
 import Footer from "@/Components/UI/Footer";
 import Hero from "@/Components/UI/Hero";
 
 import ProcessStep from "@/Components/UI/ProcessStep";
 import { useEffect, useState } from "react";
-
 
 const accordion_data = [
   {
@@ -44,13 +41,12 @@ const accordion_data = [
 const Page = () => {
   const [showUnderline, setShowUnderline] = useState(false);
 
- // for the circle animation on text
- useEffect(() => {
-  setTimeout(() => {
-    setShowUnderline(true);
-  }, 1000); // Adjust the delay as needed
-}, []);
-
+  // for the circle animation on text
+  useEffect(() => {
+    setTimeout(() => {
+      setShowUnderline(true);
+    }, 1000); // Adjust the delay as needed
+  }, []);
 
   return (
     <div>
@@ -60,20 +56,22 @@ const Page = () => {
         style={{
           backgroundImage: "url(/images/nurse.jpg)",
           backgroundPosition: "center top",
-          backgroundSize: "cover", 
+          backgroundSize: "cover",
         }}
       >
         <div className="absolute inset-0 flex items-center justify-start bg-black bg-opacity-50">
-        <FadeIn duration={4}>
+          <FadeIn duration={4}>
             <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
               Discover how our <br />
-              <span className="relative inline-block">
-                seamless processes 
+              <span className="relative inline-block mr-4">
+                {" "}
+                {/* Added mr-4 class */}
+                seamless processes
                 {showUnderline && (
                   <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
                 )}
-              </span> <br />
-              make a difference
+              </span>
+              <br /> makes a difference
             </h1>
           </FadeIn>
         </div>
