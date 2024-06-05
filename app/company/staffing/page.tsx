@@ -1,17 +1,64 @@
 "use client";
 
 import { Header } from "@/Components";
-import React, { useEffect, useState } from "react";
-import FadeIn from "@/Components/UI/FadeIn"; 
+import FadeIn from "@/Components/UI/FadeIn";
+import { useEffect, useState } from "react";
+import { FaBed, FaHospital } from "react-icons/fa";
+import { IconType } from "react-icons/lib";
+import { PiMapPinLineFill, PiUserSwitchBold } from "react-icons/pi";
+import { HiMiniArrowsPointingIn } from "react-icons/hi2";
+import { MdOutlineLocalHospital } from "react-icons/md";
+import Footer from "@/Components/UI/Footer";
+
+const careSettings = [
+  {
+    icon: FaHospital,
+    title: "NHS Hospitals",
+  },
+  {
+    icon: FaBed,
+    title: "Residential Care Homes",
+  },
+  {
+    icon: PiMapPinLineFill,
+    title: "Domiciliary care services",
+  },
+  {
+    icon: MdOutlineLocalHospital,
+    title: "Private Hospitals",
+  },
+  {
+    icon: PiUserSwitchBold,
+    title: "Supported Living environments",
+  },
+  {
+    icon: HiMiniArrowsPointingIn,
+    title: "Complex care services",
+  },
+];
+
+interface CareSettingsProps {
+  icon: IconType;
+  title: string;
+}
+
+const CareSettings: React.FC<CareSettingsProps> = ({ icon: Icon, title }) => {
+  return (
+    <div className="flex flex-col items-center w-full p-4 mx-4 my-2">
+      <Icon size={64} className="text-white" />
+      <p className="mt-2 text-lg font-semibold text-white">{title}</p>
+    </div>
+  );
+};
 
 const Page = () => {
   const [showUnderline, setShowUnderline] = useState(false);
 
-  // for the circle animation on text
+  // for the underline animation on text
   useEffect(() => {
     setTimeout(() => {
       setShowUnderline(true);
-    }, 1000); // Adjust the delay as needed
+    }, 2000); // Adjust the delay as needed
   }, []);
 
   return (
@@ -54,7 +101,7 @@ const Page = () => {
           Discover how we can simplify your work life.
         </p>
       </div>
-      <div className="pb-16 text-center">
+      <div className="py-8 text-center">
         <h1 className="mt-2 font-bold lg:text-2xl text-blue-800 font-title">
           Explore the spectrum of care settings we embrace.
         </h1>
@@ -62,7 +109,15 @@ const Page = () => {
           From nurturing care homes to advanced private hospitals and esteemed
           NHS trusts, we’ve got you covered.
         </p>
+        <div className="flex justify-center bg-primary rounded-xl mt-16 max-w-screen-lg mx-auto p-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 divide-x-2 divide-white">
+            {careSettings.map((value, index) => (
+              <CareSettings key={index} icon={value.icon} title={value.title} />
+            ))}
+          </div>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };

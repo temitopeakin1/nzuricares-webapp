@@ -120,7 +120,7 @@ const target_audience = [
 
 interface CoreItemProps {
   icon: IconType;
-  title: string;
+  title: string
   description: string;
 }
 
