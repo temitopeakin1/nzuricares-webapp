@@ -89,7 +89,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     return Response.json(response);
   } catch (error: any) {
     // Log the error for debugging purposes
-    console.error("Errorttt:", error);
+    console.error("Error:", error);
 
     // Return appropriate error response
     return Response.json(error);

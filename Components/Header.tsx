@@ -214,7 +214,7 @@ const Header = () => {
         </button>
         <button
           onClick={handleSignupClick}
-          className="bg-primary text-white px-4 py-2 rounded-full"
+          className="bg-primary text-white px-4 py-2 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 rounded-full"
         >
           Sign Up
         </button>

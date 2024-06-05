@@ -66,7 +66,7 @@ const Sliders = () => {
     if (index === 0 || index === 1 || index === 2 || index === 3) {
       return (
         <Link href={"/care-professionals/how-it-works"} passHref>
-          <button className="-mt-4 px-[2em] py-[.5em] bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out">
+          <button className="-mt-8 px-[2em] py-[.5em] bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans">
             Learn more
           </button>
         </Link>
@@ -81,20 +81,22 @@ const Sliders = () => {
         backgroundImage: `url(${bgImage})`,
         backgroundPosition: "center top 20%",
       }}
-      className={`${bgImage} bg-cover bg-center h-[50vh] md:h-[90vh] bg-black bg-opacity-2  flex justify-center items-center relative transition-all duration-500 ease-in-out`}
+      className={`${bgImage} bg-cover bg-center h-[50vh] md:h-[90vh] flex justify-center items-center relative transition-all duration-500 ease-in-out`}
     >
+        <div className="absolute inset-0 bg-black bg-opacity-10"/> 
       <div className="w-full ">
-        <div className="px-4 md:px-24 mt-8 md:mt-32 text-white font-normal justify-left text-center md:text-left">
-          <h1 className="text-[2em] lg:text-[3em] md:text-[2rem]   leading-[.9em] font-sans  ">
+        <div className="relative z-60 px-8 md:px-24 mt-36 md:mt-32 text-white font-normal justify-left text-center md:text-left">
+          <h1 className="text-[2em] lg:text-[3em] md:text-[2rem] leading-[.9em] font-sans  ">
             {text?.header}
           </h1>
-          <div className="flex items-center font-normal -mt-2 justify-left ">
-            <p className="my-8 text-base md:text-xl w-full md:w-[100%]">
+          <div className="flex items-center font-normal -mt-4 justify-left ">
+            <p className="my-8 text-base md:text-xl w-full md:w-auto">
               {text.tagline}
             </p>
           </div>
           {renderButton()}
         </div>
+     
 
         <div className="w-full flex justify-center items-center absolute bottom-2 md:bottom-5 mt-8">
           <div className="flex items-center gap-4">
