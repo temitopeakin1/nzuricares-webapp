@@ -14,7 +14,7 @@ interface FormData {
   address: string;
   jobType: string;
   postCode: string;
-  resume: string;
+  resume: File | null;
 }
 
 interface ProfileData {
@@ -26,7 +26,7 @@ interface ProfileData {
   address: string;
   jobType: string;
   postCode: string;
-  resume: string;
+  resume: null,
 }
 
 const Register = () => {
