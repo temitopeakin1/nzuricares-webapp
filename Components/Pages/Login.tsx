@@ -97,7 +97,10 @@ const Login = () => {
           Login to your Account
         </p>
       </div>
-      <form className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50">
+      <form
+        onSubmit={handleSignIn}
+        className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50"
+      >
         <div className="mb-4">
           <label htmlFor="email" className="font-semibold">
             Email
@@ -149,7 +152,6 @@ const Login = () => {
           Forgot password?
         </button>
         <button
-          onClick={handleSignIn}
           type="submit"
           className="w-full mt-8 py-2 px-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
         >
