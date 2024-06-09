@@ -147,11 +147,12 @@ const Register = () => {
       setErrors({});
     } catch (error) {
       //console.error("Error:", error);
-      // setIsSubmitting(false);
+      setIsSubmitting(false);
+      // set time before routing to the homepage
       setTimeout(() => {
         router.push("/");
-      }, 5000)
- setErrors("Error occurred while registering. Please try again later.");
+      }, 5000);
+      setErrors("Error occurred while registering. Please try again later.");
       return;
     }
   };
