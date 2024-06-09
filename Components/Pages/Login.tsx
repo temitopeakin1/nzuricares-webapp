@@ -20,7 +20,7 @@ const Login = () => {
   });
 
   const [passwordVisibility, setPasswordVisibility] = useState(false);
-  const [errors, setErrors] = useState("")
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const supabase = createClientComponentClient();
 
@@ -53,8 +53,7 @@ const Login = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-
- const handleSignIn = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSignIn = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!validateForm()) return;
@@ -76,8 +75,10 @@ const Login = () => {
         password: "",
       });
     } catch (error) {
-      //console.error("Error:", error);
-      setErrors("An Error occurred while logging in.Kindly try again later.");
+      console.error("Error:", error);
+      setErrors({
+        general: "An error occurred while logging in. Please try again later.",
+      });
     }
   };
 
