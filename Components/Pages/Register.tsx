@@ -14,7 +14,7 @@ interface FormData {
   address: string;
   jobType: string;
   postCode: string;
-  resume: File; // Change the type to File
+  resume: string;
 }
 
 interface ProfileData {
