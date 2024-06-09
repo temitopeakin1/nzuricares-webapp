@@ -102,7 +102,7 @@ const Page = () => {
             <div className="mt-4 px-4 sm:px-8 md:px-16 lg:px-24 text-white font-sans flex items-center">
               <MdEmail className="mr-2" />
               <Link href="mailto:info@nzurihealthcare.com" passHref>
-                info@nzurihealthcare.com
+                info@nzuricares.co.uk
               </Link>
             </div>
             <Link href={"/company/careers/#"} passHref>

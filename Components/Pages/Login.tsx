@@ -4,6 +4,9 @@ import React, { FormEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { signup } from "@/app/login/action";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import router from "next/router";
 
 interface formData {
   email: string;
@@ -19,6 +22,8 @@ const Login = () => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [passwordVisibility, setPasswordVisibility] = useState(false);
 
+  const supabase = createClientComponentClient();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -31,10 +36,8 @@ const Login = () => {
     setPasswordVisibility(!passwordVisibility);
   };
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
-    //setErrors(null)
 
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
@@ -42,15 +45,40 @@ const Login = () => {
       newErrors.email = "Invalid email format";
     }
 
-    if (!formData.password) {
+    if (!formData.password.trim()) {
       newErrors.password = "Password is required";
     }
 
-    if (Object.keys(newErrors).length === 0) {
-      window.location.href = "/register";
-    }
-
     setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+
+ const handleSignIn = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!validateForm()) return;
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (error) {
+        setErrors({ general: error.message });
+        return;
+      }
+
+      router.reload();
+      setFormData({
+        email: "",
+        password: "",
+      });
+    } catch (error) {
+      //console.error("Error:", error);
+      setErrors("An Error occurred while logging in.Kindly try again later.");
+    }
   };
 
   return (
@@ -68,10 +96,7 @@ const Login = () => {
           Login to your Account
         </p>
       </div>
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50"
-      >
+      <form className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50">
         <div className="mb-4">
           <label htmlFor="email" className="font-semibold">
             Email
@@ -123,6 +148,7 @@ const Login = () => {
           Forgot password?
         </button>
         <button
+          onClick={handleSignIn}
           type="submit"
           className="w-full mt-8 py-2 px-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
         >

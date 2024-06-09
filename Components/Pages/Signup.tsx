@@ -7,10 +7,10 @@ import { signup } from "@/app/data/actions/auth-actions";
 import Link from "next/link";
 import { MdOutlineCancel } from "react-icons/md";
 import { useFormState } from "react-dom";
-import { ZodErrors } from "@/app/components/custom/ZodErrors";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
-
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+// import { SupabaseErrors } from "@/app/components/custom/SupabaseErrors";
+import { ZodErrors } from "@/app/components/custom/ZodErrors";
 
 interface formData {
   username: string;
@@ -26,8 +26,12 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [passwordVisibility, setPasswordVisiility] = useState(false);
-  const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(false);
+  const [confirmPasswordVisibility, setConfirmPasswordVisibility] =
+    useState(false);
+  const supabase = createClientComponentClient();
 
   // variable to store the initial state
   const INITIAL_STATE = {
@@ -38,20 +42,16 @@ const Signup = () => {
     router.push("/");
   };
 
- const handlePasswordVisibility = () => {
+  const handlePasswordVisibility = () => {
     setPasswordVisiility(!passwordVisibility);
-  }; 
+  };
 
   const handleConfirmPasswordVisibility = () => {
-    setConfirmPasswordVisibility(!confirmPasswordVisibility)
-  }
+    setConfirmPasswordVisibility(!confirmPasswordVisibility);
+  };
 
-  const [formState, formAction] = useFormState(
-    signup,
-    INITIAL_STATE
-  );
+  const [formState, formAction] = useFormState(signup, INITIAL_STATE);
   console.log(formState);
-  //const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,34 +62,36 @@ const Signup = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // const newErrors: { [key: string]: string } = {};
+    setSuccessMessage(null);
+    // take note of here
+    const { error } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+      options: {
+        emailRedirectTo: `${location.origin}/auth/callback`,
+        //emailRedirectTo: `${location.origin}/login`,
+      },
+    });
 
-    // if (!formData.username.trim()) {
-    //   newErrors.username = "Username is required";
-    // }
-
-    // if (!formData.email.trim()) {
-    //   newErrors.email = "Email is required";
-    // } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-    //   newErrors.email = "Invalid email format";
-    // }
-
-    // if (!formData.password) {
-    //   newErrors.password = "Password is required";
-    // }
-
-    // if (formData.password !== formData.confirmPassword) {
-    //   newErrors.confirmPassword = "Passwords do not match";
-    // }
-
-    if (Object.keys(ZodErrors).length === 0) {
-      // Call the registerUserAction or any API call here
-      router.push("/login");
+    if (error) {
+      return "errors";
+    } else {
+      setFormData({
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+      setSuccessMessage(
+        "Signup successful! Please check your email to confirm your account."
+      );
+      // set timer for 3 seconds
+      setTimeout(() => {
+        router.push("/login");
+      }, 5000);
     }
-
-    //setErrors(errors);
   };
 
   return (
@@ -100,11 +102,11 @@ const Signup = () => {
           className="text-xl cursor-pointer absolute top-4 right-4"
           onClick={handleCancel}
         />
+        {successMessage && (
+          <div className="mt-4 text-center text-primary">{successMessage}</div>
+        )}
         <h2 className="text-2xl font-semibold mt-4">Register Account</h2>
-        <form
-          action={formAction}
-          className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50"
-        >
+        <form className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50">
           <div className="mb-4">
             <label htmlFor="username" className="font-semibold">
               Username
@@ -151,6 +153,7 @@ const Signup = () => {
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
                 required
               />
+              <ZodErrors error={formState?.zodErrors?.password} />
               <button
                 type="button"
                 onClick={handlePasswordVisibility}
@@ -164,7 +167,6 @@ const Signup = () => {
                 )}
               </button>
             </div>
-            <ZodErrors error={formState?.zodErrors?.password} />
           </div>
           <div className="mb-4">
             <label
@@ -183,6 +185,7 @@ const Signup = () => {
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
                 required
               />
+              <ZodErrors error={formState?.zodErrors?.confirmPassword} />
               <button
                 type="button"
                 onClick={handleConfirmPasswordVisibility}
@@ -196,14 +199,16 @@ const Signup = () => {
                 )}
               </button>
             </div>
-            <ZodErrors error={formState?.zodErrors?.confirmPassword} />
           </div>
           <button
+            onClick={handleSignUp}
             type="submit"
             className="w-full py-2 px-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
           >
             Sign Up
+            {/* <SupabaseErrors error={formState?.supabaseErrors} /> */}
           </button>
+
           <p className="mt-4 text-center text-gray-600">
             Already have an account?{" "}
             <Link href="/login" className="text-blue-700 font-semibold">

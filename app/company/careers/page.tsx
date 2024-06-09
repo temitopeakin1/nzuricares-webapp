@@ -76,8 +76,8 @@ const Page = () => {
       <div
         className="w-full relative bg-cover bg-center"
         style={{
-          backgroundImage: "url(/images/nurse.jpg)",
-          backgroundPosition: "center top",
+          backgroundImage: "url(/images/caregiver.jpg)",
+          backgroundPosition: "center top -10%",
           backgroundSize: "cover",
         }}
       >

@@ -19,28 +19,28 @@ export default function Testimonial({}: { testimonials: Testimonial[] }) {
 
   const testimonials: Testimonial[] = [
     {
-      image: "/images/person-1.jpg",
+      image: "/images/user-7.jpg",
       quote:
         "I want to extend my heartfelt thanks to the entire team at Nzurihealthcare. The care workers have been a lifeline for me during a challenging time. Their kindness, patience, and genuine care have made all the difference. I am grateful for their dedication and the positive impact they have had on my wellbeing.",
       name: "John Doe",
       role: "Exec",
     },
     {
-      image: "/images/person-1.jpg",
+      image: "/images/avatar-4.jpg",
       quote:
         "I highly recommend Nzurihealthcare to anyone in need of care services. From the initial consultation to the ongoing support, the team has been exceptional. The care workers are not only skilled and experienced but also compassionate and understanding. They have truly made a positive impact on my life.",
-      name: "Alice .M.",
+      name: "Donald .T.",
       role: "Founder",
     },
     {
-      image: "/images/person-1.jpg",
+      image: "/images/avatar-2.jpg",
       quote:
         "I cannot thank Nzurihealthcare enough for the outstanding care provided to my elderly parents. The care workers have gone above and beyond to ensure my parents' comfort and safety. They treat them with dignity and respect, and I have complete peace of mind knowing they are in good hands. I wholeheartedly recommend Nzurihealthcare to anyone seeking compassionate and reliable care services",
-      name: "Jane Hilton",
+      name: "Hendrick Hilton",
       role: "Excecutive",
     },
     {
-      image: "/images/person-1.jpg",
+      image: "/images/user-10.jpg",
       quote:
         "Choosing Nzurihealthcare was one of the best decisions I've made for my family. The care workers provided by the agency have become like family to us. They not only assist with daily tasks but also provide companionship and emotional support. I am impressed by their professionalism and commitment to excellence.",
       name: "Theresa Doe",
