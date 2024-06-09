@@ -4,10 +4,10 @@ const { createClient } = require('@supabase/supabase-js');
 const sgMail = require('@sendgrid/mail');
 
 // Initialize Supabase client
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_API_KEY');
 
 // Initialize SendGrid with your API key
-sgMail.setApiKey(sendgridAPIkey);
+sgMail.setApiKey('YOUR_SENDGRID_API_KEY');
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
