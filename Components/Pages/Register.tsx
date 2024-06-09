@@ -39,7 +39,7 @@ const Register = () => {
     address: "",
     jobType: "",
     postCode: "",
-    resume: null, 
+    resume: "", 
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
