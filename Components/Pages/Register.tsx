@@ -127,7 +127,7 @@ const Register = () => {
         address: "",
         jobType: "",
         postCode: "",
-        resume: "",
+        resume: null,
       });
       setSuccessMessage(
         "Profile Registration complete, We will get back to you."
