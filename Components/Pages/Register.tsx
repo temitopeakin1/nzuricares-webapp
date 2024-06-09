@@ -93,7 +93,7 @@ const Register = () => {
 
       if (resumeError) throw resumeError;
 
-      const resumeKey = resumeData?.Key ?? null;
+      const resumePath = resumeData?.path ?? null;
 
       const { data: insertedData, error: insertError } = await supabase
         .from("profileData")
@@ -107,7 +107,7 @@ const Register = () => {
             address: formData.address,
             jobType: formData.jobType,
             postCode: formData.postCode,
-            resume: resumeKey,
+            resume: resumePath,
           },
         ]);
 
@@ -297,6 +297,7 @@ const Register = () => {
             />
             {errors.resume && <p className="text-red-500">{errors.resume}</p>}
           </div>
+          {errors.submit && <p className="text-red-500">{errors.submit}</p>}
           <button
             type="submit"
             className={`w-full py-2 px-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300 ${
