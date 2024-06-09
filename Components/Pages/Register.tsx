@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import Image from "next/image";
 import { supabase } from "@/app/supabaseClient";
 import { FaSpinner } from "react-icons/fa";
@@ -17,18 +17,6 @@ interface FormData {
   resume: File | null;
 }
 
-interface ProfileData {
-  profileId: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
-  address: string;
-  jobType: string;
-  postCode: string;
-  resume: null,
-}
-
 const Register = () => {
   const [formData, setFormData] = useState<FormData>({
     profileId: "",
@@ -39,7 +27,7 @@ const Register = () => {
     address: "",
     jobType: "",
     postCode: "",
-    resume: null, 
+    resume: null,
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -96,18 +84,22 @@ const Register = () => {
     const profileId = `NZ${Math.floor(Math.random() * 1000)}`;
 
     try {
-      const resumeFileName = `${Date.now()}_${formData.resume!.name}`;
+      setIsSubmitting(true);
+
+      const resumeFileName = `${Date.now()}_${formData.resume?.name || 'resume'}`;
       const { data: resumeData, error: resumeError } = await supabase.storage
         .from("resumes")
         .upload(resumeFileName, formData.resume as File);
 
       if (resumeError) throw resumeError;
+
       const resumeKey = resumeData?.Key ?? null;
+
       const { data: insertedData, error: insertError } = await supabase
         .from("profileData")
         .insert([
           {
-            profileId: formData.profileId,
+            profileId,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
@@ -119,7 +111,10 @@ const Register = () => {
           },
         ]);
 
+      if (insertError) throw insertError;
+
       setFormData({
+        profileId: "",
         firstName: "",
         lastName: "",
         email: "",
@@ -134,14 +129,10 @@ const Register = () => {
       );
       setErrors({});
     } catch (error) {
-      //console.error("Error:", error);
-      //setIsSubmitting(false);
-      // set time before routing to the homepage
-      setTimeout(() => {
-        router.push("/");
-      }, 5000);
-      setErrors("Error occurred while registering. Please try again later.");
-      return;
+      console.error("Error:", error);
+      setErrors({ submit: "Error occurred while registering. Please try again later." });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
