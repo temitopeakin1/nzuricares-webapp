@@ -19,8 +19,8 @@ const Login = () => {
     password: "",
   });
 
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const supabase = createClientComponentClient();
 
@@ -77,7 +77,7 @@ const Login = () => {
       });
     } catch (error) {
       //console.error("Error:", error);
-      setErrors("An Error occurred while logging in.Kindly try again later.");
+      // setErrors("An Error occurred while logging in.Kindly try again later.");
     }
   };
 
