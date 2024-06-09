@@ -14,7 +14,7 @@ interface FormData {
   address: string;
   jobType: string;
   postCode: string;
-  resume: string;
+  resume: File; // Change the type to File
 }
 
 interface ProfileData {
@@ -39,7 +39,7 @@ const Register = () => {
     address: "",
     jobType: "",
     postCode: "",
-    resume: "",
+    resume: null, 
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
