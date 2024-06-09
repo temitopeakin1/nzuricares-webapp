@@ -252,7 +252,6 @@ const Register = () => {
               name="jobType"
               value={formData.jobType}
               onChange={handleChange}
-              placeholder="Select Job Type"
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500 bg-white"
               required
             >
