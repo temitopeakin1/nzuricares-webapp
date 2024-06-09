@@ -1,7 +1,8 @@
 // pages/api/sendFormSubmissionEmail.js
 
-const { createClient } = require('@supabase/supabase-js');
-const sgMail = require('@sendgrid/mail');
+import { NextApiRequest, NextApiResponse } from 'next';
+import { createClient } from '@supabase/supabase-js';
+import sgMail from '@sendgrid/mail';
 
 // Initialize Supabase client
 const supabase = createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_API_KEY');
@@ -9,7 +10,7 @@ const supabase = createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_API_KEY');
 // Initialize SendGrid with your API key
 sgMail.setApiKey('YOUR_SENDGRID_API_KEY');
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     try {
       // Parse the form submission data from the request body
