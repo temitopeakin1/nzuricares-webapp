@@ -4,12 +4,9 @@ import React, { FormEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import router from "next/router";
 import { useRouter } from "next/navigation";
 import { SubmitButton } from "../Custom/submitButton";
-
 
 interface formData {
   email: string;
@@ -29,7 +26,7 @@ const Login = () => {
   }>({});
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const supabase = createClientComponentClient();
   const router = useRouter();
@@ -65,7 +62,7 @@ const Login = () => {
 
   const handleSignIn = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setLoading(true);  // Start loading
+    setLoading(true); // Start loading
     if (!validateForm()) return;
     // take note here
     try {
@@ -111,10 +108,14 @@ const Login = () => {
         </p>
       </div>
       {errors.general && (
-        <p className="text-red-500 text-center mb-4 font-semibold">{errors.general}</p>
+        <p className="text-red-500 text-center mb-4 font-semibold">
+          {errors.general}
+        </p>
       )}
       {successMessage && (
-        <div className="mt-4 text-center text-primary font-semibold">{successMessage}</div>
+        <div className="mt-4 text-center text-primary font-semibold">
+          {successMessage}
+        </div>
       )}
       <form
         onSubmit={handleSignIn}
@@ -170,7 +171,12 @@ const Login = () => {
         <button className="absolute -mt-2 right-8 text-red-800 font-satoshi ">
           Forgot password?
         </button>
-         <SubmitButton className="w-full" text="Login" loadingText="Login" loading={loading} />
+        <SubmitButton
+          className="w-full"
+          text="Login"
+          loadingText="Login"
+          loading={loading}
+        />
         <p className="mt-4 text-center text-gray-600">
           Don’t have an Account?{" "}
           <Link href="/signup" className="text-blue-700 font-semibold">

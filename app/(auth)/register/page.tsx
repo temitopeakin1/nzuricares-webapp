@@ -1,5 +1,5 @@
 import Register from "@/Components/Pages/Register";
 
-export default function registerRoute() {
+export default function RegisterRoute() {
     return <Register />
 }
