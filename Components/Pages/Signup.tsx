@@ -11,6 +11,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 // import { SupabaseErrors } from "@/app/components/custom/SupabaseErrors";
 import { ZodErrors } from "@/app/components/custom/ZodErrors";
+import { SubmitButton } from "../Custom/submitButton";
 
 interface formData {
   username: string;
@@ -26,8 +27,14 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const [errors, setErrors] = useState<{
+    general?: string;
+    email?: string;
+    password?: string;
+  }>({});
+  const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [passwordVisibility, setPasswordVisiility] = useState(false);
   const [confirmPasswordVisibility, setConfirmPasswordVisibility] =
     useState(false);
@@ -64,33 +71,42 @@ const Signup = () => {
 
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSuccessMessage(null);
-    // take note of here
-    const { error } = await supabase.auth.signUp({
-      email: formData.email,
-      password: formData.password,
-      options: {
-        emailRedirectTo: `${location.origin}/auth/callback`,
-        //emailRedirectTo: `${location.origin}/login`,
-      },
-    });
+    setLoading(true);  // Start loading
 
-    if (error) {
-      return "errors";
-    } else {
-      setFormData({
-        username: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
+    try {
+      const { error } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          emailRedirectTo: `${location.origin}/auth/callback`,
+          //emailRedirectTo: `${location.origin}/login`,
+        },
       });
-      setSuccessMessage(
-        "Signup successful! Please check your email to confirm your account."
-      );
-      // set timer for 3 seconds
-      setTimeout(() => {
-        router.push("/login");
-      }, 5000);
+
+      if (error) {
+        setErrors({ general: error.message });
+        return;
+      } else {
+        setFormData({
+          username: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+        setSuccessMessage(
+          "Signup successful! Please check your email to confirm your account."
+        );
+        setErrors({});
+        // set timer for 5 seconds
+        setTimeout(() => {
+          router.push("/login");
+        }, 5000);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setErrors({ general: "An error occurred. Please try again later." });
+    } finally {
+      setLoading(false);  // End loading
     }
   };
 
@@ -102,11 +118,22 @@ const Signup = () => {
           className="text-xl cursor-pointer absolute top-4 right-4"
           onClick={handleCancel}
         />
-        {successMessage && (
-          <div className="mt-4 text-center text-primary">{successMessage}</div>
+
+        <p className="text-2xl font-semibold mt-4">Register Account</p>
+        {errors.general && (
+          <p className="text-red-500 text-center mb-4 font-semibold">
+            {errors.general}
+          </p>
         )}
-        <h2 className="text-2xl font-semibold mt-4">Register Account</h2>
-        <form className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50">
+        {successMessage && (
+          <div className="mt-4 text-center text-primary font-semibold">
+            {successMessage}
+          </div>
+        )}
+        <form
+          onSubmit={handleSignUp}
+          className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50"
+        >
           <div className="mb-4">
             <label htmlFor="username" className="font-semibold">
               Username
@@ -200,15 +227,9 @@ const Signup = () => {
               </button>
             </div>
           </div>
-          <button
-            onClick={handleSignUp}
-            type="submit"
-            className="w-full py-2 px-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
-          >
-            Sign Up
-            {/* <SupabaseErrors error={formState?.supabaseErrors} /> */}
-          </button>
-
+        
+          <SubmitButton className="w-full" text="Signup"  loadingText="Signing up"
+            loading={loading} />
           <p className="mt-4 text-center text-gray-600">
             Already have an account?{" "}
             <Link href="/login" className="text-blue-700 font-semibold">

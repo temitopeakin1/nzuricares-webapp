@@ -3,7 +3,8 @@
 import React, { FormEvent, useState } from "react";
 import Image from "next/image";
 import { supabase } from "@/app/supabaseClient";
-import { FaSpinner } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+import { SubmitButton } from "../Custom/submitButton";
 
 interface FormData {
   profileId: string;
@@ -29,10 +30,10 @@ const Register = () => {
     postCode: "",
     resume: null,
   });
-
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const router = useRouter();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -84,8 +85,8 @@ const Register = () => {
     const profileId = `NZ${Math.floor(Math.random() * 1000)}`;
 
     try {
-      setIsSubmitting(true);
 
+      
       const resumeFileName = `${Date.now()}_${formData.resume?.name || 'resume'}`;
       const { data: resumeData, error: resumeError } = await supabase.storage
         .from("resumes")
@@ -128,11 +129,14 @@ const Register = () => {
         "Profile Registration complete, We will get back to you."
       );
       setErrors({});
+      setTimeout(() => {
+        router.push("/");
+      }, 3000);
     } catch (error) {
       console.error("Error:", error);
-      setErrors({ submit: "Error occurred while registering. Please try again later." });
+      setErrors({ general: "Error occurred while registering. Please try again later." });
     } finally {
-      setIsSubmitting(false);
+      setLoading(false);
     }
   };
 
@@ -297,22 +301,8 @@ const Register = () => {
             {errors.resume && <p className="text-red-500">{errors.resume}</p>}
           </div>
           {errors.submit && <p className="text-red-500">{errors.submit}</p>}
-          <button
-            type="submit"
-            className={`w-full py-2 px-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300 ${
-              isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? (
-              <span className="flex items-center">
-                <FaSpinner className="animate-spin mr-2 h-4 w-4" />
-                Registering...
-              </span>
-            ) : (
-              "Register"
-            )}
-          </button>
+         <SubmitButton className="w-full" text="Signup"  loadingText="Signing up"
+            loading={loading} />
         </form>
       </div>
     </div>

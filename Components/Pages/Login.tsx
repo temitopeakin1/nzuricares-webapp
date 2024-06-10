@@ -4,9 +4,12 @@ import React, { FormEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { signup } from "@/app/login/action";
+
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import router from "next/router";
+import { useRouter } from "next/navigation";
+import { SubmitButton } from "../Custom/submitButton";
+
 
 interface formData {
   email: string;
@@ -19,10 +22,17 @@ const Login = () => {
     password: "",
   });
 
+  const [errors, setErrors] = useState<{
+    general?: string;
+    email?: string;
+    password?: string;
+  }>({});
   const [passwordVisibility, setPasswordVisibility] = useState(false);
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false); 
 
   const supabase = createClientComponentClient();
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -55,9 +65,9 @@ const Login = () => {
 
   const handleSignIn = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    setLoading(true);  // Start loading
     if (!validateForm()) return;
-
+    // take note here
     try {
       const { error } = await supabase.auth.signInWithPassword({
         email: formData.email,
@@ -67,18 +77,21 @@ const Login = () => {
       if (error) {
         setErrors({ general: error.message });
         return;
+      } else {
+        setFormData({
+          email: "",
+          password: "",
+        });
+        setSuccessMessage("Login Successful");
+        setErrors({});
+        // set timer for 5 seconds
+        setTimeout(() => {
+          router.push("/register");
+        }, 5000);
       }
-
-      router.reload();
-      setFormData({
-        email: "",
-        password: "",
-      });
     } catch (error) {
       console.error("Error:", error);
-      setErrors({
-        general: "An error occurred while logging in. Please try again later.",
-      });
+      setErrors({ general: "An error occurred. Please try again later." });
     }
   };
 
@@ -94,9 +107,15 @@ const Login = () => {
         />
         <p className="mt-2 font-serif font-normal">Welcome back,</p>
         <p className="mt-2 text-2xl font-body font-semibold">
-          Login to your Account
+          Login to register account
         </p>
       </div>
+      {errors.general && (
+        <p className="text-red-500 text-center mb-4 font-semibold">{errors.general}</p>
+      )}
+      {successMessage && (
+        <div className="mt-4 text-center text-primary font-semibold">{successMessage}</div>
+      )}
       <form
         onSubmit={handleSignIn}
         className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50"
@@ -151,12 +170,7 @@ const Login = () => {
         <button className="absolute -mt-2 right-8 text-red-800 font-satoshi ">
           Forgot password?
         </button>
-        <button
-          type="submit"
-          className="w-full mt-8 py-2 px-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
-        >
-          Login
-        </button>
+         <SubmitButton className="w-full" text="Login" loadingText="Login" loading={loading} />
         <p className="mt-4 text-center text-gray-600">
           Don’t have an Account?{" "}
           <Link href="/signup" className="text-blue-700 font-semibold">
