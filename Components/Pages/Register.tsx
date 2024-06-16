@@ -5,6 +5,8 @@ import Image from "next/image";
 import { supabase } from "@/app/supabaseClient";
 import { useRouter } from "next/navigation";
 import { SubmitButton } from "../Custom/submitButton";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 interface FormData {
   profileId: string;
@@ -42,6 +44,14 @@ const Register = () => {
     setFormData((prevData) => ({
       ...prevData,
       [name]: files ? files[0] : value,
+    }));
+  };
+
+  // handle the phone number change
+  const handlePhoneNumberChange = (value: string | undefined) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      phoneNumber: value || "",
     }));
   };
 
@@ -85,9 +95,9 @@ const Register = () => {
     const profileId = `NZ${Math.floor(Math.random() * 1000)}`;
 
     try {
-
-      
-      const resumeFileName = `${Date.now()}_${formData.resume?.name || 'resume'}`;
+      const resumeFileName = `${Date.now()}_${
+        formData.resume?.name || "resume"
+      }`;
       const { data: resumeData, error: resumeError } = await supabase.storage
         .from("resumes")
         .upload(resumeFileName, formData.resume as File);
@@ -126,16 +136,17 @@ const Register = () => {
         resume: null,
       });
       setSuccessMessage(
-        "Profile Registration complete, We will get back to you."
+        "Profile Registration complete, Redirecting to Homepage."
       );
       setErrors({});
       setTimeout(() => {
         router.push("/");
-      }, 3000);
+      }, 2000);
     } catch (error) {
       console.error("Error:", error);
-      setErrors({ general: "Error occurred while registering. Please try again later." });
-    } finally {
+      setErrors({
+        general: "Error occurred while registering. Please try again later.",
+      });
       setLoading(false);
     }
   };
@@ -192,7 +203,7 @@ const Register = () => {
                 value={formData.lastName}
                 placeholder="Doe"
                 onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
                 required
               />
               {errors.lastName && (
@@ -210,7 +221,7 @@ const Register = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
               required
             />
             {errors.email && <p className="text-red-500">{errors.email}</p>}
@@ -219,17 +230,36 @@ const Register = () => {
             <label htmlFor="phoneNumber" className="font-semibold">
               Phone Number
             </label>
-            <input
-              type="text"
-              id="phoneNumber"
-              name="phoneNumber"
+            <PhoneInput
+              international
+              defaultCountry="RU"
+              countryCallingCodeEditable={false}
               value={formData.phoneNumber}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+              onChange={handlePhoneNumberChange}
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
+              inputClassName="w-full px-3 py-3 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
               required
             />
             {errors.phoneNumber && (
               <p className="text-red-500">{errors.phoneNumber}</p>
+            )}
+          </div>
+          <div className="mb-4">
+            <label htmlFor="postCode" className="font-semibold">
+              Post Code
+            </label>
+            <input
+              type="text"
+              id="postCode"
+              name="postCode"
+              value={formData.postCode}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
+
+              required
+            />
+            {errors.postCode && (
+              <p className="text-red-500">{errors.postCode}</p>
             )}
           </div>
           <div className="mb-4">
@@ -242,7 +272,7 @@ const Register = () => {
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
               required
             />
             {errors.address && <p className="text-red-500">{errors.address}</p>}
@@ -256,38 +286,22 @@ const Register = () => {
               name="jobType"
               value={formData.jobType}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500 bg-white"
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500 bg-white"
               required
             >
               <option value="" disabled>
                 Select a job type
               </option>
-              <option value="carer/caregivers">Carers</option>
+              <option value="carers">Carers</option>
               <option value="nurses">Nurses</option>
               <option value="support workers">Support Workers</option>
             </select>
             {errors.jobType && <p className="text-red-500">{errors.jobType}</p>}
           </div>
-          <div className="mb-4">
-            <label htmlFor="postCode" className="font-semibold">
-              Post Code
-            </label>
-            <input
-              type="text"
-              id="postCode"
-              name="postCode"
-              value={formData.postCode}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
-              required
-            />
-            {errors.postCode && (
-              <p className="text-red-500">{errors.postCode}</p>
-            )}
-          </div>
+
           <div className="mb-4">
             <label htmlFor="resume" className="font-semibold">
-              Resume
+              Upload Resume
             </label>
             <input
               type="file"
@@ -295,14 +309,18 @@ const Register = () => {
               name="resume"
               accept=".pdf,.doc,.docx"
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
               required
             />
             {errors.resume && <p className="text-red-500">{errors.resume}</p>}
           </div>
           {errors.submit && <p className="text-red-500">{errors.submit}</p>}
-         <SubmitButton className="w-full" text="Signup"  loadingText="Signing up"
-            loading={loading} />
+          <SubmitButton
+            className="w-full"
+            text="Register"
+            loadingText="Registering.."
+            loading={loading}
+          />
         </form>
       </div>
     </div>

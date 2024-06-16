@@ -32,7 +32,7 @@ const Services = () => {
         Health Care Recruitment Services
       </h1>
       <p className="mt-2 lg:text-sm md:text-sm">
-        We are one of the leading providers of domiciliary care and health care
+        One of the leading providers of domiciliary care and health care
         staffing services.
       </p>
       <div className="mt-8 flex flex-wrap justify-center">
