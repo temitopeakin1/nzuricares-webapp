@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const PrivacyBanner = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const isBannerAccepted = localStorage.getItem('privacyBannerAccepted');

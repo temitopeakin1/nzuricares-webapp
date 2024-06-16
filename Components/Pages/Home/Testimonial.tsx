@@ -118,7 +118,7 @@ export default function Testimonial({}: { testimonials: Testimonial[] }) {
               leaveTo="opacity-0 translate-x-4"
               beforeEnter={() => heightFix()}
             >
-              <div className="text-2xl font-bold text-slate-900 before:content-['\201C'] after:content-['\201D']">
+              <div className="text-sm sm:text-base md:text-lg px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 font-semibold before:content-['\201C'] after:content-['\201D']">
                 {testimonial.quote}
               </div>
             </Transition>
