@@ -68,7 +68,7 @@ const page = () => {
       <Header />
       <div className="flex flex-col items-center justify-center">
         <div className="bg-[#FAFAFA] flex flex-col items-center justify-center py-0 md:py-10 w-full">
-          <div className="text-blue-800 pt-24 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold font-title">
+          <div className="text-blue-800 pt-24 sm:pt-28 md:pt-28 lg:pt-32 xl:pt-36 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold font-title">
             <p className="text-base ">Nzuricare Services</p>
             <hr className="my-2 h-1 bg-primary" />
             <p className="text-2xl md:text-5xl font-bold uppercase">
