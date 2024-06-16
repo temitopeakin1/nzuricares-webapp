@@ -20,13 +20,13 @@ const Shifts = () => {
         </h2>
         <p className="text-justify lg:text-left px-4 lg:px-0 font-body">
           Join our Dedicated platform to connect with nursing professionals,
-          caregivers, and support workers seeking fulfilling shifts.
+          carers, and support workers seeking fulfilling shifts.
           <br /> Register now and personalize your shift preferences to explore
           availability in your area.
         </p>
         <div className="text-center lg:text-left mt-4">
           <Link
-            href="/staffing"
+            href="/company/staffing"
             className="mt-2 px-[2em] py-[.5em] mx-2 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans inline-block"
           >
             Learn More

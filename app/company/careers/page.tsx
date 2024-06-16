@@ -16,12 +16,12 @@ const careers = [
   {
     title: "Diversity and Inclusion",
     image: "/images/service-2.jpg",
-    text: "Diversity and inclusion are fundamental principles in our caregivers agency. We believe that by embracing a wide range of backgrounds, perspectives, and experiences, we can provide more compassionate, effective, and personalized care to our clients. ",
+    text: "Diversity and inclusion are fundamental principles in our caregivers agency. We believe that by embracing a wide range of backgrounds, perspectives, and experiences, we can provide more compassionate, effective, and personalised care to our clients. ",
   },
   {
-    title: "Roles",
+    title: "Careers",
     image: "/images/service-2.jpg",
-    text: "In our agency, we have a diverse team of professionals fulfilling various roles to ensure comprehensive care and support for our clients. Our team includes caregivers/Personal Support Workers (PSWs), Registered Nurses, administrative support staff, and support health workers, among others. Each member of our team plays a crucial role in delivering high-quality services and maintaining the well-being of our clients.",
+    text: "In our agency, we have a diverse team of professionals fulfilling various roles to ensure comprehensive care and support for our clients. Our team includes Carers / Caregivers, Registered Nurses, administrative support staff, and support health workers, among others. Each member of our team plays a crucial role in delivering high-quality care services and maintaining the well-being of our clients.",
   },
 ];
 
@@ -54,7 +54,10 @@ const Section = ({
       </div>
       <div className="flex-1 text-center md:text-start">
         <p className="font-bold text-[32px] md:text-[32px]">{title}</p>
-        <p className="text-[16px] md:text-[18px]" dangerouslySetInnerHTML={{ __html: text }}></p>
+        <p
+          className="text-[16px] md:text-[18px]"
+          dangerouslySetInnerHTML={{ __html: text }}
+        ></p>
       </div>
     </div>
   );
@@ -85,21 +88,20 @@ const Page = () => {
           <FadeIn duration={4}>
             <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
               Careers at
-              <br /> 
+              <br />
               <span className="relative inline-block">
-                Nzurihealthcare
+                Nzuri Healthcare
                 {showUnderline && (
                   <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
                 )}
               </span>
             </h1>
             <Link href={"/company/careers/#"} passHref>
-          <button className="mt-8 px-[2em] py-[.5em] mx-24 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans">
-            Open roles
-          </button>
-        </Link>
+              <button className="mt-8 px-[2em] py-[.5em] mx-24 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans">
+                Open roles
+              </button>
+            </Link>
           </FadeIn>
-         
         </div>
         <div className="h-[80vh]"></div>
       </div>

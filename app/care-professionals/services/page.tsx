@@ -10,8 +10,8 @@ const section_data = [
     image: "/images/service-1.jpg",
   },
   {
-    title: "Personalized Care",
-    text: "Our Implementation is a patient-centered approach that emphasizes personalized treatment plans.",
+    title: "Personalised Care",
+    text: "Our Implementation is a patient-centered approach that emphasises personalised treatment plans.",
     image: "/images/service-2.jpg",
   },
   {
@@ -68,7 +68,7 @@ const page = () => {
       <Header />
       <div className="flex flex-col items-center justify-center">
         <div className="bg-[#FAFAFA] flex flex-col items-center justify-center py-0 md:py-10 w-full">
-          <div className="text-blue-800 pt-16 text-xl font-bold font-title">
+          <div className="text-blue-800 pt-24 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold font-title">
             <p className="text-base ">Nzuricare Services</p>
             <hr className="my-2 h-1 bg-primary" />
             <p className="text-2xl md:text-5xl font-bold uppercase">
@@ -87,13 +87,13 @@ const page = () => {
         <div className=" flex flex-col gap-6 items-center justify-center py-0 md:py-10 w-full md:w-[50%]">
           <div className="border-t-primary border-b-primary border-t-2 border-b-2 p-4 md:p-6">
             <p className="text-xl font-semibold text-justify md:text-start ">
-              At NzuriHealthCare, we believe that exceptional care begins with a
-              compassionate heart and a professional touch. Our dedicated team
-              of caregivers is committed to providing personalized, high-quality
+              At Nzuri HealthCare, we believe that exceptional care begins with
+              a compassionate heart and a professional touch. Our dedicated team
+              of carers is committed to providing personalised, high-quality
               care that enhances the quality of life for you and your loved
               ones. Whether its assistance with daily activities, specialized
               medical care, or simply a friendly companion, we are here to
-              support you every step of the way. Our professional caregivers,
+              support you every step of the way. Our professional carers,
               Nurses, and Support Workers are here to provide the compassionate,
               reliable assistance that makes a meaningful difference in your
               life. Explore our services and let us be your trusted partner in

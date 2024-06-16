@@ -141,7 +141,7 @@ const Register = () => {
   };
 
   return (
-    <div className="relative bg-white px-4 items-center py-12 rounded-lg shadow-lg w-[100%] max-w-2xl my-8">
+    <div className="relative bg-white px-4 items-center py-12 rounded-lg shadow-lg w-[100%] max-w-xl my-8">
       <div className="flex flex-col items-center -mt-8">
         <Image
           src={"/images/logo.png"}
@@ -262,7 +262,7 @@ const Register = () => {
               <option value="" disabled>
                 Select a job type
               </option>
-              <option value="carer/caregivers">Carer/Caregivers</option>
+              <option value="carer/caregivers">Carers</option>
               <option value="nurses">Nurses</option>
               <option value="support workers">Support Workers</option>
             </select>

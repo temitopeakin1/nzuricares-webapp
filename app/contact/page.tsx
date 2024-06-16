@@ -93,7 +93,7 @@ const Page = () => {
             <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
               Reach out to <br />
               <span className="relative inline-block">
-                Nzurihealthcare
+                Nzuri Healthcare
                 {showUnderline && (
                   <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
                 )}

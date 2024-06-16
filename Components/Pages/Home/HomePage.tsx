@@ -7,6 +7,7 @@ import Footer from "@/Components/UI/Footer";
 import Shifts from "./Shifts";
 import Testimonial from "./Testimonial";
 import Subscribe from "@/Components/UI/Subscribe";
+import PrivacyBanner from "@/Components/UI/PrivacyBanner";
 
 const Sliders = () => {
   const images = [
@@ -152,6 +153,7 @@ const HomePage = () => {
       <Testimonial testimonials={[]} />
       <Subscribe />
       <Footer />
+      <PrivacyBanner />
     </main>
   );
 };

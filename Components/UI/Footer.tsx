@@ -20,25 +20,25 @@ const company = [
 const resources = [
   {
     name: "Services",
-    link: "/staffing/services",
+    link: "/care-professionals/services",
   },
   {
     name: "Careers",
-    link: "/staffing/careers",
+    link: "/company/careers",
   },
   {
     name: "Support Workers",
-    link: "/staffing/support-workers",
+    link: "/company/careers",
   },
   {
     name: "Nurses",
-    link: "/staffing/nurses",
+    link: "/company/careers",
   },
 ];
 const contacts = [
   {
     name: "Get in Touch",
-    link: "/contact-us",
+    link: "/contact",
   },
   {
     name: "Request a Reference",
@@ -51,9 +51,6 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row pb-[6em]">
         <div className="flex-1 align-baseline mt-2 md:mt-0 md:ml-0">
           <Image src={"/images/logo.png"} alt="Logo" width={200} height={200} />
-          <p className="mt-.5 ml-6 text-base font-pacifico">
-            Your wellbeing is our priority
-          </p>
         </div>
         {/* company section */}
         <div className="flex-1 flex flex-col mt-4 md:mt-0 md:ml-36 md:mr-8">
@@ -88,7 +85,9 @@ const Footer = () => {
         {/* contact section */}
         <div className="flex-1 flex flex-col mt-4 md:mt-0 md:ml-8 md:mr-8">
           <div>
-            <p className="mb-4 font-bold text-blue-800 font-title">Contact Us</p>
+            <p className="mb-4 font-bold text-blue-800 font-title">
+              Contact Us
+            </p>
             {/* Add your contact information here */}
             <div className="grid grid-cols-1 font-title">
               {contacts.map((link, index) => (
@@ -128,7 +127,8 @@ const Footer = () => {
           </Link>
         </div>
         <p className="text-sm text-center md:text-right font-semibold mt-2 md:mt-0">
-        &copy; {new Date().getFullYear()} <Link href="/">Nzurihealthcare</Link> All right reserved.
+          &copy; {new Date().getFullYear()}{" "}
+          <Link href="/">Nzuri Healthcare</Link> All right reserved.
         </p>
       </div>
     </div>

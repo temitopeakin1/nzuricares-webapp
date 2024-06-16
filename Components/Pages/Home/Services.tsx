@@ -43,8 +43,8 @@ const Services = () => {
         />
         <ServiceItem
           imageUrl={"/images/service-2.jpg"}
-          title="Personalized Care"
-          description="Our Implementation is a patient-centered approach that emphasizes personalized
+          title="Personalised Care"
+          description="Our Implementation is a patient-centered approach that emphasises personalised
           treatment plans."
         />
         <ServiceItem

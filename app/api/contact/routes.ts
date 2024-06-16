@@ -22,13 +22,13 @@ export async function POST(req: NextRequest, res: NextResponse) {
       {
         From: "support@nzuricares.co.uk",
         To: "info@nzuricares.co.uk",
-        Subject: subject || "Message from Nzurihealthcare Contact Form",
+        Subject: subject || "Message from Nzuri Healthcare Contact Form",
         TextBody: `You've got a new mail from ${fullName}, their email is: ${email}`,
         HtmlBody: `<!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-            <title>NzurihealthCare</title>
+            <title>Nzuri HealthCare</title>
             <style>
                 body {
                     font-family: Arial, sans-serif;

@@ -3,10 +3,15 @@
 import React, { FormEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import {
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+  AiOutlineWarning,
+} from "react-icons/ai";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { SubmitButton } from "../Custom/submitButton";
+import { IoWarningOutline } from "react-icons/io5";
 
 interface formData {
   email: string;
@@ -62,8 +67,11 @@ const Login = () => {
 
   const handleSignIn = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!validateForm()) {
+      setLoading(false); // Stop loading if form is invalid
+      return;
+    }
     setLoading(true); // Start loading
-    if (!validateForm()) return;
     // take note here
     try {
       const { error } = await supabase.auth.signInWithPassword({
@@ -73,6 +81,7 @@ const Login = () => {
 
       if (error) {
         setErrors({ general: error.message });
+        setLoading(false); // Stop loading if there's an error
         return;
       } else {
         setFormData({
@@ -89,11 +98,12 @@ const Login = () => {
     } catch (error) {
       console.error("Error:", error);
       setErrors({ general: "An error occurred. Please try again later." });
+      setLoading(false); // Stop loading on catch
     }
   };
 
   return (
-    <div className="relative bg-white px-4 items-center py-12 rounded-lg shadow-lg w-[100%] max-w-md">
+    <div className="relative bg-white px-4 items-center py-12 rounded-lg shadow-lg w-[100%] max-w-md my-8">
       <div className="flex flex-col items-center -mt-8">
         <Image
           src={"/images/logo.png"}
@@ -108,7 +118,7 @@ const Login = () => {
         </p>
       </div>
       {errors.general && (
-        <p className="text-red-500 text-center mb-4 font-semibold">
+        <p className="text-red-500 text-center mb-4 font-semibold items-center justify-center">
           {errors.general}
         </p>
       )}
@@ -135,7 +145,10 @@ const Login = () => {
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
           />
           {errors.email && (
-            <p className="text-red-500 text-sm mt-2">{errors.email}</p>
+            <p className="text-red-500 text-sm mt-2 flex items-center">
+              <AiOutlineWarning className="mr-2" />
+              {errors.email}
+            </p>
           )}
         </div>
         <div className="mb-4">
@@ -165,7 +178,10 @@ const Login = () => {
             </button>
           </div>
           {errors.password && (
-            <p className="text-red-500 text-sm mt-2">{errors.password}</p>
+            <p className="text-red-500 text-sm mt-2 flex items-center">
+              <AiOutlineWarning className="mr-2" />
+              {errors.password}
+            </p>
           )}
         </div>
         <button className="absolute -mt-2 right-8 text-red-800 font-satoshi ">
@@ -174,7 +190,7 @@ const Login = () => {
         <SubmitButton
           className="w-full"
           text="Login"
-          loadingText="Login"
+          loadingText="Logging in..."
           loading={loading}
         />
         <p className="mt-4 text-center text-gray-600">

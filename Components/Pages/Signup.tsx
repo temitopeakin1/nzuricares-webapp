@@ -13,6 +13,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { ZodErrors } from "@/app/components/custom/ZodErrors";
 import { SubmitButton } from "../Custom/submitButton";
 
+
 interface formData {
   username: string;
   email: string;
@@ -38,6 +39,7 @@ const Signup = () => {
   const [passwordVisibility, setPasswordVisiility] = useState(false);
   const [confirmPasswordVisibility, setConfirmPasswordVisibility] =
     useState(false);
+
   const supabase = createClientComponentClient();
 
   // variable to store the initial state
@@ -71,7 +73,7 @@ const Signup = () => {
 
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);  // Start loading
+    setLoading(true); // Start loading
 
     try {
       const { error } = await supabase.auth.signUp({
@@ -85,6 +87,7 @@ const Signup = () => {
 
       if (error) {
         setErrors({ general: error.message });
+        setLoading(false);
         return;
       } else {
         setFormData({
@@ -106,7 +109,7 @@ const Signup = () => {
       console.error("Error:", error);
       setErrors({ general: "An error occurred. Please try again later." });
     } finally {
-      setLoading(false);  // End loading
+      setLoading(false); // End loading
     }
   };
 
@@ -146,7 +149,6 @@ const Signup = () => {
               placeholder="JohnDoe"
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
-              required
             />
             <ZodErrors error={formState?.zodErrors?.username} />
           </div>
@@ -162,7 +164,6 @@ const Signup = () => {
               placeholder="name@example.com"
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
-              required
             />
             <ZodErrors error={formState?.zodErrors?.email} />
           </div>
@@ -178,7 +179,6 @@ const Signup = () => {
                 value={formData.password}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
-                required
               />
               <ZodErrors error={formState?.zodErrors?.password} />
               <button
@@ -210,7 +210,6 @@ const Signup = () => {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
-                required
               />
               <ZodErrors error={formState?.zodErrors?.confirmPassword} />
               <button
@@ -227,9 +226,13 @@ const Signup = () => {
               </button>
             </div>
           </div>
-        
-          <SubmitButton className="w-full" text="Signup"  loadingText="Signing up"
-            loading={loading} />
+
+          <SubmitButton
+            className="w-full"
+            text="Signup"
+            loadingText="Signing up"
+            loading={loading}
+          />
           <p className="mt-4 text-center text-gray-600">
             Already have an account?{" "}
             <Link href="/login" className="text-blue-700 font-semibold">

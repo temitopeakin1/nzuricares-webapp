@@ -107,8 +107,8 @@ const Header = () => {
       <Image
         src={"/images/logo.png"}
         alt={"logo"}
-        height={250}
-        width={200}
+        height={100}
+        width={150}
         className={`
           ${
             isScrolled
