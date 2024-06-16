@@ -2,12 +2,9 @@
 
 import { Header } from "@/Components";
 import Accordion from "@/Components/UI/Accordion";
-import AnimatedArrow from "@/Components/UI/AnimatedArrow";
 import FadeIn from "@/Components/UI/FadeIn";
 import Footer from "@/Components/UI/Footer";
 import Hero from "@/Components/UI/Hero";
-
-import ProcessStep from "@/Components/UI/ProcessStep";
 import { useEffect, useState } from "react";
 
 const accordion_data = [
@@ -75,20 +72,24 @@ const Page = () => {
             </h1>
           </FadeIn>
         </div>
-        <div className="h-[80vh]"></div> {/* Adjust height as needed */}
+        <div className="h-[80vh]"></div>
       </div>
 
       <div className="flex flex-col items-center justify-center">
         <div className="bg-[#FAFAFA] flex items-center justify-center py-16">
           <div className="w-[92%] md:w-[80%] md:grid grid-cols-3 items-center  ">
             <h1 className="text-blue-800 font-bold lg:text-2xl md:text-3xl mb-3 md:mb-0 font-title">
-              About Nzuricares
+              How it Works
             </h1>
             <p className="leading-8 md:leading-10 text-justify col-span-2 font-body">
-              We are a CareProvider Recruitment firm, We provide accessible,
-              high-quality healthcare services that promote wellness, empower
-              individuals, and enhance the quality of life for all members of
-              our community.”
+              &quot;Welcome to Nzuri Healthcare, your trusted partner in finding
+              and providing exceptional care. Understanding how our service
+              works is key to making the most of what we offer, whether you are
+              a client seeking care or a carer looking for rewarding job
+              opportunities&quot; Our process is built around core values of
+              compassion, professionalism, and reliability. These values guide
+              every step we take to connect clients and carers in meaningful and
+              supportive relationships.
             </p>
           </div>
         </div>
@@ -99,91 +100,78 @@ const Page = () => {
           Our Processes
         </h1>
         <div className="relative w-full flex flex-col items-center justify-center">
-          <div className="relative w-[30rem] h-[30rem] my-32 flex items-center justify-center">
+          <div className="relative w-[20rem] h-[20rem] my-28 flex items-center justify-center">
             <div className="absolute top-0 transform translate-y-[-50%] w-40 h-40 bg-red-500 rounded-full flex items-center justify-center text-center p-4">
               <div>
-                <h3 className="text-white font-bold py-2">Sign Up</h3>
+                <h3 className="text-white text-xl font-bold py-2">Sign Up</h3>
                 <p className="text-white text-sm">
                   Sign up to register an account
                 </p>
               </div>
             </div>
-            <div className="absolute left-0 transform -translate-x-1/2 w-40 h-40 bg-blue-500 rounded-full flex items-center justify-center text-center p-4">
-              <div>
-                <h3 className="text-white font-bold py-2">Verify</h3>
-                <p className="text-white text-sm">Verify your email address</p>
-              </div>
-            </div>
-
-            <div className="absolute bottom-0 transform translate-y-[50%] w-40 h-40 bg-yellow-500 rounded-full flex items-center justify-center text-center p-4">
-              <div>
-                <h3 className="text-white font-bold py-2">Login</h3>
-                <p className="text-white text-sm">Login to register</p>
-              </div>
-            </div>
-            <div className="absolute right-0 transform translate-x-1/2 w-40 h-40 bg-green-500 rounded-full flex items-center justify-center text-center p-4">
-              <div>
-                <h3 className="text-white font-bold py-2">Register</h3>
-                <p className="text-white text-sm">Register your profile</p>
-              </div>
-            </div>
-            {/* Adding SVG arrows with Tailwind animation */}
             <svg
-              className="absolute w-108 h-24 left-[2rem] top-[-1rem] translate rotate-45"
+              className="absolute w-8 h-48 right-[16rem] top-[-2rem] transform rotate-90 animate-pulse"
               viewBox="0 0 200 200"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M20 100 L180 100 M100 20 L180 100 L100 180"
-                stroke="black"
-                strokeWidth="4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <svg
-              className="absolute w-96 h-24 right-[15rem] top-[20rem] bottom-[-1rem] transform rotate-45"
-              viewBox="0 0 200 200"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M20 100 L180 100 M100 20 L180 100 L100 180"
-                stroke="black"
-                strokeWidth="4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <svg
-              className="absolute w-96 h-24 right-[15rem] top-[20rem] bottom-[-1rem] transform rotate-45"
-              viewBox="0 0 200 200"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M20 100 L180 100 M100 20 L180 100 L100 180"
+                d="M10 100 L180 100 M100 20 L180 100 L100 180"
                 stroke="black"
                 strokeWidth="10"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>
+
+            <div className="absolute left-0 transform -translate-x-1/2 w-40 h-40 bg-blue-500 rounded-full flex items-center justify-center text-center p-4">
+              <div>
+                <h3 className="text-white text-xl font-bold py-2">Verify</h3>
+                <p className="text-white text-sm">Verify your email address</p>
+              </div>
+            </div>
+
             <svg
-              className="absolute w-96 h-24 right-[-16rem] top-[5rem] transform rotate-45"
+              className="absolute w-8 h-48 right-[13.5rem] top-[8.7rem] transform rotate-45 animate-pulse"
               viewBox="0 0 200 200"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M20 100 L180 100 M100 20 L180 100 L100 180"
+                d="M10 100 L180 100 M100 20 L180 100 L100 180"
                 stroke="black"
-                strokeWidth="4"
+                strokeWidth="10"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>
+
+            <div className="absolute bottom-0 transform translate-y-[50%] w-40 h-40 bg-yellow-500 rounded-full flex items-center justify-center text-center p-4">
+              <div>
+                <h3 className="text-white text-xl font-bold py-2">Login</h3>
+                <p className="text-white text-sm">Login to register</p>
+              </div>
+            </div>
+            <svg
+              className="absolute w-8 h-48 left-[14rem] top-[9rem] transform -rotate-45 animate-pulse"
+              viewBox="0 0 200 200"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 100 L180 100 M100 20 L180 100 L100 180"
+                stroke="black"
+                strokeWidth="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <div className="absolute right-0 transform translate-x-1/2 w-40 h-40 bg-green-500 rounded-full flex items-center justify-center text-center p-4">
+              <div>
+                <h3 className="text-white text-xl font-bold py-2">Register</h3>
+                <p className="text-white text-sm">Register your profile</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

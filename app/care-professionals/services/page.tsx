@@ -5,8 +5,8 @@ import Footer from "@/Components/UI/Footer";
 
 const section_data = [
   {
-    title: "Home Health Care",
-    text: "Combining more traditional approaches to service operations such as ITIL with more iterative approaches such as properly empowered WebOps and flexible provisioning and service platforms, our teams continually look for the most appropriate and efficient approach to providing operational services. Across our clients, we have experience of designing and implementing efficient and repeatable Incident management, request fulfilment, problem management, application management and IT operations control capabilities.",
+    title: "Home Care",
+    text: "We offer compassionate and dedicated healthcare professionals who deliver personalized home care services. Our team addresses complex clinical needs and provides practical support to foster independence and enhance quality of life.",
     image: "/images/service-1.jpg",
   },
   {

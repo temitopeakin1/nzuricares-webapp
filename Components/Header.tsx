@@ -108,7 +108,7 @@ const Header = () => {
         src={"/images/logo.png"}
         alt={"logo"}
         height={100}
-        width={150}
+        width={130}
         className={`
           ${
             isScrolled

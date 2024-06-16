@@ -38,8 +38,8 @@ const Services = () => {
       <div className="mt-8 flex flex-wrap justify-center">
         <ServiceItem
           imageUrl={"/images/service-1.jpg"}
-          title="Home health care"
-          description="Patients realize that their illness restricts activity in their daily lives, making living alone too difficult."
+          title="Home care"
+          description="We provide dedicated healthcare professionals who deliver personalised home care services"
         />
         <ServiceItem
           imageUrl={"/images/service-2.jpg"}
