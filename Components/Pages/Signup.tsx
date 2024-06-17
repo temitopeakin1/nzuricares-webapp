@@ -122,7 +122,7 @@ const Signup = () => {
           onClick={handleCancel}
         />
 
-        <p className="text-2xl font-semibold mt-4">Register Account</p>
+        <p className="text-2xl font-semibold mt-4">Sign up</p>
         {errors.general && (
           <p className="text-red-500 text-center mb-4 font-semibold">
             {errors.general}

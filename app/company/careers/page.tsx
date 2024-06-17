@@ -66,7 +66,7 @@ const Section = ({
 const Page = () => {
   const [showUnderline, setShowUnderline] = useState(false);
 
-  // for the underline animation on text
+  // underline animation
   useEffect(() => {
     setTimeout(() => {
       setShowUnderline(true);
