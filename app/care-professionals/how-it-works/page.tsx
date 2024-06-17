@@ -110,7 +110,7 @@ const Page = () => {
               </div>
             </div>
             <svg
-              className="absolute w-8 h-48 right-[16rem] top-[-2rem] transform rotate-90 hidden sm:block"
+              className="absolute w-8 h-48 right-[16rem] top-[-2rem] transform rotate-90"
               viewBox="0 0 200 200"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -132,7 +132,7 @@ const Page = () => {
             </div>
 
             <svg
-              className="absolute w-8 h-48 right-[13.5rem] top-[8.7rem] transform rotate-45 hidden sm:block"
+              className="absolute w-8 h-48 right-[13.5rem] top-[8.7rem] transform rotate-45"
               viewBox="0 0 200 200"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +153,7 @@ const Page = () => {
               </div>
             </div>
             <svg
-              className="absolute w-8 h-48 left-[14rem] top-[9rem] transform -rotate-45 hidden sm:block"
+              className="absolute w-8 h-48 left-[14rem] top-[9rem] transform -rotate-45"
               viewBox="0 0 200 200"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
