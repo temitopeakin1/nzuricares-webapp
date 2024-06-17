@@ -61,8 +61,6 @@ const Page = () => {
             <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
               Discover how our <br />
               <span className="relative inline-block mr-4">
-                {" "}
-                {/* Added mr-4 class */}
                 seamless
                 {showUnderline && (
                   <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
@@ -77,7 +75,7 @@ const Page = () => {
 
       <div className="flex flex-col items-center justify-center">
         <div className="bg-[#FAFAFA] flex items-center justify-center py-16">
-          <div className="w-[92%] md:w-[80%] md:grid grid-cols-3 items-center  ">
+          <div className="w-[92%] md:w-[80%] md:grid grid-cols-3 items-center">
             <h1 className="text-blue-800 font-bold lg:text-2xl md:text-3xl mb-3 md:mb-0 font-title">
               How it Works
             </h1>
@@ -100,17 +98,16 @@ const Page = () => {
           Our Processes
         </h1>
         <div className="relative w-full flex flex-col items-center justify-center">
-          <div className="relative w-[20rem] h-[20rem] mt-24 sm:my-28 flex items-center justify-center px-16 sm:px-16">
-            <div className="absolute top-0 transform translate-y-[-50%] w-36 h-36 sm:w-40 sm:h-40   bg-red-500 rounded-full flex items-center justify-center text-center p-4">
+          <div className="relative w-full md:w-[80%] lg:w-[60%] my-28 flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
+            <div className="relative w-40 h-40 bg-red-500 rounded-full flex items-center justify-center text-center p-4">
               <div>
                 <h3 className="text-white text-xl font-bold py-2">Sign Up</h3>
-                <p className="text-white text-sm">
-                  Sign up to register an account
-                </p>
+                <p className="text-white text-sm">Sign up to register an account</p>
               </div>
             </div>
+
             <svg
-              className="absolute w-8 h-48 right-[16rem] top-[-2rem] transform rotate-90 animate-pulse"
+              className="hidden md:block absolute md:static w-8 h-48 md:transform md:rotate-90 animate-pulse"
               viewBox="0 0 200 200"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +121,7 @@ const Page = () => {
               />
             </svg>
 
-            <div className="absolute left-0 transform -translate-x-1/2 w-36 h-36 sm:w-40 sm:h-40  bg-blue-500 rounded-full flex items-center justify-center text-center p-4">
+            <div className="relative w-40 h-40 bg-blue-500 rounded-full flex items-center justify-center text-center p-4">
               <div>
                 <h3 className="text-white text-xl font-bold py-2">Verify</h3>
                 <p className="text-white text-sm">Verify your email address</p>
@@ -132,7 +129,7 @@ const Page = () => {
             </div>
 
             <svg
-              className="absolute w-8 h-48 right-[13.5rem] top-[8.7rem] transform rotate-45 animate-pulse"
+              className="hidden md:block absolute md:static w-8 h-48 md:transform md:rotate-45 animate-pulse"
               viewBox="0 0 200 200"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -146,14 +143,15 @@ const Page = () => {
               />
             </svg>
 
-            <div className="absolute bottom-0 transform translate-y-[50%] w-36 h-36 sm:w-40 sm:h-40  bg-yellow-500 rounded-full flex items-center justify-center text-center p-4">
+            <div className="relative w-40 h-40 bg-yellow-500 rounded-full flex items-center justify-center text-center p-4">
               <div>
                 <h3 className="text-white text-xl font-bold py-2">Login</h3>
                 <p className="text-white text-sm">Login to register</p>
               </div>
             </div>
+
             <svg
-              className="absolute w-8 h-48 left-[14rem] top-[9rem] transform -rotate-45 animate-pulse"
+              className="hidden md:block absolute md:static w-8 h-48 md:transform md:-rotate-45 animate-pulse"
               viewBox="0 0 200 200"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +164,8 @@ const Page = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <div className="absolute right-0 transform translate-x-1/2 w-36 h-36 sm:w-40 sm:h-40  bg-green-500 rounded-full flex items-center justify-center text-center p-4">
+
+            <div className="relative w-40 h-40 bg-green-500 rounded-full flex items-center justify-center text-center p-4">
               <div>
                 <h3 className="text-white text-xl font-bold py-2">Register</h3>
                 <p className="text-white text-sm">Register your profile</p>
@@ -175,6 +174,7 @@ const Page = () => {
           </div>
         </div>
       </div>
+
       <div className="flex flex-col items-center justify-center mt-12 px-4 bg-gray-50">
         <div className="w-full md:w-[80%] mb-8">
           <h2 className="text-2xl font-bold text-center mt-16 font-title">
