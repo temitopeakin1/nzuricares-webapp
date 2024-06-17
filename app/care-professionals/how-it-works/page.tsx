@@ -9,29 +9,29 @@ import { useEffect, useState } from "react";
 
 const accordion_data = [
   {
-    title: "What is Nzuricares about",
+    title: "What is Nzuri healthcare about",
     detail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Nzuri Healthcare is dedicated to providing exceptional healthcare services by connecting clients with qualified and compassionate caregivers. The organization emphasizes core values such as compassion, professionalism, and reliability to ensure that clients receive high-quality care. Nzuri Healthcare aims to facilitate meaningful and supportive relationships between caregivers and those in need of care, ensuring that both parties benefit from the services offered. Through a seamless and well-structured process, Nzuri Healthcare strives to make a positive difference in the healthcare sector.",
   },
   {
-    title: "What sector does Nzuricares covers for",
+    title: "What sector does Nzuri healthcare covers for",
     detail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Nzuricares operates within the healthcare sector, offering services that facilitate exceptional care provision. It aims to connect clients seeking care with carers looking for rewarding job opportunities, all while maintaining core values of compassion, professionalism, and reliability. This ensures meaningful and supportive relationships between clients and carers",
   },
   {
-    title: "What agencies does Nzuricares partners with",
+    title: "What agencies does Nzuri healthcare partners with",
     detail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Nzuri healthcare partners with varieties of organisations, such as Healthcare centers, Residential Care homes, Private hospitals, NHS hospitals, Community health organisations and lot more.",
   },
   {
     title: "What are your standards for ensuring data protection?",
     detail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "At Nzuri healthcare, we ensure data (clients) is fully encrypted to the highest standard and not in anyway shared with anyone or thirdparty. We comply full to legal standards adhering to all relevant data protection laws and regulations",
   },
   {
-    title: "How easy is it to get onboarded into Nzuricares",
+    title: "How easy is it to get onboarded into Nzuri healthcares",
     detail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Getting onboarded into Nzuri healthcare is designed to be a seamless and straightforward process. We have streamlined our onboarding procedure to ensure that new clients and partners can quickly and easily start benefiting from our services. Check our how it works Page for more information"
   },
 ];
 

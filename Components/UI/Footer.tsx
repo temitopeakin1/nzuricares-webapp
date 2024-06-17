@@ -13,8 +13,8 @@ const company = [
     link: "/care-professionals/how-it-works",
   },
   {
-    name: "Care workers",
-    link: "/staffing/care-workers",
+    name: "Staffing",
+    link: "/company/staffing",
   },
 ];
 const resources = [
@@ -42,7 +42,7 @@ const contacts = [
   },
   {
     name: "Request a Reference",
-    link: "/request-a-reference",
+    link: "/reference",
   },
 ];
 const Footer = () => {

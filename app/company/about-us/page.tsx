@@ -52,7 +52,7 @@ const coreValues = [
     icon: FaHandshake,
     title: "Collaboration",
     description:
-      "We believe in working closely with patients, families, caregivers, and healthcare professionals to achieve the best possible outcomes through teamwork and cooperation",
+      "We believe in working closely with patients, families, carers, and healthcare professionals to achieve the best possible outcomes through teamwork and cooperation",
   },
   {
     icon: FaShieldAlt,
