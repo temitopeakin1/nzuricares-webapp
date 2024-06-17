@@ -10,7 +10,7 @@ import Link from "next/link";
 const careers = [
   {
     title: "Mission",
-    image: "/images/service-1.jpg",
+    image: "/images/mission.jpg",
     text: "We are on a mission to revolutionize the health and care industry in the UK and beyond, <br /> equipping staff with the tools, opportunities, and transparency they need to excel, one shift at a time.<br /> We believe that our strength lies in the diversity of our skills, experiences, and talents. As we empower care teams, we are equally committed to fostering a collaborative, respectful, and inclusive environment for our colleagues.Become part of a purpose-driven health tech company and join us in making a meaningful impact.",
   },
   {
@@ -84,7 +84,7 @@ const Page = () => {
           backgroundSize: "cover",
         }}
       >
-        <div className="absolute inset-0 flex items-center justify-start bg-black bg-opacity-50">
+        <div className="absolute inset-0 flex items-center justify-start bg-black bg-opacity-40">
           <FadeIn duration={4}>
             <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
               Careers at

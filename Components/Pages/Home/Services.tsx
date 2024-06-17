@@ -37,23 +37,23 @@ const Services = () => {
       </p>
       <div className="mt-8 flex flex-wrap justify-center">
         <ServiceItem
-          imageUrl={"/images/service-1.jpg"}
+          imageUrl={"/images/mission.jpg"}
           title="Home care"
           description="We provide dedicated healthcare professionals who deliver personalised home care services"
         />
         <ServiceItem
-          imageUrl={"/images/service-2.jpg"}
+          imageUrl={"/images/imge.jpg"}
           title="Personalised Care"
           description="Our Implementation is a patient-centered approach that emphasises personalised
           treatment plans."
         />
         <ServiceItem
-          imageUrl={"/images/service-3.jpg"}
+          imageUrl={"/images/bgWork.jpg"}
           title="Companion care"
           description="Ensure your loved one receives the attention and care needed, while delivering the peace of mind."
         />
         <ServiceItem
-          imageUrl={"/images/service-4.jpg"}
+          imageUrl={"/images/holistic.jpg"}
           title="Holistic Wellness"
           description="We offer integrated healthcare services that addresses physical, mental and emotional health"
         />

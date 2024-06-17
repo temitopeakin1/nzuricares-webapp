@@ -6,23 +6,23 @@ import Footer from "@/Components/UI/Footer";
 const section_data = [
   {
     title: "Home Care",
-    text: "We offer compassionate and dedicated healthcare professionals who deliver personalized home care services. Our team addresses complex clinical needs and provides practical support to foster independence and enhance quality of life.",
-    image: "/images/service-1.jpg",
+    text: "We offer compassionate and dedicated healthcare professionals who deliver personalised home care services. Our team addresses complex clinical needs and provides practical support to foster independence and enhance quality of life.",
+    image: "/images/mission.jpg",
   },
   {
     title: "Personalised Care",
     text: "Our Implementation is a patient-centered approach that emphasises personalised treatment plans.",
-    image: "/images/service-2.jpg",
+    image: "/images/imge.jpg",
   },
   {
     title: "Companion Care",
     text: "Ensure your loved one receives the attention and care needed, while delivering the peace of mind.",
-    image: "/images/service-3.jpg",
+    image: "/images/bgWork.jpg",
   },
   {
     title: "Holistic Wellness",
     text: "At Nzuricares we offer integrated healthcare services that address not only physical health but also mental, emotional, and social well-being, promoting a holistic approach to health and wellness.",
-    image: "/images/service-4.jpg",
+    image: "/images/holistic.jpg",
   },
 ];
 

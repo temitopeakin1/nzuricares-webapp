@@ -122,3 +122,7 @@ body {
     transform: translateX(0); /* Move backward to initial position */
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
