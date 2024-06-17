@@ -15,12 +15,12 @@ const careers = [
   },
   {
     title: "Diversity and Inclusion",
-    image: "/images/service-2.jpg",
+    image: "/images/diversity.jpg",
     text: "Diversity and inclusion are fundamental principles in our caregivers agency. We believe that by embracing a wide range of backgrounds, perspectives, and experiences, we can provide more compassionate, effective, and personalised care to our clients. ",
   },
   {
     title: "Careers",
-    image: "/images/service-2.jpg",
+    image: "/images/bgWork.jpg",
     text: "In our agency, we have a diverse team of professionals fulfilling various roles to ensure comprehensive care and support for our clients. Our team includes Carers / Caregivers, Registered Nurses, administrative support staff, and support health workers, among others. Each member of our team plays a crucial role in delivering high-quality care services and maintaining the well-being of our clients.",
   },
 ];
