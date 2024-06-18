@@ -29,7 +29,7 @@ const Services = () => {
   return (
     <div className="py-16 text-center">
       <h1 className="mt-2 font-bold lg:text-2xl text-blue-800 font-title ">
-        Health Care Recruitment Services
+        Healthcare Recruitment Services
       </h1>
       <p className="mt-2 lg:text-sm md:text-sm">
         One of the leading providers of domiciliary care and health care

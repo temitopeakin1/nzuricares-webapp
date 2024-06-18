@@ -14,9 +14,9 @@ const careers = [
     text: "We are on a mission to revolutionize the health and care industry in the UK and beyond, <br /> equipping staff with the tools, opportunities, and transparency they need to excel, one shift at a time.<br /> We believe that our strength lies in the diversity of our skills, experiences, and talents. As we empower care teams, we are equally committed to fostering a collaborative, respectful, and inclusive environment for our colleagues.Become part of a purpose-driven health tech company and join us in making a meaningful impact.",
   },
   {
-    title: "Diversity and Inclusion",
+    title: "Equality, Diversity and Inclusion",
     image: "/images/diversity.jpg",
-    text: "Diversity and inclusion are fundamental principles in our carers agency. We believe that by embracing a wide range of backgrounds, perspectives, and experiences, we can provide more compassionate, effective, and personalised care to our clients. ",
+    text: "Diversity and inclusion are fundamental principles in our healthcare recruitment agency. We believe that by embracing a wide range of backgrounds, perspectives, and experiences, we can provide more compassionate, effective, and personalised care to our clients. ",
   },
   {
     title: "Careers",
@@ -53,7 +53,7 @@ const Section = ({
         />
       </div>
       <div className="flex-1 text-center md:text-start">
-        <p className="font-bold text-[32px] md:text-[32px]">{title}</p>
+        <p className="font-bold text-[24px] sm:text-[20px] md:text-[28px]">{title}</p>
         <p
           className="text-[16px] md:text-[18px]"
           dangerouslySetInnerHTML={{ __html: text }}

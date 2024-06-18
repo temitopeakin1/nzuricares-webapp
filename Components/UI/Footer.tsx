@@ -26,14 +26,6 @@ const resources = [
     name: "Careers",
     link: "/company/careers",
   },
-  {
-    name: "Support Workers",
-    link: "/company/careers",
-  },
-  {
-    name: "Nurses",
-    link: "/company/careers",
-  },
 ];
 const contacts = [
   {
