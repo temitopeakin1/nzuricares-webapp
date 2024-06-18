@@ -40,8 +40,8 @@ const contacts = [
 const Footer = () => {
   return (
     <div className="mt-8 md:mt-11 bg-footer-color md:px-16 p-4 text-black pt-14">
-      <div className="flex flex-col md:flex-row pb-[6em]">
-        <div className="flex-1 align-baseline mt-2 md:mt-0 md:ml-0">
+      <div className="flex flex-col md:flex-row pb-[6em] ">
+        <div className="flex-1 align-baseline ml-[-1.5rem] mt-[-2rem] md:mt-[-1.5rem] md:ml-8">
           <Image src={"/images/logo.png"} alt="Logo" width={200} height={200} />
         </div>
         {/* company section */}
