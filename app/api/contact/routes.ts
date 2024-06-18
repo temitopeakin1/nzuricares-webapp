@@ -13,6 +13,7 @@ const axiosInstance = axios.create({
 export async function POST(req: NextRequest, res: NextResponse) {
   const { fullName, email, phoneNumber, message, subject } = await req.json();
   const postmarkServerToken = process.env.POSTMARK_SERVER_TOKEN;
+  console.log("Postmark Server Token:", postmarkServerToken);
 
   console.log("fullname: ", fullName);
 
@@ -20,8 +21,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const response = await axiosInstance.post(
       "https://api.postmarkapp.com/email",
       {
-        From: "support@nzuricares.co.uk",
-        To: "info@nzuricares.co.uk",
+        From: "noreply@nzuricares.co.uk",
+        To: "noreply@nzuricares.co.uk",
         Subject: subject || "Message from Nzuri Healthcare Contact Form",
         TextBody: `You've got a new mail from ${fullName}, their email is: ${email}`,
         HtmlBody: `<!DOCTYPE html>

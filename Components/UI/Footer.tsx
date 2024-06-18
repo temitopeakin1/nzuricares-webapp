@@ -42,7 +42,7 @@ const contacts = [
   },
   {
     name: "Request a Reference",
-    link: "/reference",
+    link: "/request-reference",
   },
 ];
 const Footer = () => {

@@ -46,7 +46,7 @@ const Page = () => {
     try {
       console.log("val: ", data);
 
-      const res = await axios.post("/api/contact", data, {
+      const res = await axios.post("/api/contact/routes", data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -197,14 +197,15 @@ const Page = () => {
                     onChange={(e) => handleFormChange(e, "message")}
                   />
                 </div>
-
-                <button
-                  onClick={submitForm}
-                  disabled={isSubmitting}
-                  className="-mt-2 px-[2em] py-[.5em] mx-1 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans"
-                >
-                  Send Message
-                </button>
+                <div className="flex justify-center mt-4">
+                  <button
+                    onClick={submitForm}
+                    disabled={isSubmitting}
+                    className="-mt-2 px-[2em] py-[.5em] mx-1 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans"
+                  >
+                    Send Message
+                  </button>
+                </div>
               </div>
             </div>
             <div className="md:absolute  -z-10 right-0 hidden md:inline ">

@@ -93,9 +93,9 @@ const Page = () => {
         <div className="absolute inset-0 flex items-center justify-start bg-black bg-opacity-50">
           <FadeIn duration={4}>
             <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
-              Reach out to <br />
+              Request a <br />
               <span className="relative inline-block">
-                Nzuri Healthcare
+                Reference
                 {showUnderline && (
                   <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
                 )}
@@ -107,11 +107,6 @@ const Page = () => {
                 info@nzuricares.co.uk
               </Link>
             </div>
-            <Link href={"/company/careers/#"} passHref>
-              <button className="mt-4 px-[2em] py-[.5em] mx-24 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans">
-                Contact us
-              </button>
-            </Link>
           </FadeIn>
         </div>
         <div className="h-[80vh]"></div>
@@ -129,7 +124,7 @@ const Page = () => {
                 <div className=" flex flex-col md:flex-row items-center gap-x-6 w-full ">
                   <div className="mb-4 w-full">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
-                      Professional&apos; first name
+                      Professional&apos;s first name
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -142,7 +137,7 @@ const Page = () => {
                   </div>
                   <div className="mb-4 w-full">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
-                      Professional&apos; Last name
+                      Professional&apos;s Last name
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -157,7 +152,7 @@ const Page = () => {
 
                 <div className="mb-4 w-full">
                   <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Professional&apos; Email
+                    Professional&apos;s Email
                   </label>
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -171,7 +166,7 @@ const Page = () => {
 
                 <div className="mb-4 w-full">
                   <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Professional&apos; date of birth
+                    Professional&apos;s date of birth
                   </label>
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -199,7 +194,7 @@ const Page = () => {
                 <p className="py-8">About the requestor</p>
                 <div className="mb-4 w-full">
                   <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Requester&apos; name
+                    Requester&apos;s name
                   </label>
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -213,7 +208,7 @@ const Page = () => {
 
                 <div className="mb-4 w-full">
                   <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Requester&apos; Email
+                    Requester&apos;s Email
                   </label>
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -224,14 +219,15 @@ const Page = () => {
                     onChange={(e) => handleFormChange(e, "email")}
                   />
                 </div>
-
-                <button
-                  onClick={submitForm}
-                  disabled={isSubmitting}
-                  className="-mt-2 px-[2em] py-[.5em] items-center justify-center mx-1 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans"
-                >
-                  Confirm
-                </button>
+                <div className="flex justify-center mt-4">
+                  <button
+                    onClick={submitForm}
+                    disabled={isSubmitting}
+                    className="-mt-2 px-[2em] py-[.5em] items-center justify-center mx-1 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans"
+                  >
+                    Confirm
+                  </button>
+                </div>
               </div>
             </div>
             <div className="md:absolute  -z-10 right-0 hidden md:inline ">
