@@ -11,7 +11,7 @@ const accordion_data = [
   {
     title: "What is Nzuri healthcare about",
     detail:
-      "Nzuri Healthcare is dedicated to providing exceptional healthcare services by connecting clients with qualified and compassionate caregivers. The organization emphasizes core values such as compassion, professionalism, and reliability to ensure that clients receive high-quality care. Nzuri Healthcare aims to facilitate meaningful and supportive relationships between caregivers and those in need of care, ensuring that both parties benefit from the services offered. Through a seamless and well-structured process, Nzuri Healthcare strives to make a positive difference in the healthcare sector.",
+      "Nzuri Healthcare is dedicated to providing exceptional healthcare services by connecting clients with qualified and compassionate carers. The organization emphasizes core values such as compassion, professionalism, and reliability to ensure that clients receive high-quality care. Nzuri Healthcare aims to facilitate meaningful and supportive relationships between carers and those in need of care, ensuring that both parties benefit from the services offered. Through a seamless and well-structured process, Nzuri Healthcare strives to make a positive difference in the healthcare sector.",
   },
   {
     title: "What sector does Nzuri healthcare covers for",

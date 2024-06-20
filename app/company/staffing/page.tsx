@@ -101,11 +101,11 @@ const Page = () => {
           Discover how we can simplify your work life.
         </p>
       </div>
-      <div className="py-8 text-center">
+      <div className="py-4 text-center">
         <h1 className="mt-2 font-bold lg:text-2xl text-blue-800 font-title">
           Explore the spectrum of care settings we embrace.
         </h1>
-        <p className="mt-2 lg:text-sm md:text-sm">
+        <p className="mt-2 lg:text-sm md:text-sm font-body">
           From nurturing care homes to advanced private hospitals and esteemed
           NHS trusts, we’ve got you covered.
         </p>

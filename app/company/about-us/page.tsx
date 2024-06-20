@@ -87,7 +87,7 @@ const target_audience = [
       "Individuals seeking medical care, treatment, and support for various health concerns, illnesses, and conditions.",
   },
   {
-    title: "Families and Caregivers",
+    title: "Families and Carers",
     description:
       "Relatives, guardians, or friends responsible for the care and well-being of patients, often involved in decision-making and providing support",
   },
