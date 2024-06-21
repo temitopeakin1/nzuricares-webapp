@@ -11,20 +11,20 @@ import { usePathname, useRouter } from "next/navigation";
 const navigation = [
   { name: "Home", href: "/" },
   {
-    name: "Care Professionals",
-    href: "/care-professionals",
+    name: "Healthcare Professionals",
+    href: "/healthcare-professionals",
     subMenus: [
       {
         name: "How it works",
-        href: "/care-professionals/how-it-works",
+        href: "/healthcare-professionals/how-it-works",
       },
       {
         name: "Services",
-        href: "/care-professionals/services",
+        href: "/healthcare-professionals/services",
       },
       {
         name: "Social Care Registration",
-        href: "/care-professionals/social-care-registration",
+        href: "/healthcare-professionals/social-care-registration",
       },
     ],
   },

@@ -55,8 +55,12 @@ const Section = ({
         />
       </div>
       <div className="flex-1">
-        <p className="font-bold text-[32px] md:text-[48px] text-center md:text-justify">{title}</p>
-        <p className=" text-[16px] md:text-[18px] text-justify md:text-justify px-4 sm:px-0 md:px-0">{text}</p>
+        <p className="font-bold text-[32px] md:text-[48px] text-center md:text-justify">
+          {title}
+        </p>
+        <p className=" text-[16px] md:text-[18px] text-justify md:text-justify px-4 sm:px-0 md:px-0">
+          {text}
+        </p>
       </div>
     </div>
   );

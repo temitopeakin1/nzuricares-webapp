@@ -9,9 +9,12 @@ import Link from "next/link";
 
 const careers = [
   {
-    title: "Mission",
+    title: "Objectives",
     image: "/images/mission.jpg",
-    text: "We are on a mission to revolutionize the health and care industry in the UK and beyond, <br /> equipping staff with the tools, opportunities, and transparency they need to excel, one shift at a time.<br /> We believe that our strength lies in the diversity of our skills, experiences, and talents. As we empower care teams, we are equally committed to fostering a collaborative, respectful, and inclusive environment for our colleagues.Become part of a purpose-driven health tech company and join us in making a meaningful impact.",
+    text: `We are on a mission to revolutionize the health and care industry in the UK and beyond,
+           equipping staff with the tools, opportunities, and transparency they need to excel, one shift at a time.<br /> 
+           We believe that our strength lies in the diversity of our skills, experiences, and talents. As we empower care teams, 
+           we are equally committed to fostering a collaborative, respectful, and inclusive environment for our colleagues.<br /><b>Become part of a purpose-driven health tech company and join us in making a meaningful impact.</b>`,
   },
   {
     title: "Equality, Diversity and Inclusion",
@@ -21,7 +24,7 @@ const careers = [
   {
     title: "Careers",
     image: "/images/bgWork.jpg",
-    text: "In our agency, we have a diverse team of professionals fulfilling various roles to ensure comprehensive care and support for our clients. Our team includes Carers, Registered Nurses, administrative support staff, and support health workers, among others. Each member of our team plays a crucial role in delivering high-quality care services and maintaining the well-being of our clients.",
+    text: "In our agency, we have a diverse team of professionals fulfilling various roles to ensure comprehensive care and support for our clients. Our team includes Carers, Registered Nurses, administrative support staff, and support health workers, amongst others. Each member of our team plays a crucial role in delivering high-quality care services and maintaining the well-being of our clients.",
   },
 ];
 
@@ -52,10 +55,12 @@ const Section = ({
           className="object-cover h-full w-full"
         />
       </div>
-      <div className="flex-1 text-center md:text-start">
-        <p className="font-bold text-[24px] sm:text-[20px] md:text-[28px]">{title}</p>
+      <div className="flex-1">
+        <p className="font-bold text-[24px] sm:text-[20px] md:text-[28px] text-center md:text-start sm:text-start">
+          {title}
+        </p>
         <p
-          className="text-[16px] md:text-[18px]"
+          className="text-[16px] md:text-[18px] text-justify md:text-justify px-4 md:px-0 sm:px-0"
           dangerouslySetInnerHTML={{ __html: text }}
         ></p>
       </div>

@@ -92,7 +92,7 @@ const Page = () => {
         <h1 className="mt-2 font-bold lg:text-2xl text-blue-800 font-title">
           Engage Us
         </h1>
-        <p className="py-4 lg:text-lg md:text-sm font-body">
+        <p className="py-4 lg:text-lg md:text-sm font-body ju">
           We are more than an agency - We are your trusted partner in care.
           Fast, fair, and cost-effective,
           <br /> with real humans ensuring every detail is perfect. From care

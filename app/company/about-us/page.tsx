@@ -13,19 +13,19 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 import { IconType } from "react-icons/lib";
-import { Description } from "@headlessui/react";
+// import { Description } from "@headlessui/react";
 import Subscribe from "@/Components/UI/Subscribe";
 
 const section_data = [
   {
-    title: "About Nzuricares",
-    Description:
-      "We are a Leading Care Provider Recruitment firm, We provide accessible, high-quality healthcare services that promote wellness, empower individuals, and enhance the quality of life for all members of our community",
-  },
-  {
     title: "Our Mission",
     Description:
-      "To provide accessible, high-quality healthcare services that promote wellness, empower individuals, and enhance the quality of life for all members of our community",
+      "To provide accessible, reliable and professional staffing solutions tailored to your specific business needs. We aim to promote wellness of our healthcare partners, empower individuals, sustainability and enhance the quality of life for all",
+  },
+  {
+    title: "Our Vision",
+    Description:
+      "Making the world a better place to live-in by passionately promoting well-being of our people, partners and our community",
   },
 ];
 
@@ -82,7 +82,7 @@ const coreValues = [
 
 const target_audience = [
   {
-    title:"Patients",
+    title: "Patients",
     description:
       "Individuals seeking medical care, treatment, and support for various health concerns, illnesses, and conditions.",
   },
@@ -120,7 +120,7 @@ const target_audience = [
 
 interface CoreItemProps {
   icon: IconType;
-  title: string
+  title: string;
   description: string;
 }
 
@@ -130,10 +130,10 @@ const CoreItem: React.FC<CoreItemProps> = ({
   description,
 }) => {
   return (
-    <div className="flex flex-col items-center w-72 p-4 mx-4 my-2 bg-white rounded-lg shadow-md">
+    <div className="flex flex-col items-center w-80 md:w-72 sm:w-72 p-4 mx-4 my-8 bg-white rounded-lg shadow-md">
       <Icon size={64} className="text-primary" />
       <p className="mt-4 text-lg font-semibold">{title}</p>
-      <p className="mt-2 text-sm font-body">{description}</p>
+      <p className="mt-2 text-sm font-body text-justify md:text-justify">{description}</p>
     </div>
   );
 };
@@ -144,16 +144,11 @@ const Page = () => {
       <Header />
       <div className="flex flex-col items-center justify-center">
         <div className="bg-[#FAFAFA] flex flex-col items-center justify-center py-0 md:py-10 w-full">
-        <div className="text-blue-800 pt-24 sm:pt-28 md:pt-28 lg:pt-32 xl:pt-36 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold font-title">
-            <p className="text-base">About Nzuri Healthcare</p>
-            <hr className="my-2 h-1 bg-primary" />
-            <p className="text-2xl md:text-5xl font-bold uppercase">About Us</p>
-          </div>
           <Image
             src="/images/bgSlider-5.jpg"
             width={400}
             height={400}
-            className="w-full md:w-[70%] mt-8 rounded-sm"
+            className="w-full md:w-[70%] mt-20 sm:mt-2 md:mt-4 lg:mt-4 "
             alt="services"
           />
         </div>
@@ -192,8 +187,8 @@ const Page = () => {
           Target Audience
         </h1>
         <p className="mt-2 lg:text-sm md:text-sm">
-        Adults within the Ages 18 - 65
-      </p>
+          Adults within the Ages 18 - 65
+        </p>
       </div>
       <div className="flex flex-col items-center justify-center">
         {target_audience.map((section, index) => (
@@ -216,5 +211,3 @@ const Page = () => {
 };
 
 export default Page;
-
-

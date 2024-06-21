@@ -72,7 +72,7 @@ export default function Testimonial({}: { testimonials: Testimonial[] }) {
       <h1 className="mt-2 font-bold lg:text-2xl text-blue-800 font-title">
         Testimonials
       </h1>
-      <p className="mt-2 lg:text-sm md:text-sm font-satoshi">
+      <p className="mt-2 lg:text-sm md:text-sm px-4 md:px-0 sm:px-0 font-satoshi">
         Read what our valued clients are saying about us
       </p>
       {/* Testimonial image */}

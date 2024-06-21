@@ -14,11 +14,11 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
   description,
 }) => {
   return (
-    <div className="flex flex-col items-center w-72 p-4 mx-4 my-2 bg-white rounded-lg shadow-md">
+    <div className="flex flex-col items-center w-80 md:w-72 sm:w-72 p-4 mx-4 my-8 bg-white rounded-lg shadow-md">
       <Image src={imageUrl} alt="Service" width={250} height={250} />
       <p className="mt-4 text-lg font-semibold">{title}</p>
       <p className="mt-2 text-sm font-body">{description}</p>
-      <Link href="/care-professionals/services" className="mt-4 text-blue-500">
+      <Link href="/healthcare-professionals/services" className="mt-4 text-blue-500">
         Read more
       </Link>
     </div>
@@ -31,7 +31,7 @@ const Services = () => {
       <h1 className="mt-2 font-bold lg:text-2xl text-blue-800 font-title ">
         Healthcare Recruitment Services
       </h1>
-      <p className="mt-2 lg:text-sm md:text-sm">
+      <p className="mt-2 lg:text-sm md:text-sm px-4 md:px-0 sm:px-0 font-satoshi">
         One of the leading providers of domiciliary care and health care
         staffing services.
       </p>
