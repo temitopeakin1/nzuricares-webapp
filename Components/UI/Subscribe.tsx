@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { FormEvent, useState, useEffect } from "react";
 import { supabase } from "@/app/supabaseClient";
 
 interface Formdata {
@@ -8,15 +8,18 @@ interface Formdata {
 }
 
 const Subscribe = () => {
-  const [formData, setFormData] = useState<Formdata>({ email: "" });
+  const [formData, setFormData] = useState<Formdata>({
+    email: "",
+  });
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
+  // time out after 3 seconds
   useEffect(() => {
     if (successMessage) {
       const timer = setTimeout(() => {
         setSuccessMessage(null);
-      }, 3000); // 3 seconds
+      }, 3000);
 
       // Cleanup the timer if the component unmounts or successMessage changes
       return () => clearTimeout(timer);
@@ -24,9 +27,9 @@ const Subscribe = () => {
   }, [successMessage]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
+    const { name, value } = e.target as HTMLInputElement;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value,
     }));
   };
@@ -44,35 +47,42 @@ const Subscribe = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!validateForm()) return;
-
+  
     try {
+      console.log("Submitting email:", formData.email);
+  
       const { data: insertData, error: insertError } = await supabase
-        .from("subscriptions") // Your table name
+        .from("subscription")
         .insert([{ email: formData.email }]);
-
-      if (insertError) {
-        throw insertError;
-      }
-
+  
+      console.log("insertData:", insertData);
+      console.log("insertError:", insertError);
+  
+      if (insertError) throw insertError;
+  
       setSuccessMessage("Thank you for subscribing!");
-      setErrors({});
       setFormData({ email: "" }); // Clear the form
     } catch (error) {
+      console.error("Error during subscription:", error);
       setErrors({
-        general: "Error occurred while subscribing",
+        general: "Email subscribed already",
       });
     }
   };
+  
 
   return (
     <div className="bg-primary border-secondary my-16 border-b-8 w-full px-4 py-8 md:px-8 md:py-8 md:w-[80%] lg:w-[75%] flex flex-col items-center max-w-screen-md mx-auto rounded-lg space-y-8">
       {successMessage && (
-        <p className="text-white text-center font-normal font-body w-full">
+        <p className="text-white text-center font-normal font-body">
           {successMessage}
         </p>
+      )}
+      {errors.general && (
+        <p className="text-white text-center">{errors.general}</p>
       )}
       <div className="w-full text-center">
         <div className="text-white text-2xl py-4 font-sans font-normal">
@@ -90,8 +100,8 @@ const Subscribe = () => {
             onChange={handleChange}
             value={formData.email}
             className="flex-grow px-3 py-2 border rounded-md"
-            required
           />
+          {errors.email && <p className="text-red-500">{errors.email}</p>}
           <button
             type="submit"
             className="ml-2 py-2 px-8 bg-gradient-to-r from-blue-900 to-yellow-700 hover:bg-red-400 text-white font-normal rounded-md transition duration-300"
@@ -100,9 +110,6 @@ const Subscribe = () => {
           </button>
         </form>
       </div>
-      {errors.general && (
-        <p className="text-white text-center mt-4 w-full">{errors.general}</p>
-      )}
     </div>
   );
 };

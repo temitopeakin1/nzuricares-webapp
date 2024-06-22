@@ -14,7 +14,7 @@ const careers = [
     text: `We are on a mission to revolutionize the health and care industry in the UK and beyond,
            equipping staff with the tools, opportunities, and transparency they need to excel, one shift at a time.<br /> 
            We believe that our strength lies in the diversity of our skills, experiences, and talents. As we empower care teams, 
-           we are equally committed to fostering a collaborative, respectful, and inclusive environment for our colleagues.<br /><b>Become part of a purpose-driven health tech company and join us in making a meaningful impact.</b>`,
+           we are equally committed to fostering a collaborative, respectful, and inclusive environment for our colleagues.<br /><b>Become part of a purpose-driven healthcare company and join us in making a meaningful impact.</b>`,
   },
   {
     title: "Equality, Diversity and Inclusion",
