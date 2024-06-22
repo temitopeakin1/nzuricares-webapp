@@ -10,7 +10,7 @@ const company = [
   },
   {
     name: "How It works",
-    link: "/care-professionals/how-it-works",
+    link: "/healthcare-professionals/how-it-works",
   },
   {
     name: "Staffing",
@@ -20,7 +20,7 @@ const company = [
 const resources = [
   {
     name: "Services",
-    link: "/care-professionals/services",
+    link: "/healthcare-professionals/services",
   },
   {
     name: "Careers",
