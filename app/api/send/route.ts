@@ -4,7 +4,6 @@ import EmailTemplate from '@/Components/EmailTemplate'; // Adjust path as per yo
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Example function to fetch recipient's first name
 function fetchRecipientFirstName(): string {
   return ''; // Example value, replace with your logic
 }
