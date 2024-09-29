@@ -86,7 +86,7 @@ const Subscribe = () => {
       )}
       <div className="w-full text-center">
         <div className="text-white text-2xl py-4 font-sans font-normal">
-          Subscribe to receive real-time updates
+          Subscribe to receive updates
         </div>
         <form
           onSubmit={handleSubmit}

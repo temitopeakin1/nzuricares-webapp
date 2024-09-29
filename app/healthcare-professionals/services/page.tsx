@@ -15,14 +15,14 @@ const section_data = [
     image: "/images/imge.jpg",
   },
   {
-    title: "Companion Care",
-    text: "Ensure your loved one receives the attention and care needed, while delivering the peace of mind.",
-    image: "/images/bgWork.jpg",
+    title: "Infection control & Hygiene Services",
+    text: "We Ensure the prevention of spread of infections in healthcare and implementing strict hygiene protocols,These services include regular cleaning, sanitization, and monitoring of potential contamination sources to ensure a safe and sterile environment for the populace",
+    image: "/images/infection.jpeg",
   },
   {
-    title: "Holistic Wellness",
-    text: "At Nzuricares we offer integrated healthcare services that address not only physical health but also mental, emotional, and social well-being, promoting a holistic approach to health and wellness.",
-    image: "/images/holistic.jpg",
+    title: "Training Services",
+    text: "At Nzuricares We offer integrated training services that address physical, mental, and emotional well-being, fostering a holistic approach to personal and professional development. Our programs are designed to enhance overall health and performance, tailored to meet individual and organizational needs for lasting results..",
+    image: "/images/training.jpg",
   },
 ];
 
@@ -55,10 +55,10 @@ const Section = ({
         />
       </div>
       <div className="flex-1">
-        <p className="font-bold text-[32px] md:text-[48px] text-center md:text-justify">
+        <p className="font-bold text-[32px] md:text-[48px] text-center md:text-justify leading-none">
           {title}
         </p>
-        <p className=" text-[16px] md:text-[18px] text-justify md:text-justify px-4 sm:px-0 md:px-0">
+        <p className=" text-[16px] md:text-[18px] text-justify md:text-justify mt-2 px-4 sm:px-0 md:px-0">
           {text}
         </p>
       </div>

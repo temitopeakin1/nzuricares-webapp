@@ -20,6 +20,7 @@ interface SubmitButtonProps {
   loadingText: string;
   className?: string;
   loading?: boolean;
+  disabled?: boolean;
 }
 
 export function SubmitButton({
@@ -27,6 +28,7 @@ export function SubmitButton({
   loadingText,
   loading,
   className,
+  disabled
 }: Readonly<SubmitButtonProps>) {
   const status = useFormStatus();
   return (
@@ -42,3 +44,28 @@ export function SubmitButton({
     </Button>
   );
 }
+
+// interface SubmitButtonProps {
+//   className: string;
+//   text: string;
+//   loadingText: string;
+//   loading: boolean;
+//   disabled?: boolean;  // Add disabled prop
+// }
+
+// export const SubmitButton: React.FC<SubmitButtonProps> = ({
+//   className,
+//   text,
+//   loadingText,
+//   loading,
+//   disabled,
+// }) => {
+//   return (
+//     <button
+//       className={`${className} ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+//       disabled={loading || disabled}  // Set button disabled state
+//     >
+//       {loading ? loadingText : text}
+//     </button>
+//   );
+// };

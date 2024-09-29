@@ -8,6 +8,7 @@ import Footer from "@/Components/UI/Footer";
 import Link from "next/link";
 import axios from "axios";
 import { MdEmail } from "react-icons/md";
+import { FaPhone } from "react-icons/fa";
 
 interface UserInfo {
   firstName: string;
@@ -104,6 +105,16 @@ const Page = () => {
               <Link href="mailto:info@nzurihealthcare.com" passHref>
                 info@nzuricares.co.uk
               </Link>
+              {/* <div className="flex items-center ml-4"> 
+                <FaPhone className="mr-2" />
+                <span>02080502662</span> 
+              </div> */}
+              <div className="flex items-center ml-4">
+                <FaPhone className="mr-2" />
+                <a href={`tel:${userInfo.phoneNumber}`} className="text-white">
+                  02080502662
+                </a>
+              </div>
             </div>
             <Link href={"/company/careers/#"} passHref>
               <button className="mt-4 px-[2em] py-[.5em] mx-24 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans">

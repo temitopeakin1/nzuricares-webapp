@@ -1,48 +1,46 @@
 "use client";
 
-import React, { FormEvent, useState } from "react";
+import { useState } from "react";
+import { MdOutlineCancel } from "react-icons/md";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { SubmitButton } from "../Custom/submitButton";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
   AiOutlineWarning,
 } from "react-icons/ai";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/navigation";
-import { SubmitButton } from "../Custom/submitButton";
 
-interface formData {
+interface FormData {
   email: string;
   password: string;
 }
 
-const Login = () => {
-  const [formData, setFormData] = useState<formData>({
+const UpdateUser = () => {
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
   });
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
 
   const [errors, setErrors] = useState<{
     general?: string;
     email?: string;
     password?: string;
   }>({});
-  const [passwordVisibility, setPasswordVisibility] = useState(false);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [resetPassword, setResetPassword] = useState<boolean>(false);
-  // const [success, setSuccessMessage] = useState<boolean>(false)
 
   const supabase = createClientComponentClient();
   const router = useRouter();
 
+  const handleCancel = () => {
+    router.push("/login");
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handlePasswordVisibility = () => {
@@ -63,90 +61,78 @@ const Login = () => {
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return Object.keys(newErrors).length === 0; // Return true if no errors
   };
 
-  const handleSignIn = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     if (!validateForm()) {
-      setLoading(false); // Stop loading if form is invalid
+      setLoading(false);
       return;
     }
-    setLoading(true); // Start loading
-    // take note here
+
+    setLoading(true);
+
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.updateUser({
         email: formData.email,
         password: formData.password,
       });
-
       if (error) {
         setErrors({ general: error.message });
-        setLoading(false); // Stop loading if there's an error
         return;
-      } else {
-        setFormData({
-          email: "",
-          password: "",
-        });
-        setSuccessMessage("Login Successful");
-        setErrors({});
-        // set timer for 5 seconds
-        setTimeout(() => {
-          router.push("/register");
-        }, 1000);
       }
+
+      setSuccessMessage("Successfully Reset Password");
+      setErrors({});
+      setTimeout(() => {
+        router.push("/login");
+      }, 1500);
     } catch (error) {
-      console.error("Error:", error);
       setErrors({ general: "An error occurred. Please try again later." });
-      setLoading(false); // Stop loading on catch
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="relative bg-white px-4 items-center py-12 rounded-lg shadow-lg w-[100%] max-w-md my-8">
+    <div className="relative bg-white px-4 py-12 items-center rounded-lg shadow-lg w-[100%] max-w-md my-8">
       <div className="flex flex-col items-center -mt-8">
-        <Image
-          src={"/images/logo.png"}
-          alt={"logo"}
-          width={150}
-          height={150}
-          className="items-center"
+        <Image src="/images/logo.png" alt="logo" width={150} height={150} />
+        <MdOutlineCancel
+          className="text-xl cursor-pointer absolute top-4 right-4"
+          onClick={handleCancel}
         />
-        <p className="mt-2 font-serif font-normal">Welcome back,</p>
-        <p className="mt-2 text-2xl font-body font-semibold">
-          Login to register profile
-        </p>
+        <p className="mt-2 text-2xl font-body font-semibold">Update Password</p>
       </div>
-      {errors.general && (
-        <p className="text-red-500 text-center mb-4 font-semibold items-center justify-center">
-          {errors.general}
-        </p>
-      )}
-      {successMessage && (
-        <div className="mt-4 text-center text-primary font-semibold">
-          {successMessage}
-        </div>
-      )}
+
       <form
-        onSubmit={handleSignIn}
+        onSubmit={handleSubmit}
         className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50"
       >
+        {successMessage && (
+          <p className="text-center justify-center text-blue-500">
+            {successMessage}
+          </p>
+        )}
+
+        {errors.email && (
+          <p className="text-red-500 text-sm mb-2">{errors.email}</p>
+        )}
+
         <div className="mb-4">
-          <label htmlFor="email" className="font-semibold">
-            Email
-          </label>
           <input
             type="email"
             id="email"
             name="email"
             value={formData.email}
-            placeholder="name@example.com"
             onChange={handleChange}
+            placeholder="Input your email"
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
           />
           {errors.email && (
-            <p className="text-red-500 text-sm mt-2 flex items-center">
+            <p className="text-red-500 text-sm mt-2">
               <AiOutlineWarning className="mr-2" />
               {errors.email}
             </p>
@@ -185,26 +171,15 @@ const Login = () => {
             </p>
           )}
         </div>
-        <Link href="/forgotPassword">
-        <button className="absolute -mt-2 right-8 text-red-800 text-sm font-satoshi ">
-          Forgot password?
-        </button>
-        </Link>
         <SubmitButton
           className="w-full"
-          text="Login"
-          loadingText="Logging in..."
+          text="Submit"
+          loadingText="Submitting..."
           loading={loading}
         />
-        <p className="mt-4 text-center text-gray-600">
-          Don’t have an Account?{" "}
-          <Link href="/signup" className="text-blue-700 font-semibold">
-            SignUp
-          </Link>
-        </p>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default UpdateUser;

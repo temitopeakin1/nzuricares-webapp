@@ -7,9 +7,11 @@ import { useRouter } from "next/navigation";
 import { SubmitButton } from "../Custom/submitButton";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import SuccessModal from "../successModal";
 
 interface FormData {
   profileId: string;
+  // created_at: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -23,6 +25,7 @@ interface FormData {
 const Register = () => {
   const [formData, setFormData] = useState<FormData>({
     profileId: "",
+    // created_at: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -34,7 +37,7 @@ const Register = () => {
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const router = useRouter();
 
   const handleChange = (
@@ -47,7 +50,6 @@ const Register = () => {
     }));
   };
 
-  // handle the phone number change
   const handlePhoneNumberChange = (value: string | undefined) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -90,9 +92,13 @@ const Register = () => {
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    console.log("register")
     event.preventDefault();
     if (!validateForm()) return;
     const profileId = `NZ${Math.floor(Math.random() * 1000)}`;
+
+    setLoading(true); 
+    
 
     try {
       const resumeFileName = `${Date.now()}_${
@@ -102,11 +108,16 @@ const Register = () => {
         .from("resumes")
         .upload(resumeFileName, formData.resume as File);
 
-      if (resumeError) throw resumeError;
+      if (resumeError) {
+        setErrors({ general: "Failed to upload resume. Please try again." });
+        setLoading(false);
+        return;
+      }
 
       const resumePath = resumeData?.path ?? null;
 
-      const { data: insertedData, error: insertError } = await supabase
+      // fetch data from the profileData table
+      const { data: insertData, error: insertError } = await supabase
         .from("profileData")
         .insert([
           {
@@ -122,8 +133,8 @@ const Register = () => {
           },
         ]);
 
-      if (insertError) throw insertError;
-
+      console.log("insertData:", insertData);
+      console.log("insertError:", insertError);
       setFormData({
         profileId: "",
         firstName: "",
@@ -135,18 +146,15 @@ const Register = () => {
         postCode: "",
         resume: null,
       });
-      setSuccessMessage(
-        "Profile Registration complete, Redirecting to Homepage."
-      );
+
       setErrors({});
-      setTimeout(() => {
-        router.push("/");
-      }, 2000);
+     setIsModalVisible(true);
     } catch (error) {
       console.error("Error:", error);
       setErrors({
         general: "Error occurred while registering. Please try again later.",
       });
+    } finally {
       setLoading(false);
     }
   };
@@ -168,11 +176,11 @@ const Register = () => {
           onSubmit={handleSubmit}
           className="max-w-2xl mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50"
         >
-          {successMessage && (
+          {/* {successMessage && (
             <p className="-mt-16 text-center justify-center text-primary">
               {successMessage}
             </p>
-          )}
+          )} */}
           <div className="mb-4 flex space-x-4">
             <div className="w-1/2">
               <label htmlFor="firstName" className="font-semibold">
@@ -232,7 +240,7 @@ const Register = () => {
             </label>
             <PhoneInput
               international
-              defaultCountry="RU"
+              defaultCountry="GB"
               countryCallingCodeEditable={false}
               value={formData.phoneNumber}
               onChange={handlePhoneNumberChange}
@@ -255,7 +263,6 @@ const Register = () => {
               value={formData.postCode}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
-
               required
             />
             {errors.postCode && (
@@ -292,6 +299,7 @@ const Register = () => {
               <option value="" disabled>
                 Select a job type
               </option>
+              <option value="cleaners">Cleaners</option>
               <option value="carers">Carers</option>
               <option value="nurses">Nurses</option>
               <option value="support workers">Support Workers</option>
@@ -323,6 +331,10 @@ const Register = () => {
           />
         </form>
       </div>
+      {/*success modal */}
+      {isModalVisible && (
+        <SuccessModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} />
+      )}
     </div>
   );
 };

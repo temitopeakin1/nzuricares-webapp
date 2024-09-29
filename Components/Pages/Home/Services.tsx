@@ -16,7 +16,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
   return (
     <div className="flex flex-col items-center w-80 md:w-72 sm:w-72 p-4 mx-4 my-8 bg-white rounded-lg shadow-md">
       <Image src={imageUrl} alt="Service" width={250} height={250} />
-      <p className="mt-4 text-lg font-semibold">{title}</p>
+      <p className="mt-4 text-sm font-semibold">{title}</p>
       <p className="mt-2 text-sm font-body">{description}</p>
       <Link href="/healthcare-professionals/services" className="mt-4 text-blue-500">
         Read more
@@ -48,14 +48,14 @@ const Services = () => {
           treatment plans."
         />
         <ServiceItem
-          imageUrl={"/images/bgWork.jpg"}
-          title="Companion care"
-          description="Ensure your loved one receives the attention and care needed, while delivering the peace of mind."
+          imageUrl={"/images/infections.jpg"}
+          title="Infection control & Hygiene Services"
+          description="Preventing spread of infections in the healthcare and implementing strict hygiene protocols."
         />
         <ServiceItem
-          imageUrl={"/images/holistic.jpg"}
-          title="Holistic Wellness"
-          description="We offer integrated healthcare services that addresses physical, mental and emotional health"
+          imageUrl={"/images/training.jpg"}
+          title="Training Services"
+          description="We offer integrated Training services that addresses physical, mental and emotional health"
         />
       </div>
     </div>

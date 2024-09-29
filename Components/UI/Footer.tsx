@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaPhone, FaTwitter } from "react-icons/fa";
+import { RiCellphoneFill } from "react-icons/ri";
 
 const company = [
   {
@@ -92,16 +93,41 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex flex-row items-center gap-6 mt-8 -ml-2 md:mt-4">
-            <button className="bg-none group hover:bg-primary rounded-full p-1 transition-all ease-in-out duration-300">
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-none group hover:bg-primary rounded-full p-1 transition-all ease-in-out duration-300"
+            >
               <FaFacebookF className="text-xl group-hover:text-white" />
-            </button>
-            <button className="bg-none group hover:bg-primary rounded-full p-1 transition-all ease-in-out duration-300">
+            </a>
+            <a
+              href="https://twitter.com/your-twitter-page"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-none group hover:bg-primary rounded-full p-1 transition-all ease-in-out duration-300"
+            >
               <FaTwitter className="text-xl group-hover:text-white" />
-            </button>
-            <button className="bg-none group hover:bg-primary rounded-full p-1 transition-all ease-in-out duration-300">
+            </a>
+            <a
+              href="https://www.linkedin.com/company/nzuri-healthcare-recruitment-limited/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-none group hover:bg-primary rounded-full p-1 transition-all ease-in-out duration-300"
+            >
               <FaLinkedinIn className="text-xl group-hover:text-white" />
-            </button>
+            </a>
+            <a
+              href="tel:02080502662"
+              className="bg-none group hover:bg-primary rounded-full p-1 transition-all ease-in-out duration-300"
+            >
+              <FaPhone className="text-xl group-hover:text-white" />
+            </a>
           </div>
+          {/* <div className="flex mt-2 items-center">
+            <RiCellphoneFill className="text-xl mr-2" /> 
+            <span className="font-title">02080502662</span>
+          </div> */}
         </div>
       </div>
       <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
@@ -120,7 +146,8 @@ const Footer = () => {
         </div>
         <p className="text-sm text-center md:text-right font-semibold mt-2 md:mt-0">
           &copy; {new Date().getFullYear()}{" "}
-          <Link href="/">Nzuri Healthcare</Link> All right reserved.
+          <Link href="/">Nzuri Healthcare Recruitment Limited</Link> All right
+          reserved.
         </p>
       </div>
     </div>

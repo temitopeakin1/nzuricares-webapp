@@ -104,19 +104,21 @@ const Header = () => {
         isScrolled ? "p-4" : "p-2"
       } items-center bg-white`}
     >
-      <Image
-        src={"/images/logo.png"}
-        alt={"logo"}
-        height={100}
-        width={130}
-        className={`
+      <Link href="/">
+        <Image
+          src={"/images/logo.png"}
+          alt={"logo"}
+          height={100}
+          width={130}
+          className={`
           ${
             isScrolled
-              ? "w-[20%] md:w-[8%] lg:w-[6%] transition-all duration-200 ease-in-out  "
+              ? "w-[20%] md:w-[40%] lg:w-[40%] transition-all duration-200 ease-in-out  "
               : "w-1/1 transition-all duration-200 ease-in-out"
           }
         `}
-      />
+        />
+      </Link>
 
       {isMobile && (
         <div className="md:hidden transition-all  ">

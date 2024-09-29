@@ -12,6 +12,10 @@ const config: Config = {
         scrollDown: "scrollDown 1s infinite",
         animateCircle: "animateCircle 2s ease-out",
         underline: 'underline 2s ease-out forwards',
+        "smart-animate": "smartAnimate 500ms ease-out",
+        "slide-up": "slideUp 300ms ease-out",
+        "slide-right": "slideRight 300ms ease-out",
+        "roll": "rollUp 2s linear infinite",
       },
       keyframes: {
         underline: {
@@ -28,6 +32,25 @@ const config: Config = {
           "50%": { width: "100%", height: "100%", opacity: "0.5" },
           "100%": { width: "0", height: "0", opacity: "0" },
         },
+        smartAnimate: {
+          "0%": { opacity: "0", transform: "translateY(-10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        slideUp: {
+          "0%": { opacity: "0", transform: "translateY(100%)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        slideRight: {
+          "0%": { opacity: "0", transform: "translateX(100%)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        rollUp: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+      },
+      lineHeight: {
+        'tight': '1.1',       
       },
 
       backgroundImage: {
