@@ -8,14 +8,14 @@ import { SubmitButton } from "../Custom/submitButton";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { AiOutlineWarning } from "react-icons/ai";
 
-interface FormData {
+interface formData {
   email: string;
 }
 
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState<FormData>({ email: "" });
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [formData, setFormData] = useState<formData>({email: ""})
 
   const [errors, setErrors] = useState<{
     general?: string;
@@ -30,7 +30,11 @@ const ForgotPassword = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const validateEmail = (): boolean => {
@@ -43,7 +47,7 @@ const ForgotPassword = () => {
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // Return true if no errors
+    return Object.keys(newErrors).length === 0; 
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -68,7 +72,7 @@ const ForgotPassword = () => {
       setSuccessMessage("Password recovery email sent!");
       setErrors({});
       setTimeout(() => {
-        router.push("/login");
+        router.push("/updateuser");
       }, 1500);
     } catch (error) {
       setErrors({ general: "An error occurred. Please try again later." });

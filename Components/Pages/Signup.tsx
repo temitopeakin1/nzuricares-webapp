@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import { SubmitButton } from "../Custom/submitButton";
 import { MdOutlineCancel } from "react-icons/md";
 
-interface FormData {
+interface formData {
   username: string;
   email: string;
   password: string;
@@ -22,7 +22,7 @@ interface FormData {
 }
 
 const Signup = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<formData>({
     username: "",
     email: "",
     password: "",
