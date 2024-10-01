@@ -55,7 +55,7 @@ const Header = () => {
   const [activeSubMenu, setActiveSubMenu] = useState<number | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navUrl = usePathname();
+  const navUrl = usePathname()
   const router = useRouter();
 
   const handleScroll = () => {
