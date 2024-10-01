@@ -64,32 +64,60 @@ const Signup = () => {
     }));
   };
 
+  // const validateForm = () => {
+  //   const newErrors: { [key: string]: string } = {};
+
+  //   if (!formData.username.trim()) {
+  //     newErrors.username = "Username is required";
+  //   }
+
+  //   if (!formData.email.trim()) {
+  //     newErrors.email = "Email is required";
+  //   } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+  //     newErrors.email = "Invalid email format";
+  //   }
+
+  //   if (!formData.password.trim()) {
+  //     newErrors.password = "Password is required";
+  //   }
+
+  //   if (!formData.confirmPassword.trim()) {
+  //     newErrors.confirmPassword = "Confirm Password is required";
+  //   } else if (formData.password !== formData.confirmPassword) {
+  //     newErrors.confirmPassword = "Passwords do not match";
+  //   }
+
+  //   setErrors(newErrors);
+  //   return Object.keys(newErrors).length === 0;
+  // };
+
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
-
-    if (!formData.username.trim()) {
+  
+    if (!formData || !formData.username || !formData.username.trim()) {
       newErrors.username = "Username is required";
     }
-
-    if (!formData.email.trim()) {
+  
+    if (!formData || !formData.email || !formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
       newErrors.email = "Invalid email format";
     }
-
-    if (!formData.password.trim()) {
+  
+    if (!formData || !formData.password || !formData.password.trim()) {
       newErrors.password = "Password is required";
     }
-
-    if (!formData.confirmPassword.trim()) {
+  
+    if (!formData || !formData.confirmPassword || !formData.confirmPassword.trim()) {
       newErrors.confirmPassword = "Confirm Password is required";
     } else if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match";
     }
-
+  
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+  
 
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

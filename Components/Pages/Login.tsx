@@ -49,22 +49,40 @@ const Login = () => {
     setPasswordVisibility(!passwordVisibility);
   };
 
+  // const validateForm = () => {
+  //   const newErrors: { [key: string]: string } = {};
+
+  //   if (!formData.email.trim()) {
+  //     newErrors.email = "Email is required";
+  //   } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+  //     newErrors.email = "Invalid email format";
+  //   }
+
+  //   if (!formData.password.trim()) {
+  //     newErrors.password = "Password is required";
+  //   }
+
+  //   setErrors(newErrors);
+  //   return Object.keys(newErrors).length === 0;
+  // };
+
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
-
-    if (!formData.email.trim()) {
+  
+    if (!formData || !formData.email || !formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
       newErrors.email = "Invalid email format";
     }
-
-    if (!formData.password.trim()) {
+  
+    if (!formData || !formData.password || !formData.password.trim()) {
       newErrors.password = "Password is required";
     }
-
+  
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+  
 
   const handleSignIn = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
