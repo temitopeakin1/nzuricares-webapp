@@ -94,7 +94,7 @@ const Signup = () => {
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validateForm()) {
-      return; // Validation failed, no need to set loading state
+      return; 
     }
 
     setLoading(true);
