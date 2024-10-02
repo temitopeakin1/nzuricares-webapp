@@ -29,7 +29,7 @@ const Login = () => {
     password?: string;
   }>({});
   const [passwordVisibility, setPasswordVisibility] = useState(false);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [resetPassword, setResetPassword] = useState<boolean>(false);
   // const [success, setSuccessMessage] = useState<boolean>(false)

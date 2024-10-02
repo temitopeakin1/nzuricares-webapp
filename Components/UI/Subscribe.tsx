@@ -11,14 +11,14 @@ const Subscribe = () => {
   const [formData, setFormData] = useState<Formdata>({
     email: "",
   });
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string>("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   // time out after 3 seconds
   useEffect(() => {
     if (successMessage) {
       const timer = setTimeout(() => {
-        setSuccessMessage(null);
+        setSuccessMessage("");
       }, 3000);
 
       // Cleanup the timer if the component unmounts or successMessage changes

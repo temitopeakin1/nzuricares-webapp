@@ -37,7 +37,7 @@ const Signup = () => {
     confirmPassword?: string;
   }>({});
   const [loading, setLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string>("");
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(false);
 
