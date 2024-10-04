@@ -299,10 +299,10 @@ const Register = () => {
               <option value="" disabled>
                 Select a job type
               </option>
-              <option value="cleaners">Cleaners</option>
-              <option value="carers">Carers</option>
-              <option value="nurses">Nurses</option>
-              <option value="support workers">Support Workers</option>
+              <option value="cleaners">Cleaner</option>
+              <option value="carers">Carer</option>
+              <option value="nurses">Nurse</option>
+              <option value="support workers">Support Worker</option>
             </select>
             {errors.jobType && <p className="text-red-500">{errors.jobType}</p>}
           </div>
