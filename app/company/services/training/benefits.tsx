@@ -27,19 +27,19 @@ const BenefitItem: React.FC<BenefitItemProps> = ({
 }) => {
   return (
     <motion.div
-    initial={{
-      rotate: "0deg",
-    }}
-    animate={{
-      rotate: "360deg",
-    }}
-    transition={{
-      duration: 2,
-      ease: "anticipate", 
-    }} 
-      layoutId={layoutId} 
+      initial={{
+        rotate: "0deg",
+      }}
+      animate={{
+        rotate: "360deg",
+      }}
+      transition={{
+        duration: 2,
+        ease: "anticipate",
+      }}
+      layoutId={layoutId}
       className="flex flex-col items-center w-80 md:w-100 sm:w-100 mx-4 pb-8 rounded-lg shadow-md cursor-pointer"
-      onClick={onClick} 
+      onClick={onClick}
     >
       {/* Upper part with icon and background color */}
       <div className="flex flex-col items-center w-full bg-[#E5EBF5] p-12 rounded-lg">
@@ -58,8 +58,7 @@ const BenefitItem: React.FC<BenefitItemProps> = ({
 const Benefits = () => {
   const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(0);
-  const [selectedBenefit, setSelectedBenefit] = useState<number | null>(null); 
-  
+  const [selectedBenefit, setSelectedBenefit] = useState<number | null>(null);
 
   const benefits = [
     {
@@ -83,13 +82,13 @@ const Benefits = () => {
     {
       Icon: FaChalkboardTeacher,
       title: "Expert Guidance",
-      description:
-        "Learn directly from experienced Healthcare Professionals.",
+      description: "Learn directly from experienced Healthcare Professionals.",
     },
     {
       Icon: FaUserFriends,
       title: "Community Engagement",
-      description: "Engage with a network of like-minded Healthcare Professionals.",
+      description:
+        "Engage with a network of like-minded Healthcare Professionals.",
     },
     {
       Icon: FaSyncAlt,
@@ -147,30 +146,35 @@ const Benefits = () => {
       <AnimatePresence>
         {selectedBenefit !== null && (
           <motion.div
-            layoutId={`benefit-${selectedBenefit}`} 
+            layoutId={`benefit-${selectedBenefit}`}
             className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
             onClick={() => setSelectedBenefit(null)}
           >
             <motion.div
               className="bg-white rounded-lg p-8 w-96"
-              onClick={(e) => e.stopPropagation()} 
+              onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col items-center">
                 <div className="bg-[#8E9CE0] text-white rounded-full p-6">
                   {/* <benefits[selectedBenefit]?.Icon size={40} /> */}
-                  {React.createElement(benefits[selectedBenefit]?.Icon, { size: 40 })}
-
+                  {React.createElement(benefits[selectedBenefit]?.Icon, {
+                    size: 40,
+                  })}
                 </div>
                 <h2 className="mt-4 text-lg font-bold">
                   {benefits[selectedBenefit]?.title}
                 </h2>
-                <p className="mt-2 text-sm">{benefits[selectedBenefit]?.description}</p>
+                <p className="mt-2 text-sm">
+                  {benefits[selectedBenefit]?.description}
+                </p>
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-      <Button className="items-center justify-center" />
+      <div className="flex justify-center mt-4 md:mt-8">
+        <Button />
+      </div>
     </div>
   );
 };

@@ -83,7 +83,10 @@ const Page = () => {
                   <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
                 )}
               </span>
-              <br /> for <span className="relative inline-block">Health professionals</span>
+              <br /> for{" "}
+              <span className="relative inline-block">
+                Health professionals
+              </span>
             </h1>
           </FadeIn>
         </div>
@@ -91,12 +94,12 @@ const Page = () => {
       </div>
       <Benefits />
       <div className="py-4 text-center">
-        <h1 className="mt-2 font-bold lg:text-2xl text-blue-800 font-title">
+        <h1 className="mt-2 md:mt-2 mb-2 md:mb-4 font-bold text-sm md:text-4xl text-blue-800 font-title">
           Explore the spectrum of care settings we embrace.
         </h1>
-        <p className="mt-2 lg:text-sm md:text-sm font-body">
-          From nurturing care homes to advanced private hospitals and esteemed
-          NHS trusts, we’ve got you covered.
+        <p className="text-sm md:text-md font-body">
+          From care homes to private hospitals and NHS trusts, we’ve got you
+          covered.
         </p>
         <div className="flex justify-center bg-primary rounded-xl mt-16 max-w-screen-lg mx-auto p-4">
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center mx-auto">
