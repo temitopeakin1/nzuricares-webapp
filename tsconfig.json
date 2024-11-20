@@ -21,7 +21,7 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/supabaseClient.js", "server.js", "Components/emailtsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/supabaseClient.js", "server.js", "Components/emailtsx", "app/company/services/home-care"],
   "exclude": ["node_modules"]
 }
 

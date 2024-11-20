@@ -133,12 +133,12 @@ const Footer = () => {
       <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col md:flex-row">
-          <Link href="/">
+          <Link href="/terms-conditions">
             <button className="text-sm text-left font-normal pr-4 md:pr-8 mb-2 md:mb-0">
               Terms and conditions
             </button>
           </Link>
-          <Link href="/">
+          <Link href="/privacy-policy">
             <button className="text-sm text-left font-normal md:ml-4">
               Privacy Policy
             </button>

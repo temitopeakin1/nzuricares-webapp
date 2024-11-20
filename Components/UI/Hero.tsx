@@ -45,10 +45,10 @@ const Hero: React.FC = () => {
     <div className="hero relative overflow-hidden h-[400px] -mb-16">
       <div
         ref={imageRef}
-        className="hero-image absolute inset-0 bg-opacity-50 z-0"
+        className="hero-image absolute inset-0 bg-opacity-50 z-0" 
       >
         <Image
-          src="/images/bgSlider-4.jpg"
+          src="/images/slider-4.jpg"
           alt="Hero Image"
           layout="fill"
           objectFit="cover"

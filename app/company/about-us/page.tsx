@@ -145,7 +145,7 @@ const Page = () => {
       <div className="flex flex-col items-center justify-center">
         <div className="bg-[#FAFAFA] flex flex-col items-center justify-center py-0 md:py-10 w-full">
           <Image
-            src="/images/bgSlider-5.jpg"
+            src="/images/slider-5.jpg"
             width={400}
             height={400}
             className="w-full md:w-[70%] mt-20 sm:mt-2 md:mt-4 lg:mt-4 "

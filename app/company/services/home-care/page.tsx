@@ -80,7 +80,7 @@ const page = () => {
             </p>
           </div> */}
           <Image
-            src={"/images/bgSlider-5.jpg"}
+            src={"/images/slider-5.jpg"}
             width={400}
             height={400}
             className="w-full md:w-[70%] mt-20 sm:mt-2 md:mt-4 lg:mt-4"
@@ -88,22 +88,21 @@ const page = () => {
           />
         </div>
 
-        <div className=" flex flex-col gap-6 items-center justify-center py-0 md:py-10 w-full md:w-[50%]">
-          <div className="border-t-primary border-b-primary border-t-2 border-b-2 p-4 md:p-6">
-            <p className="text-xl font-semibold text-justify md:text-justify ">
-              At Nzuri HealthCare, we believe that exceptional care begins with
-              a compassionate heart and a professional touch. Our dedicated team
-              of carers is committed to providing personalised, high-quality
-              care that enhances the quality of life for you and your loved
-              ones. Whether its assistance with daily activities, specialized
-              medical care, or simply a friendly companion, we are here to
-              support you every step of the way. Our professional carers,
-              Nurses, and Support Workers are here to provide the compassionate,
-              reliable assistance that makes a meaningful difference in your
-              life. Explore our services and let us be your trusted partner in
-              care.
-            </p>
-          </div>
+        <div className=" flex flex-col gap-6 items-center justify-center py-0 md:py-20 w-full md:w-[50%]">
+          {/* <div className="border-t-primary border-b-primary border-t-2 border-b-2 p-4 md:p-6"> */}
+          <p className=" regular text-xl font-semibold items-center justify-center text-justify md:text-justify p-8 md:p-8 ">
+            At Nzuri HealthCare, we believe that exceptional care begins with a
+            compassionate heart and a professional touch. Our dedicated team of
+            carers is committed to providing personalised, high-quality care
+            that enhances the quality of life for you and your loved ones.
+            Whether its assistance with daily activities, specialized medical
+            care, or simply a friendly companion, we are here to support you
+            every step of the way. Our professional carers, Nurses, and Support
+            Workers are here to provide the compassionate, reliable assistance
+            that makes a meaningful difference in your life. Explore our
+            services and let us be your trusted partner in care.
+          </p>
+          {/* </div> */}
         </div>
 
         <div className="flex item-center justify-center mt-12">

@@ -239,7 +239,7 @@ const Page = () => {
             </div>
             <div className="md:absolute  -z-10 right-0 hidden md:inline ">
               <Image
-                src={"/images/bgSlider-1.jpg"}
+                src={"/images/slider-1.jpg"}
                 width={200}
                 height={300}
                 alt="contact form "

@@ -42,6 +42,7 @@
       background-color: #3A8766;
       border-radius: 30px;
     }
+    
     ::-webkit-scrollbar-track {
       background-color: transparent;
     }
@@ -125,4 +126,31 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+.regular {
+  position: relative;
+  padding-left: 40px;
+  &::before {
+    content: "\201F";
+    font-size: 3em;
+    color: #3A8766;
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  &::after {
+    content: "\201D";
+    font-size: 3em;
+    color: #3A8766;
+    position: absolute;
+    bottom: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+}
+
+.react-phone-number-input__input:focus {
+  outline: none;
+  box-shadow: none;
 }

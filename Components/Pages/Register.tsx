@@ -301,7 +301,7 @@ const Register = () => {
               </option>
               <option value="cleaners">Cleaner</option>
               <option value="carers">Carer</option>
-              <option value="nurses">Nurse</option>
+              <option value="nurses">Registered Nurse</option>
               <option value="support workers">Support Worker</option>
             </select>
             {errors.jobType && <p className="text-red-500">{errors.jobType}</p>}

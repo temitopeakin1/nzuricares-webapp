@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineClose } from "react-icons/ai";
 import { RiEqualLine } from "react-icons/ri";
-import { CgChevronDown, CgChevronUp } from "react-icons/cg";
+import { CgChevronDown, CgChevronRight, CgChevronUp } from "react-icons/cg";
 import { usePathname, useRouter } from "next/navigation";
 
 const navigation = [
@@ -19,12 +19,18 @@ const navigation = [
         href: "/healthcare-professionals/how-it-works",
       },
       {
-        name: "Services",
-        href: "/healthcare-professionals/services",
+        name: "Professionals",
+        href: "/healthcare-professionals/professionals",
       },
+    ],
+  },
+  {
+    name: "Clients",
+    href: "",
+    subMenus: [
       {
-        name: "Social Care Registration",
-        href: "/healthcare-professionals/social-care-registration",
+        name: "Register Interest",
+        href: "/clients/register-interest",
       },
     ],
   },
@@ -33,17 +39,27 @@ const navigation = [
     href: "/company",
     subMenus: [
       {
-        name: "About Us",
-        href: "/company/about-us",
+        name: "Services",
+        href: "",
+        subMenus: [
+          { name: "Home Care", href: "/company/services/home-care" },
+          {
+            name: "Personalized Care",
+            href: "/company/services/personalized-care",
+          },
+          {
+            name: "Infection Control and Hygiene",
+            href: "/company/services/infection-control-and-hygiene",
+          },
+          {
+            name: "Training",
+            href: "/company/services/training",
+          },
+        ],
       },
-      {
-        name: "Careers",
-        href: "/company/careers",
-      },
-      {
-        name: "Staffing",
-        href: "/company/staffing",
-      },
+      { name: "About Us", href: "/company/about-us" },
+      { name: "Careers", href: "/company/careers" },
+      { name: "Staffing", href: "/company/staffing" },
     ],
   },
   { name: "Contact Us", href: "/contact" },
@@ -54,8 +70,9 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState<number | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSubSubMenu, setActiveSubSubMenu] = useState<number | null>(null);
 
-  const navUrl = usePathname()
+  const navUrl = usePathname();
   const router = useRouter();
 
   const handleScroll = () => {
@@ -86,6 +103,10 @@ const Header = () => {
     setActiveSubMenu(activeSubMenu === index ? null : index);
   };
 
+  const toggleSubSubMenu = (index: number) => {
+    setActiveSubSubMenu(activeSubSubMenu === index ? null : index);
+  };
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -100,7 +121,7 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed top-0 z-50 w-full flex justify-between md:px-16 font-title ${
+      className={`fixed top-0 z-50 w-full flex justify-between md:px-16 font-title text-12 ${
         isScrolled ? "p-4" : "p-2"
       } items-center bg-white`}
     >
@@ -110,18 +131,16 @@ const Header = () => {
           alt={"logo"}
           height={100}
           width={130}
-          className={`
-          ${
+          className={`${
             isScrolled
-              ? "w-[20%] md:w-[40%] lg:w-[40%] transition-all duration-200 ease-in-out  "
+              ? "w-[20%] md:w-[40%] lg:w-[40%] transition-all duration-200 ease-in-out"
               : "w-1/1 transition-all duration-200 ease-in-out"
-          }
-        `}
+          }`}
         />
       </Link>
 
       {isMobile && (
-        <div className="md:hidden transition-all  ">
+        <div className="md:hidden transition-all">
           <button onClick={toggleMenu} className="pr-1">
             <RiEqualLine
               className={`text-[2em] ${
@@ -131,12 +150,13 @@ const Header = () => {
           </button>
         </div>
       )}
+
       <div
         className={`${
           isMenuOpen
             ? "absolute top-0 left-0 w-full h-screen bg-white z-50 flex flex-col gap-4 justify-center items-center font-title"
             : "md:flex hidden"
-        } gap-4 md-flex `}
+        } gap-4 md:flex items-center justify-center`}
       >
         <button
           onClick={toggleMenu}
@@ -156,7 +176,7 @@ const Header = () => {
 
           return (
             <div
-              className={`relative flex-col items-center justify-center  ${
+              className={`relative flex-col items-center justify-center ${
                 link.subMenus &&
                 activeSubMenu === index &&
                 "text-center mb-8 md:mb-0"
@@ -168,8 +188,8 @@ const Header = () => {
                   if (!link.subMenus) router.push(link.href);
                   link.subMenus ? toggleSubMenu(index) : setIsMenuOpen(false);
                 }}
-                className={`text-base font-semibold text-primary  hover:font-bold  flex gap-x-2 items-center cursor-pointer  font-title hover:text-secondary px-4 py-2 ${
-                  isActive && "underline font-bold text-secondary"
+                className={`text-base font-semibold text-primary hover:font-bold flex gap-x-2 items-center cursor-pointer font-title hover:text-secondary px-4 py-2 ${
+                  isActive && " font-bold text-secondary"
                 }`}
               >
                 <span>{link.name}</span>
@@ -185,22 +205,54 @@ const Header = () => {
               </div>
 
               {link.subMenus && activeSubMenu === index && (
-                <div className="relative md:absolute top-8 bg-white py-4 shadow-md transition-all ease-in-out duration-300 flex flex-col w-full md:w-[15em] submenu open">
-                  {link.subMenus.map((item) => (
-                    <Link
-                      href={item.href}
-                      key={item.name}
-                      onClick={() => {
-                        isMobile && toggleMenu();
-                        toggleSubMenu(index);
-                      }}
-                    >
-                      <p
-                        className={`text-base font-semibold text-primary hover:font-bold hover:text-secondary px-4 py-2`}
+                <div
+                  className={`relative ${
+                    isMobile ? "flex flex-col w-full" : "md:absolute top-8"
+                  } bg-white shadow-md transition-all flex flex-col w-full md:w-[15em] text-center duration-300`}
+                >
+                  {link.subMenus.map((item, subIndex) => (
+                    <div key={item.name} className="relative group">
+                      <Link
+                        href={item.href}
+                        className="flex items-center text-base font-semibold text-primary hover:text-secondary px-4 py-2"
+                        onClick={() =>
+                          item.subMenus
+                            ? toggleSubSubMenu(subIndex)
+                            : isMobile && toggleMenu()
+                        }
                       >
                         {item.name}
-                      </p>
-                    </Link>
+                        {item.subMenus && (
+                          <>
+                            {activeSubSubMenu === subIndex ? (
+                              <CgChevronDown className="ml-auto" />
+                            ) : (
+                              <CgChevronRight className="ml-auto" />
+                            )}
+                          </>
+                        )}
+                      </Link>
+
+                      {item.subMenus && activeSubSubMenu === subIndex && (
+                        <div
+                          className={`${
+                            isMobile
+                              ? "pl-6 flex flex-col"
+                              : "absolute left-full top-0 w-[15em] bg-white shadow-md py-2 flex flex-col text-center"
+                          } bg-white shadow-md py-2`}
+                        >
+                          {item.subMenus.map((subItem) => (
+                            <Link
+                              href={subItem.href}
+                              key={subItem.name}
+                              className="text-base text-primary text-center font-semibold hover:text-secondary px-4 py-2"
+                            >
+                              {subItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
               )}

@@ -2,19 +2,19 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Header } from "@/Components";
-import Services from "./Services";
 import Footer from "@/Components/UI/Footer";
 import Shifts from "./Shifts";
 import Testimonial from "./Testimonial";
 import Subscribe from "@/Components/UI/Subscribe";
 import PrivacyBanner from "@/Components/UI/PrivacyBanner";
+import Profession from "./Profession";
 
 const Sliders = () => {
   const images = [
-    "/images/bgSlider-1.jpg",
-    "/images/bgSlider-3.jpg",
-    "/images/bgSlider-4.jpg",
-    "/images/bgSlider-5.jpg",
+    "/images/slider-1.jpg",
+    "/images/slider-3.jpg",
+    "/images/slider-4.jpg",
+    "/images/slider-5.jpg",
   ];
 
   // set states
@@ -148,7 +148,7 @@ const HomePage = () => {
       </div>
       <Header />
       <Sliders />
-      <Services />
+      <Profession />
       <Shifts />
       <Testimonial testimonials={[]} />
       <Subscribe />
