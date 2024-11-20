@@ -2,7 +2,7 @@
 
 import { Header } from "@/Components";
 import FadeIn from "@/Components/UI/FadeIn";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import Footer from "@/Components/UI/Footer";
 import Link from "next/link";
@@ -15,6 +15,7 @@ interface FormData {
   firstName: string;
   lastName: string;
   companyRepresentativeName: string;
+  companyName: string;
   healthNumber: number;
   category: string;
   email: string;
@@ -33,6 +34,7 @@ const Page = () => {
     lastName: "",
     email: "",
     companyRepresentativeName: "",
+    companyName: "",
     healthNumber: 0,
     category: "",
     phoneNumber: "",
@@ -82,12 +84,14 @@ const Page = () => {
   };
 
   // submit form logic
-  const submitForm = async () => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     if (!validateForm()) return;
     const fullName =
       formType === "individual"
         ? `${formData.firstName} ${formData.lastName}`
-        : formData.companyRepresentativeName;
+        : `${formData.companyName} ${formData.companyRepresentativeName}`;
     const data = { fullName, ...formData };
     console.log(data);
   };
@@ -174,142 +178,143 @@ const Page = () => {
                   Company
                 </button>
               </div>
-              <div className="w-full mt-8">
-                <div className="flex flex-col md:flex-row items-center gap-x-6 w-full">
-                  <div className="mb-4 w-full">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
-                      {formType === "individual"
-                        ? "First Name"
-                        : "Company Name"}
-                    </label>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      type="text"
-                      placeholder={
-                        formType === "individual"
+              <form onSubmit={handleSubmit}>
+                <div className="w-full mt-8">
+                  <div className="flex flex-col md:flex-row items-center gap-x-6">
+                    <div className="mb-4 w-full">
+                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                        {formType === "individual"
                           ? "First Name"
-                          : "Company Name"
-                      }
-                      value={formData.firstName}
-                      onChange={(e) => handleFormChange(e, "firstName")}
-                    />
-                    {errors.firstName ||
-                      (errors.companyName && (
-                        <p className="text-red-500">
-                          {errors.firstName} | {errors.companyName}
-                        </p>
-                      ))}
-                  </div>
-                  <div className="mb-4 w-full">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
-                      {formType === "individual"
-                        ? "Last Name"
-                        : "Company Representative Name"}
-                    </label>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      type="text"
-                      placeholder={
-                        formType === "individual"
+                          : "Company Name"}
+                      </label>
+                      <input
+                        className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
+                        type="text"
+                        placeholder={
+                          formType === "individual"
+                            ? "First Name"
+                            : "Company Name"
+                        }
+                        value={formData.firstName}
+                        onChange={(e) => handleFormChange(e, "firstName")}
+                      />
+                      {errors.firstName && (
+                        <p className="text-red-500">{errors.firstName}</p>
+                      )}
+                    </div>
+                    <div className="mb-4 w-full">
+                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                        {formType === "individual"
                           ? "Last Name"
-                          : "Company Rep. Name"
-                      }
-                      value={formData.lastName}
-                      onChange={(e) => handleFormChange(e, "firstName")}
-                    />
+                          : "Company Representative Name"}
+                      </label>
+                      <input
+                        className=" border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
+                        type="text"
+                        placeholder={
+                          formType === "individual"
+                            ? "Last Name"
+                            : "Company Rep. Name"
+                        }
+                        value={formData.lastName}
+                        onChange={(e) => handleFormChange(e, "firstName")}
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <div className="mb-4 w-full">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Email / Company email
-                  </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="lastname"
-                    type="text"
-                    placeholder="name@email.com"
-                    value={formData.email}
-                    onChange={(e) => handleFormChange(e, "email")}
-                  />
-                </div>
-
-                <div className="mb-4 w-full">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Phone Number
-                  </label>
-                  <PhoneInput
-                    international
-                    defaultCountry="GB"
-                    countryCallingCodeEditable={false}
-                    value={formData.phoneNumber}
-                    onChange={handlePhoneNumberChange}
-                    className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    required
-                  />
-                  {errors.phoneNumber && (
-                    <p className="text-red-500">{errors.phoneNumber}</p>
-                  )}
-                </div>
-                <div className="flex flex-col md:flex-row items-center gap-x-6 w-full">
                   <div className="mb-4 w-full">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
-                      No of professionals needed (optional)
+                      Email / Company email
                     </label>
                     <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
+                      id="lastname"
                       type="text"
-                      placeholder="Number needed"
-                      value={formData.healthNumber}
-                      onChange={(e) => handleFormChange(e, "healthNumber")}
+                      placeholder="name@email.com"
+                      value={formData.email}
+                      onChange={(e) => handleFormChange(e, "email")}
                     />
                   </div>
+
                   <div className="mb-4 w-full">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
-                      Healthcare Category
+                      Phone Number
                     </label>
-                    <select
-                      id="jobType"
-                      name="jobType"
-                      value={formData.category}
-                      onChange={(e) => handleFormChange(e, "category")}
-                      className="w-full px-3 py-2 border rounded-md focus:outline-none bg-white "
+                    <PhoneInput
+                      international
+                      defaultCountry="GB"
+                      countryCallingCodeEditable={false}
+                      value={formData.phoneNumber}
+                      onChange={handlePhoneNumberChange}
+                      className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
                       required
+                    />
+                    {errors.phoneNumber && (
+                      <p className="text-red-500">{errors.phoneNumber}</p>
+                    )}
+                  </div>
+                  <div className="flex flex-col md:flex-row items-center gap-x-6 w-full">
+                    <div className="mb-4 w-full">
+                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                        No of professionals needed (optional)
+                      </label>
+                      <input
+                        className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
+                        type="text"
+                        placeholder="Number needed"
+                        value={formData.healthNumber}
+                        onChange={(e) => handleFormChange(e, "healthNumber")}
+                      />
+                    </div>
+                    <div className="mb-4 w-full">
+                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                        Healthcare Category
+                      </label>
+                      <select
+                        id="jobType"
+                        name="jobType"
+                        value={formData.category}
+                        onChange={(e) => handleFormChange(e, "category")}
+                        className="border rounded-md w-full px-3 py-2 focus:outline-none bg-white "
+                        required
+                      >
+                        <option value="" disabled>
+                          Select a Healthcare category
+                        </option>
+                        <option value="Registered Nurse">
+                          Registered Nurse
+                        </option>
+                        <option value="carers">Carer</option>
+                        <option value="support workers">Support Worker</option>
+                        <option value="cleaners">Cleaners</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="mb-4 w-full">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                      Message
+                    </label>
+                    <textarea
+                      className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                      id="message"
+                      placeholder="Leave us a message..."
+                      rows={5}
+                      value={formData.message}
+                      onChange={(e) => handleFormChange(e, "message")}
+                    />
+                  </div>
+                  <div className="flex justify-center mt-4">
+                    <button
+                      type="submit"
+                      // disabled={isSubmitting}
+                      className="mt-2 px-[2em] py-[.5em] mx-1 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans"
                     >
-                      <option value="" disabled>
-                        Select a Healthcare category
-                      </option>
-                      <option value="Registered Nurse">Registered Nurse</option>
-                      <option value="carers">Carer</option>
-                      <option value="support workers">Support Worker</option>
-                      <option value="cleaners">Cleaners</option>
-                    </select>
+                      Register
+                    </button>
                   </div>
                 </div>
-
-                <div className="mb-4 w-full">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="message"
-                    placeholder="Leave us a message..."
-                    rows={5}
-                    value={formData.message}
-                    onChange={(e) => handleFormChange(e, "message")}
-                  />
-                </div>
-                <div className="flex justify-center mt-4">
-                  <button
-                    onClick={submitForm}
-                    // disabled={isSubmitting}
-                    className="mt-2 px-[2em] py-[.5em] mx-1 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans"
-                  >
-                    Register
-                  </button>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
