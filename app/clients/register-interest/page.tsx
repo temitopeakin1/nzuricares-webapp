@@ -8,6 +8,8 @@ import Footer from "@/Components/UI/Footer";
 import Link from "next/link";
 import { MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa";
+import axios from "axios";
+import Select from "react-select";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
@@ -24,6 +26,9 @@ interface FormData {
   message: string;
   startDate: string;
   endDate: string;
+  country: string;
+  city: string;
+  postalCode: string;
 }
 
 const Page = () => {
@@ -46,7 +51,67 @@ const Page = () => {
     message: "",
     startDate: "",
     endDate: "",
+    country: "",
+    city: "",
+    postalCode: "",
   });
+  const [countries, setCountries] = useState<any[]>([]);
+  const [cities, setCities] = useState<any[]>([]);
+
+  useEffect(() => {
+    // Fetch countries using a public API or predefined list
+    const fetchCountries = async () => {
+      const response = await axios.get("https://restcountries.com/v3.1/all");
+      const countryOptions = response.data.map((country: any) => ({
+        label: country.name.common,
+        value: country.cca2,
+      }));
+      setCountries(countryOptions);
+    };
+    fetchCountries();
+  }, []);
+
+  // Fetch cities based on the selected country
+  const fetchCities = async (countryCode: string) => {
+    if (countryCode) {
+      try {
+        const res = await axios.get(
+          `https://api.geonames.org/searchJSON?formatted=true&country=${countryCode}&username=nzurihealthcare&style=full`
+        );
+
+        if (res.data.geonames) {
+          const cityOptions = res.data.geonames.map((city: any) => ({
+            label: city.name,
+            value: city.name,
+            postalCode: city.postalCode,
+          }));
+          setCities(cityOptions);
+        } else {
+          console.error("No cities found for the given country code.");
+        }
+      } catch (error) {
+        console.error("Error fetching cities:", error);
+      }
+    }
+  };
+
+  const handleCountryChange = (selectedOption: any) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      country: selectedOption ? selectedOption.value : "",
+      city: "",
+      postalCode: "",
+    }));
+    fetchCities(selectedOption.value);
+  };
+
+  const handleCityChange = (selectedOption: any) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      city: selectedOption ? selectedOption.value : "",
+      postalCode: selectedOption ? selectedOption.postalCode : "",
+    }));
+  };
 
   // Handle phone number change
   const handlePhoneNumberChange = (value: string | undefined) => {
@@ -86,6 +151,10 @@ const Page = () => {
         newErrors.companyRepresentativeName =
           "Representative name is required.";
       }
+      if (!formData.country) newErrors.country = "Country is required.";
+      if (!formData.city) newErrors.city = "City is required.";
+      if (!formData.postalCode)
+        newErrors.postalCode = "Postal code is required.";
     }
 
     // date validation : start and end
@@ -195,7 +264,7 @@ const Page = () => {
                 you.
               </p>
               {/* toggle options between individual and company */}
-              <div className="flex space-x-4 my-8 items-center justify-center">
+              <div className="flex space-x-4 mt-4 mb-16 items-center justify-center">
                 <button
                   className={`px-4 py-2 rounded-full ${
                     formType === "individual"
@@ -290,23 +359,71 @@ const Page = () => {
                       <p className="text-red-500">{errors.email}</p>
                     )}
                   </div>
-
-                  <div className="mb-4 w-full">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
-                      Phone Number
-                    </label>
-                    <PhoneInput
-                      international
-                      defaultCountry="GB"
-                      countryCallingCodeEditable={false}
-                      value={formData.phoneNumber}
-                      onChange={handlePhoneNumberChange}
-                      className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
-                      required
-                    />
-                    {errors.phoneNumber && (
-                      <p className="text-red-500">{errors.phoneNumber}</p>
-                    )}
+                  <div className="flex flex-col md:flex-row items-center gap-x-6 w-full">
+                    <div className="mb-4 w-full">
+                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                        Phone Number
+                      </label>
+                      <PhoneInput
+                        international
+                        defaultCountry="GB"
+                        countryCallingCodeEditable={false}
+                        value={formData.phoneNumber}
+                        onChange={handlePhoneNumberChange}
+                        className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
+                        required
+                      />
+                      {errors.phoneNumber && (
+                        <p className="text-red-500">{errors.phoneNumber}</p>
+                      )}
+                    </div>
+                    <div className="mb-4 w-full">
+                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                        Country
+                      </label>
+                      <Select
+                        options={countries}
+                        onChange={handleCountryChange}
+                        value={countries.find(
+                          (country) => country.value === formData.country
+                        )}
+                      />
+                      {errors.country && (
+                        <p className="text-red-500">{errors.country}</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex flex-col md:flex-row items-center gap-x-6 w-full">
+                    <div className="mb-4 w-full">
+                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                        City
+                      </label>
+                      <Select
+                        options={cities}
+                        onChange={handleCityChange}
+                        value={cities.find(
+                          (city) => city.value === formData.city
+                        )}
+                      />
+                      {errors.city && (
+                        <p className="text-red-500">{errors.city}</p>
+                      )}
+                    </div>
+                    <div className="mb-4">
+                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                        Postal Code
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.postalCode}
+                        onChange={(e) => handleFormChange(e, "postalCode")}
+                        className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
+                        disabled
+                      />
+                      {errors.postalCode && (
+                        <p className="text-red-500">{errors.postalCode}</p>
+                      )}
+                    </div>
                   </div>
                   <div className="flex flex-col md:flex-row items-center gap-x-6 w-full">
                     <div className="mb-4 w-full">
@@ -426,7 +543,10 @@ const Page = () => {
                         onChange={handleCheckboxChange}
                         className="mr-4 "
                       />
-                      <label htmlFor="consent" className="text-sm font-semibold font-title">
+                      <label
+                        htmlFor="consent"
+                        className="text-sm font-semibold font-title"
+                      >
                         I consent to the processing of my data
                       </label>
                     </div>
