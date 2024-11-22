@@ -95,6 +95,7 @@ const Page = () => {
     }
   };
 
+  // logic to handle country
   const handleCountryChange = (selectedOption: any) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -168,7 +169,7 @@ const Page = () => {
     // for the checkbox
     if (!isChecked) {
       // Validate if checkbox is checked
-      newErrors.checkbox = "You must agree to the terms and conditions.";
+      newErrors.checkbox = "kindly tick the checkbox to agree consent to the terms and conditions.";
     }
 
     setErrors(newErrors);
@@ -394,7 +395,7 @@ const Page = () => {
                     </div>
                   </div>
                   <div className="flex flex-col md:flex-row items-center gap-x-6 w-full">
-                    <div className="mb-4 w-full">
+                    {/* <div className="mb-4 w-full">
                       <label className="block text-gray-700 text-sm font-bold mb-2">
                         City
                       </label>
@@ -408,8 +409,21 @@ const Page = () => {
                       {errors.city && (
                         <p className="text-red-500">{errors.city}</p>
                       )}
+                    </div> */}
+                    <div className="mb-4 w-full">
+                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                        City
+                      </label>
+                      <input className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
+                      type="city" 
+                      placeholder="city"
+                      value={formData.city}
+                      onChange={(e) => handleFormChange(e, "city")}/>
+                       {errors.city && (
+                        <p className="text-red-500">{errors.city}</p>
+                      )}
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-4 w-full">
                       <label className="block text-gray-700 text-sm font-bold mb-2">
                         Postal Code
                       </label>
@@ -418,7 +432,7 @@ const Page = () => {
                         value={formData.postalCode}
                         onChange={(e) => handleFormChange(e, "postalCode")}
                         className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
-                        disabled
+                        
                       />
                       {errors.postalCode && (
                         <p className="text-red-500">{errors.postalCode}</p>
@@ -558,7 +572,7 @@ const Page = () => {
                   <div className="flex justify-center">
                     <button
                       type="submit"
-                      className="mt-2 px-[2em] py-[.5em] mx-1 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans"
+                      className="mt-2 md:mt-8 px-[2em] py-[.5em] mx-1 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans"
                     >
                       Submit
                     </button>
