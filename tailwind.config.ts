@@ -11,16 +11,16 @@ const config: Config = {
       animation: {
         scrollDown: "scrollDown 1s infinite",
         animateCircle: "animateCircle 2s ease-out",
-        underline: 'underline 2s ease-out forwards',
+        underline: "underline 2s ease-out forwards",
         "smart-animate": "smartAnimate 500ms ease-out",
         "slide-up": "slideUp 300ms ease-out",
         "slide-right": "slideRight 300ms ease-out",
-        "roll": "rollUp 2s linear infinite",
+        roll: "rollUp 2s linear infinite",
       },
       keyframes: {
         underline: {
-          '0%': { width: '0' },
-          '100%': { width: '100%' },
+          "0%": { width: "0" },
+          "100%": { width: "100%" },
         },
         scrollDown: {
           "0%": { transform: "translateY(0)", opacity: "0" },
@@ -50,7 +50,7 @@ const config: Config = {
         },
       },
       lineHeight: {
-        'tight': '1.1',       
+        tight: "1.1",
       },
 
       backgroundImage: {
@@ -66,6 +66,13 @@ const config: Config = {
         pacifico: ["Pacifico", "cursive"],
         sans: ["Righteous", "sans-serif"],
       },
+      // fontSize: {
+      //   10: "10px",
+      //   12: "12px",
+      //   14: "14px",
+      //   16: "16px",
+      //   20: "20px",
+      // },
 
       colors: {
         primary: {

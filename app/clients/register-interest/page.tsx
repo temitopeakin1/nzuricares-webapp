@@ -16,16 +16,20 @@ interface FormData {
   lastName: string;
   companyRepresentativeName: string;
   companyName: string;
-  healthNumber: number;
+  noProfessionals: number;
+  jd: string;
   category: string;
   email: string;
   phoneNumber: string;
   message: string;
+  startDate: string;
+  endDate: string;
 }
 
 const Page = () => {
   const [showUnderline, setShowUnderline] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [isChecked, setIsChecked] = useState(false);
   const [formType, setFormType] = useState<"individual" | "company">(
     "individual"
   );
@@ -35,13 +39,16 @@ const Page = () => {
     email: "",
     companyRepresentativeName: "",
     companyName: "",
-    healthNumber: 0,
+    noProfessionals: 0,
+    jd: "",
     category: "",
     phoneNumber: "",
     message: "",
+    startDate: "",
+    endDate: "",
   });
-  //   const [isSubmitting, setSubmitting] = useState(false);
 
+  // Handle phone number change
   const handlePhoneNumberChange = (value: string | undefined) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -49,6 +56,7 @@ const Page = () => {
     }));
   };
 
+  // Handle form field change
   const handleFormChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -61,7 +69,7 @@ const Page = () => {
     });
   };
 
-  // validate logic
+  // Validate form logic
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
     if (!formData.email.includes("@")) {
@@ -79,11 +87,42 @@ const Page = () => {
           "Representative name is required.";
       }
     }
+
+    // date validation : start and end
+    if (
+      formData.startDate &&
+      formData.endDate &&
+      formData.endDate < formData.startDate
+    ) {
+      newErrors.date = "End date must be after the start date.";
+    }
+    // for the checkbox
+    if (!isChecked) {
+      // Validate if checkbox is checked
+      newErrors.checkbox = "You must agree to the terms and conditions.";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  // submit form logic
+  // handle date change
+  const handleDateChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    field: "startDate" | "endDate"
+  ) => {
+    setFormData({
+      ...formData,
+      [field]: e.target.value,
+    });
+  };
+
+  // handle checkbox change
+  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(event.target.checked);
+  };
+
+  // Handle form submission
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -96,7 +135,7 @@ const Page = () => {
     console.log(data);
   };
 
-  // for the underline animation on text on bgImage
+  // Underline animation on text background image
   useEffect(() => {
     setTimeout(() => {
       setShowUnderline(true);
@@ -151,9 +190,9 @@ const Page = () => {
               <h2 className="text-[20px] md:text-[36px] text-center -mt-16 -md:mt-8 font-bold text-primary">
                 Register your interest today
               </h2>
-              <p className="text-12 text-justify md:text-center ">
-                Register your interest below and one of our dedicated
-                consultants will be in touch with you.
+              <p className="text-14 text-justify md:text-center ">
+                Register your interest below and our team will be in touch with
+                you.
               </p>
               {/* toggle options between individual and company */}
               <div className="flex space-x-4 my-8 items-center justify-center">
@@ -209,16 +248,30 @@ const Page = () => {
                           : "Company Representative Name"}
                       </label>
                       <input
-                        className=" border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
+                        className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
                         type="text"
                         placeholder={
                           formType === "individual"
                             ? "Last Name"
                             : "Company Rep. Name"
                         }
-                        value={formData.lastName}
-                        onChange={(e) => handleFormChange(e, "firstName")}
+                        value={
+                          formType === "individual"
+                            ? formData.lastName
+                            : formData.companyRepresentativeName
+                        }
+                        onChange={(e) =>
+                          handleFormChange(
+                            e,
+                            formType === "individual"
+                              ? "lastName"
+                              : "companyRepresentativeName"
+                          )
+                        }
                       />
+                      {errors.lastName && (
+                        <p className="text-red-500">{errors.lastName}</p>
+                      )}
                     </div>
                   </div>
 
@@ -228,12 +281,14 @@ const Page = () => {
                     </label>
                     <input
                       className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
-                      id="lastname"
-                      type="text"
+                      type="email"
                       placeholder="name@email.com"
                       value={formData.email}
                       onChange={(e) => handleFormChange(e, "email")}
                     />
+                    {errors.email && (
+                      <p className="text-red-500">{errors.email}</p>
+                    )}
                   </div>
 
                   <div className="mb-4 w-full">
@@ -256,14 +311,14 @@ const Page = () => {
                   <div className="flex flex-col md:flex-row items-center gap-x-6 w-full">
                     <div className="mb-4 w-full">
                       <label className="block text-gray-700 text-sm font-bold mb-2">
-                        No of professionals needed (optional)
+                        No of Health Professionals needed
                       </label>
                       <input
                         className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
                         type="text"
-                        placeholder="Number needed"
-                        value={formData.healthNumber}
-                        onChange={(e) => handleFormChange(e, "healthNumber")}
+                        placeholder="Number of professionals needed"
+                        value={formData.noProfessionals}
+                        onChange={(e) => handleFormChange(e, "noProfessionals")}
                       />
                     </div>
                     <div className="mb-4 w-full">
@@ -279,7 +334,7 @@ const Page = () => {
                         required
                       >
                         <option value="" disabled>
-                          Select a Healthcare category
+                          Select a Healthcare professional type
                         </option>
                         <option value="Registered Nurse">
                           Registered Nurse
@@ -290,27 +345,102 @@ const Page = () => {
                       </select>
                     </div>
                   </div>
+                  {/* Start Date */}
+                  <div className="flex flex-col md:flex-row items-center gap-x-6 w-full">
+                    <div className="mb-4 w-full">
+                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                        Start Date
+                      </label>
+                      <input
+                        type="date"
+                        value={formData.startDate}
+                        onChange={(e) => handleDateChange(e, "startDate")}
+                        className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
+                      />
+                      {errors.startDate && (
+                        <p className="text-red-500">{errors.startDate}</p>
+                      )}
+                    </div>
+
+                    {/* End Date */}
+                    <div className="mb-4 w-full">
+                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                        End Date
+                      </label>
+                      <input
+                        type="date"
+                        value={formData.endDate}
+                        onChange={(e) => handleDateChange(e, "endDate")}
+                        className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
+                      />
+                      {errors.endDate && (
+                        <p className="text-red-500">{errors.endDate}</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="mb-4 w-full">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                      Job Description / Requirements
+                    </label>
+                    <textarea
+                      className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
+                      placeholder="Job Description"
+                      value={formData.jd}
+                      onChange={(e) => handleFormChange(e, "jd")}
+                    />
+                  </div>
 
                   <div className="mb-4 w-full">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
-                      Message
+                      Additional Requirements / Comments
                     </label>
                     <textarea
-                      className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                      id="message"
-                      placeholder="Leave us a message..."
-                      rows={5}
+                      className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
+                      placeholder="additional requirement"
                       value={formData.message}
                       onChange={(e) => handleFormChange(e, "message")}
                     />
                   </div>
-                  <div className="flex justify-center mt-4">
+
+                  <div className="flex flex-col justify-left mb-2 md:mb-3">
+                    {/* Consent Checkbox */}
+
+                    <div className="font-semibold font-title">
+                      Consent to Data Processing :
+                    </div>
+
+                    <p className="text-sm">
+                      By submitting this form, I consent to the processing of my
+                      personal data by Nzuri Healthcare in accordance with data
+                      protection regulations, including GDPR, for recruitment
+                      purposes.
+                    </p>
+                  </div>
+                  <div className="flex justify-left">
+                    {/* Consent Checkbox */}
+                    <div className="flex items-center text-24 font-bold">
+                      <input
+                        type="checkbox"
+                        id="consent"
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
+                        className="mr-4 "
+                      />
+                      <label htmlFor="consent" className="text-sm font-semibold font-title">
+                        I consent to the processing of my data
+                      </label>
+                    </div>
+                    {errors.checkbox && (
+                      <p className="text-red-500">{errors.checkbox}</p>
+                    )}
+                  </div>
+
+                  <div className="flex justify-center">
                     <button
                       type="submit"
-                      // disabled={isSubmitting}
                       className="mt-2 px-[2em] py-[.5em] mx-1 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans"
                     >
-                      Register
+                      Submit
                     </button>
                   </div>
                 </div>
@@ -319,7 +449,6 @@ const Page = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
