@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaLinkedinIn, FaPhone, FaTwitter } from "react-icons/fa";
-import { RiCellphoneFill } from "react-icons/ri";
 
 const company = [
   {
@@ -133,7 +132,7 @@ const Footer = () => {
       <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col md:flex-row">
-          <Link href="/terms-conditions">
+          <Link href="/terms-and-conditions">
             <button className="text-sm text-left font-normal pr-4 md:pr-8 mb-2 md:mb-0">
               Terms and conditions
             </button>

@@ -322,7 +322,7 @@ const Page = () => {
           Your Concerns
         </div>
         <p className="mt-4 text-justify text-[#283544] text-md font-body font-normal leading-8 md:leading-10">
-          If you have any concerns about material which appears on our site,
+          If you have any concerns about the material which appears on our site,
           please contact <strong>info@nzuricares.co.uk</strong>
           <br />
           Thank you for visiting our site.
