@@ -1,5 +1,6 @@
 import Header from "@/Components/Header";
 import Footer from "@/Components/UI/Footer";
+import Link from "next/link";
 import React from "react";
 
 const Page = () => {
@@ -12,8 +13,8 @@ const Page = () => {
         </div>
         <p className="mt-2 text-justify text-[#283544] text-md font-body font-normal leading-8 md:leading-10">
           This page (together with the documents referred to on it) tells you
-          the terms of use on which you may make use of our website [
-          https://www.nzuricares.co.uk ]. <br />
+          the terms of use on which you may make use of our website {" "}
+          <strong><Link href="/">www.nzuricares.co.uk</Link></strong>. <br />
           Please read these terms of use carefully before you start to use the
           site. By using our site, you indicate that you accept these terms of
           use and that you agree to abide by them. If you do not agree to these
@@ -23,7 +24,7 @@ const Page = () => {
           Information about us
         </div>
         <p className="mt-2 text-justify text-[#283544] text-md font-body font-normal leading-8 md:leading-10">
-          <span className="font-bold">www.nzurihealthcare.co.uk</span> is a
+        <strong><Link href="/">www.nzuricares.co.uk</Link></strong> is a
           website operated by Nzuri Healthcare Recruitment Limited.
         </p>
         <div className="mt-2 md:mt-4 text-[#283544] text-lg font-semibold font-title">
@@ -323,7 +324,9 @@ const Page = () => {
         </div>
         <p className="mt-4 text-justify text-[#283544] text-md font-body font-normal leading-8 md:leading-10">
           If you have any concerns about the material which appears on our site,
-          please contact <strong>info@nzuricares.co.uk</strong>
+          please contact  <a href="mailto:info@nzuricares.co.uk" className="font-bold text-blue-800">
+            info@nzuricares.co.uk
+          </a>
           <br />
           Thank you for visiting our site.
         </p>
