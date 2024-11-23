@@ -31,7 +31,7 @@ const ProfessionItem: React.FC<ProfessionItemProps> = ({
 const Profession = () => {
   return (
     <div className="py-16 text-center">
-      <h1 className="mt-2 font-bold lg:text-4xl text-blue-800 font-title ">
+      <h1 className="mt-2 font-bold text-2xl md:text-4xl  text-blue-800 font-title ">
         Our Healthcare Professionals
       </h1>
       <div className="mt-8 flex flex-wrap justify-center">
