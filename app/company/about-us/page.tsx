@@ -156,7 +156,7 @@ const Page = () => {
           {section_data.map((section, index) => (
             <div key={index} className="flex items-center justify-center py-8">
               <div className="w-[92%] md:w-[80%] md:grid grid-cols-3 items-center">
-                <h1 className="text-blue-800 font-bold lg:text-2xl md:text-3xl mb-3 md:mb-0 font-title">
+                <h1 className="text-blue-800 font-bold text-xl md:text-4xl mb-3 md:mb-0 font-title">
                   {section.title}
                 </h1>
                 <p className="leading-8 md:leading-10 text-justify col-span-2 font-body">
@@ -167,8 +167,8 @@ const Page = () => {
           ))}
         </div>
       </div>
-      <div className="py-16 text-center bg-gray-100">
-        <h1 className="mt-2 font-bold lg:text-2xl text-blue-800 font-title">
+      <div className="py-8 md:py-16 text-center bg-gray-100">
+        <h1 className="mt-2 font-bold text-xl md:text-4xl text-blue-800 font-title">
           Our Core Values
         </h1>
         <div className="mt-8 flex flex-wrap justify-center">
@@ -183,10 +183,10 @@ const Page = () => {
         </div>
       </div>
       <div className="py-8 text-center">
-        <h1 className="mt-2 font-bold lg:text-2xl text-blue-800 font-title">
+        <h1 className="mt-2 font-bold text-xl md:text-4xl text-blue-800 font-title">
           Target Audience
         </h1>
-        <p className="mt-2 lg:text-sm md:text-sm">
+        <p className="mt-2 lg:text-sm md:text-sm font-body">
           Adults within the Ages 18 - 65
         </p>
       </div>
