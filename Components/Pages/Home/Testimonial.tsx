@@ -68,8 +68,8 @@ export default function Testimonial({}: { testimonials: Testimonial[] }) {
   }, []);
 
   return (
-    <div className="py-16 text-center w-full max-w-3xl mx-auto">
-      <h1 className="mt-2 font-bold lg:text-4xl text-blue-800 font-title ">
+    <div className="py-8 md:py-16 mx-4 md:mx-36 text-center">
+      <h1 className="mt-2 font-bold text-xl md:text-4xl  text-blue-800 font-title">
       Testimonials
       </h1>
       <p className="mt-2 lg:text-sm md:text-sm font-body">
