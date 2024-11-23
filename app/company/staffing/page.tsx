@@ -89,7 +89,7 @@ const Page = () => {
         <div className="h-[80vh]"></div>
       </div>
       <div className="py-8 md:py-16 mx-4 md:mx-36 text-center">
-        <h1 className="mt-2 font-bold text-2xl md:text-4xl  text-blue-800 font-title">
+        <h1 className="mt-2 font-bold text-xl md:text-4xl  text-blue-800 font-title">
           Engage Us
         </h1>
         <p className="py-2 lg:text-lg md:text-sm font-body">
@@ -101,7 +101,7 @@ const Page = () => {
           Discover how we can simplify your work life.
         </p>
 
-        <h1 className="mt-8 md:mt-16 font-bold text-2xl md:text-4xl  text-blue-800 font-title">
+        <h1 className="mt-8 md:mt-16 font-bold text-xl md:text-4xl  text-blue-800 font-title">
           Explore the spectrum of care settings we embrace.
         </h1>
         <p className="mt-2 lg:text-lg md:text-sm font-body">
