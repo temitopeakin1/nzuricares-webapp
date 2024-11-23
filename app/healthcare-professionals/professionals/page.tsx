@@ -55,10 +55,10 @@ const Section = ({
         />
       </div>
       <div className="flex-1">
-        <p className="font-bold text-[#283544] text-[32px] md:text-[48px] text-center md:text-justify leading-none">
+        <p className="font-bold text-[#283544] text-xl md:text-4xl text-center md:text-justify leading-none font-title" >
           {title}
         </p>
-        <p className=" text-[16px] md:text-[18px] text-justify md:text-justify mt-2 px-4 sm:px-0 md:px-0">
+        <p className=" text-[16px] md:text-[18px] text-justify md:text-justify mt-2 px-4 sm:px-0 md:px-0 font-body">
           {text}
         </p>
       </div>
@@ -90,7 +90,7 @@ const page = () => {
 
         <div className=" flex flex-col gap-6 items-center justify-center py-0 md:py-20 w-full md:w-[50%]">
           {/* <div className="border-t-primary border-b-primary border-t-2 border-b-2 p-4 md:p-6"> */}
-          <p className=" regular text-xl font-semibold items-center justify-center text-justify md:text-justify p-8 md:p-8 ">
+          <p className="regular text-sm md:text-xl font-semibold items-center justify-center text-justify md:text-justify p-8 md:p-8 ">
             At Nzuri HealthCare, we believe that exceptional care begins with a
             compassionate heart and a professional touch. Our dedicated team of
             carers is committed to providing personalised, high-quality care
