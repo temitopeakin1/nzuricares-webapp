@@ -88,28 +88,27 @@ const Page = () => {
         </div>
         <div className="h-[80vh]"></div>
       </div>
-      <div className="py-16 text-center">
-        <h1 className="mt-2 font-bold lg:text-2xl text-blue-800 font-title">
+      <div className="py-8 md:py-16 mx-4 md:mx-36 text-center">
+        <h1 className="mt-2 font-bold text-2xl md:text-4xl  text-blue-800 font-title">
           Engage Us
         </h1>
-        <p className="py-4 lg:text-lg md:text-sm font-body ju">
-          We are more than an agency - We are your trusted partner in care.
-          Fast, fair, and cost-effective,
-          <br /> with real humans ensuring every detail is perfect. From care
+        <p className="py-2 lg:text-lg md:text-sm font-body">
+          We are more than a recruitment agency - We are your trusted partner in
+          care. We quick, fair, and cost-effective
+          <br /> With real humans ensuring every detail is perfect. From care
           homes to private hospitals to NHS trusts
           <br />
           Discover how we can simplify your work life.
         </p>
-      </div>
-      <div className="py-4 text-center">
-        <h1 className="mt-2 font-bold lg:text-2xl text-blue-800 font-title">
+
+        <h1 className="mt-8 md:mt-16 font-bold text-2xl md:text-4xl  text-blue-800 font-title">
           Explore the spectrum of care settings we embrace.
         </h1>
-        <p className="mt-2 lg:text-sm md:text-sm font-body">
+        <p className="mt-2 lg:text-lg md:text-sm font-body">
           From nurturing care homes to advanced private hospitals and esteemed
           NHS trusts, we’ve got you covered.
         </p>
-        <div className="flex justify-center bg-primary rounded-xl mt-16 max-w-screen-lg mx-auto p-4">
+        <div className="flex justify-center bg-primary rounded-xl mt-8 max-w-screen-lg mx-auto p-4">
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center mx-auto">
             {careSettings.map((value, index) => (
               <div

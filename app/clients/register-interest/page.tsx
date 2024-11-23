@@ -58,8 +58,8 @@ const Page = () => {
   const [countries, setCountries] = useState<any[]>([]);
   const [cities, setCities] = useState<any[]>([]);
 
+  // useeffct to fecth countries using a public API or Predefined list
   useEffect(() => {
-    // Fetch countries using a public API or predefined list
     const fetchCountries = async () => {
       const response = await axios.get("https://restcountries.com/v3.1/all");
       const countryOptions = response.data.map((country: any) => ({
