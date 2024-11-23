@@ -78,7 +78,7 @@ const Page = () => {
       <div className="flex flex-col items-center justify-center">
         <div className="bg-[#FAFAFA] flex items-center justify-center py-16">
           <div className="w-[92%] md:w-[80%] md:grid grid-cols-3 items-center  ">
-            <h1 className="text-blue-800 font-bold text-sm md:text-4xl mb-3 md:mb-0 font-title">
+            <h1 className="text-blue-800 font-bold text-xl md:text-4xl  mb-3 md:mb-0 font-title">
               How it Works
             </h1>
             <p className="leading-8 md:leading-10 text-justify col-span-2 font-body">
@@ -96,7 +96,7 @@ const Page = () => {
       </div>
 
       <div className="py-16 text-center">
-      <h1 className="mt-2 font-bold lg:text-4xl text-blue-800 font-title ">
+      <h1 className="mt-2 font-bold text-xl md:text-4xl text-blue-800 font-title ">
       Our Processes
       </h1>
         <div className="relative w-full flex flex-col items-center justify-center">
