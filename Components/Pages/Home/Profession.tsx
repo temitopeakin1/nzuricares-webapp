@@ -30,7 +30,7 @@ const ProfessionItem: React.FC<ProfessionItemProps> = ({
 
 const Profession = () => {
   return (
-    <div className="py-8 md:py-16 mx-4 md:mx-36 text-center">
+    <div className="py-8 md:py-16 text-center">
       <h1 className="mt-2 font-bold text-xl md:text-4xl  text-blue-800 font-title ">
         Healthcare Professionals
       </h1>
