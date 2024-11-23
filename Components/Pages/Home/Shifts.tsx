@@ -15,7 +15,7 @@ const Shifts = () => {
         />
       </div>
       <div className="lg:w-1/2 lg:pl-8">
-        <h2 className="text-center lg:text-left px-4 lg:px-0 font-bold text-2xl md:text-2xl lg:text-2xl mt-4 md:mt-0 pb-2 font-title">
+        <h2 className="text-center md:text-left px-4 md:px-0 font-bold text-xl md:text-4xl mt-2 md:mt-0 font-title">
           Discover Shift Opportunities
         </h2>
         <p className="text-justify lg:text-left px-4 lg:px-0 font-body">
