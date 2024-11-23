@@ -257,10 +257,10 @@ const Page = () => {
           <div className="w-full flex flex-col md:flex-row-reverse items-center justify-center">
             {/* Form Container */}
             <div className="p-6 md:p-12 w-full md:w-[90%] mb-[1em] md:mb-[4em] bg-white rounded-md shadow-md items-center justify-center">
-              <h2 className="text-[20px] md:text-[36px] text-center -mt-16 -md:mt-8 font-bold text-primary">
+              <h2 className="font-bold text-xl md:text-4xl text-center -mt-8 text-primary">
                 Register your interest today
               </h2>
-              <p className="text-14 text-justify md:text-center ">
+              <p className="text-14 text-center ">
                 Register your interest below and our team will be in touch with
                 you.
               </p>
@@ -540,9 +540,9 @@ const Page = () => {
                       Consent to Data Processing :
                     </div>
 
-                    <p className="text-sm">
+                    <p className="text-sm text-justify">
                       By submitting this form, I consent to the processing of my
-                      personal data by Nzuri Healthcare in accordance with data
+                      personal data by Nzuri Healthcare Recruitment Limited in accordance with data
                       protection regulations, including GDPR, for recruitment
                       purposes.
                     </p>

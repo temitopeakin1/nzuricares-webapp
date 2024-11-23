@@ -93,13 +93,13 @@ const Page = () => {
         <div className="h-[80vh]"></div>
       </div>
       <Benefits />
-      <div className="py-4 text-center">
+      {/* <div className="py-4 text-center">
         <h1 className="mt-2 md:mt-2 mb-2 md:mb-4 font-bold text-sm md:text-4xl text-blue-800 font-title">
           Explore the spectrum of care settings we embrace.
         </h1>
         <p className="text-sm md:text-md font-body">
-          From care homes to private hospitals and NHS trusts, we’ve got you
-          covered.
+        From nurturing care homes to advanced private hospitals and esteemed
+        NHS trusts, we’ve got you covered.
         </p>
         <div className="flex justify-center bg-primary rounded-xl mt-16 max-w-screen-lg mx-auto p-4">
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center mx-auto">
@@ -121,7 +121,7 @@ const Page = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
       <Footer />
     </div>
   );

@@ -101,7 +101,7 @@ const Page = () => {
           Discover how we can simplify your work life.
         </p>
 
-        <h1 className="mt-2 font-bold text-xl md:text-4xl  text-blue-800 font-title">
+        <h1 className="mt-2 md:mt-8 font-bold text-xl md:text-4xl  text-blue-800 font-title">
           Explore the spectrum of care settings we embrace.
         </h1>
         <p className="mt-2 lg:text-lg md:text-sm font-body">

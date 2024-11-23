@@ -108,8 +108,8 @@ const Benefits = () => {
   };
 
   return (
-    <div className="py-16 text-center">
-      <h1 className="mt-2 md:mt-2 mb-2 md:mb-16 font-bold lg:text-4xl text-blue-800 font-title">
+    <div className="py-8 md:py-16 text-center">
+      <h1 className="mt-2 font-bold text-xl md:text-4xl text-blue-800 font-title">
         Training Benefits
       </h1>
 

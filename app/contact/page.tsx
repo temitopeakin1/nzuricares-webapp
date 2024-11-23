@@ -129,11 +129,10 @@ const Page = () => {
         <div className="w-full md:w-[80%] px-4 md:px-0 mt-8  relative">
           <div className="w-full flex">
             <div className="p-6 md:p-12 w-full md:w-[60%] mb-[6em]  bg-white rounded-md shadow-md">
-              <p className="text-[18px] md:text-[36px] font-bold text-primary">
+              <p className="font-bold text-xl md:text-4xl text-center -mt-8 text-primary">
                 Get in touch
               </p>
-
-              <p>
+              <p className="text-14 text-center ">
                 Send us your quick message and we&lsquo;ll get back to you..
               </p>
 
