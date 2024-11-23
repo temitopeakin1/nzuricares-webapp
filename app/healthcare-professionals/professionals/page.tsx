@@ -90,7 +90,7 @@ const page = () => {
 
         <div className=" flex flex-col gap-6 items-center justify-center py-0 md:py-20 w-full md:w-[50%]">
           {/* <div className="border-t-primary border-b-primary border-t-2 border-b-2 p-4 md:p-6"> */}
-          <p className="regular text-sm md:text-xl font-semibold items-center justify-center text-justify md:text-justify p-8 md:p-8 ">
+          <p className="regular mt-4 md:mt-0 text-md md:text-xl font-semibold items-center justify-center text-justify md:text-justify p-8 md:p-8 ">
             At Nzuri HealthCare, we believe that exceptional care begins with a
             compassionate heart and a professional touch. Our dedicated team of
             carers is committed to providing personalised, high-quality care
