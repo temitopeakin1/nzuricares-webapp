@@ -16,11 +16,24 @@ const company = [
     name: "Staffing",
     link: "/company/staffing",
   },
+  {
+    name: "Register your interest",
+    link: "/clients/register-interest" 
+  },
 ];
 const resources = [
+  { name: "Home Care", link: "/company/services/home-care" },
   {
-    name: "Services",
-    link: "/healthcare-professionals/services",
+    name: "Personalized Care",
+    link: "/company/services/personalized-care",
+  },
+  {
+    name: "Infection Control and Hygiene",
+    link: "/company/services/infection-control-and-hygiene",
+  },
+  {
+    name: "Training",
+    link: "/company/services/training",
   },
   {
     name: "Careers",
@@ -39,19 +52,19 @@ const contacts = [
 ];
 const Footer = () => {
   return (
-    <div className="mt-8 md:mt-11 bg-footer-color md:px-16 p-4 text-black pt-14">
-      <div className="flex flex-col md:flex-row pb-[6em] ">
+    <div className="mt-8 md:mt-11 bg-footer-color md:px-16 p-4 pt-14">
+      <div className="flex flex-col md:flex-row pb-[6em] text-black text-sm ">
         <div className="flex-1 align-baseline ml-[-1.5rem] mt-[-2rem] md:mt-[-1.5rem] md:ml-8">
           <Image src={"/images/logo.png"} alt="Logo" width={200} height={200} />
         </div>
         {/* company section */}
         <div className="flex-1 flex flex-col mt-4 md:mt-0 md:ml-36 md:mr-8">
           <div>
-            <p className="font-bold mb-4 text-blue-800 font-title">Company</p>
+            <p className="font-bold text-blue-800 font-title">Company</p>
             <div className="grid grid-cols-1 font-title">
               {company.map((link, index) => (
                 <Link key={index} href={link.link} passHref>
-                  <p className="mt-2 pr-4 hover:underline cursor-pointer">
+                  <p className="mt-2 hover:underline cursor-pointer">
                     {link.name}
                   </p>
                 </Link>
@@ -60,13 +73,13 @@ const Footer = () => {
           </div>
         </div>
         {/* resources section */}
-        <div className="flex-1 flex flex-col mt-4 md:mt-0 md:ml-8 md:mr-8">
+        <div className="flex-1 flex flex-col mt-4 mb md:mt-0 md:ml-8 md:mr-8">
           <div>
-            <p className="font-bold mb-4 text-blue-800 font-title">Resources</p>
+            <p className="font-bold text-blue-800 font-title">Resources</p>
             <div className="grid grid-cols-1 font-title">
               {resources.map((link, index) => (
                 <Link key={index} href={link.link} passHref>
-                  <p className="mt-2 pr-8 hover:underline cursor-pointer">
+                  <p className="mt-2 hover:underline cursor-pointer">
                     {link.name}
                   </p>
                 </Link>
@@ -75,16 +88,16 @@ const Footer = () => {
           </div>
         </div>
         {/* contact section */}
-        <div className="flex-1 flex flex-col mt-4 md:mt-0 md:ml-8 md:mr-8">
+        <div className="flex-1 flex flex-col mt-4 md:mt-0 md:ml-20 md:mr-8">
           <div>
-            <p className="mb-4 font-bold text-blue-800 font-title">
+            <p className=" font-bold text-blue-800 font-title">
               Contact Us
             </p>
             {/* Add your contact information here */}
             <div className="grid grid-cols-1 font-title">
               {contacts.map((link, index) => (
                 <Link key={index} href={link.link} passHref>
-                  <p className="mt-2 pr-8 hover:underline cursor-pointer">
+                  <p className="mt-2 hover:underline cursor-pointer">
                     {link.name}
                   </p>
                 </Link>

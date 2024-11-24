@@ -11,12 +11,12 @@ const accordion_data = [
   {
     title: "What is Nzuri healthcare about",
     detail:
-      "Nzuri Healthcare is dedicated to providing exceptional healthcare services by connecting clients with qualified and compassionate carers. The organization emphasizes core values such as compassion, professionalism, and reliability to ensure that clients receive high-quality care. Nzuri Healthcare aims to facilitate meaningful and supportive relationships between carers and those in need of care, ensuring that both parties benefit from the services offered. Through a seamless and well-structured process, Nzuri Healthcare strives to make a positive difference in the healthcare sector.",
+      "Nzuri Healthcare is dedicated to providing exceptional healthcare services by connecting clients with qualified and compassionate professionals. The organization emphasizes core values such as compassion, professionalism, and reliability to ensure that clients receive high-quality care. Nzuri Healthcare aims to facilitate meaningful and supportive relationships between professionals and those in need of care, ensuring that both parties benefit from the services offered. Through a seamless and well-structured process, Nzuri Healthcare strives to make a positive difference in the healthcare sector.",
   },
   {
-    title: "What sector does Nzuri healthcare covers for",
+    title: "What sector does Nzuri healthcare covers",
     detail:
-      "Nzuricares operates within the healthcare sector, offering services that facilitate exceptional care provision. It aims to connect clients seeking care with carers looking for rewarding job opportunities, all while maintaining core values of compassion, professionalism, and reliability. This ensures meaningful and supportive relationships between clients and carers",
+      "Nzuri Healthcare specializes in providing qualified professionals to meet the staffing needs of various industries, which includes healthcare facilities, warehouses, companies, and individuals. Our services encompasses the availability of healthcare assistants, support workers, nurses, and cleaners, ensuring that these critical roles are filled by experienced and dedicated personnel who uphold high standards of care and hygiene. Nzuri Healthcare is committed to connecting clients in need of care with professionals seeking rewarding job opportunities, while maintaining core values of compassion, professionalism, and reliability.",
   },
   {
     title: "What agencies does Nzuri healthcare partners with",
@@ -31,7 +31,7 @@ const accordion_data = [
   {
     title: "How easy is it to get onboarded into Nzuri healthcares",
     detail:
-      "Getting onboarded into Nzuri healthcare is designed to be a seamless and straightforward process. We have streamlined our onboarding procedure to ensure that new clients and partners can quickly and easily start benefiting from our services. Check our how it works Page for more information"
+      "Getting onboarded into Nzuri healthcare is designed to be a seamless and straightforward process. We have streamlined our onboarding procedure to ensure that new clients and partners can quickly and easily start benefiting from our services. Check our how it works Page for more information",
   },
 ];
 
@@ -96,9 +96,9 @@ const Page = () => {
       </div>
 
       <div className="py-16 text-center">
-      <h1 className="mt-2 font-bold text-xl md:text-4xl text-blue-800 font-title ">
-      Our Processes
-      </h1>
+        <h1 className="mt-2 font-bold text-xl md:text-4xl text-blue-800 font-title ">
+          Our Processes
+        </h1>
         <div className="relative w-full flex flex-col items-center justify-center">
           <div className="relative w-[12rem] h-[12rem] sm:w-[20rem] sm:h-[20rem] mt-24 sm:my-28 flex items-center justify-center">
             <div className="absolute top-0 transform translate-y-[-50%] w-32 h-32 sm:w-40 sm:h-40 bg-red-500 rounded-full flex items-center justify-center text-center p-4">

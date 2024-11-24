@@ -2,13 +2,13 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface ProfessionItemProps {
+interface ServicesItemProps {
   imageUrl: string;
   title: string;
   description: string;
 }
 
-const ProfessionItem: React.FC<ProfessionItemProps> = ({
+const ServicesItem: React.FC<ServicesItemProps> = ({
   imageUrl,
   title,
   description,
@@ -28,29 +28,29 @@ const ProfessionItem: React.FC<ProfessionItemProps> = ({
   );
 };
 
-const Profession = () => {
+const Services = () => {
   return (
     <div className="py-8 md:py-16 text-center">
       <h1 className="mt-2 font-bold text-xl md:text-4xl  text-blue-800 font-title ">
-        Healthcare Professionals
+        Services
       </h1>
       <div className="mt-8 flex flex-wrap justify-center">
-        <ProfessionItem
+        <ServicesItem
           imageUrl={"/images/imge.jpg"}
           title="Registered Nurses"
           description=" Our Registered Nurses at Nzuri healthcare provides direct healthcare, Drug Administration and complete medication to individuals and Families "
         />
-        <ProfessionItem
+        <ServicesItem
           imageUrl={"/images/mission.jpg"}
           title="Carers"
           description="Our Carers provides essential personal care, support to individuals with chronic illnesses, disabilities, or aging-related needs and providing comfort"
         />
-        <ProfessionItem
+        <ServicesItem
           imageUrl={"/images/support-workers.jpg"}
           title="Support Workers"
           description="Nzuri Healthcare Support Workers assist individuals with physical, mental, or emotional needs, offering personalized care and helping with daily tasks"
         />
-        <ProfessionItem
+        <ServicesItem
           imageUrl={"/images/cleanerz.jpg"}
           title="Cleaners"
           description="Nzuri Healthcare Cleaners in healthcare environments are responsible for maintaining a safe, hygienic and sterile environment for both patients and staff. "
@@ -60,4 +60,4 @@ const Profession = () => {
   );
 };
 
-export default Profession;
+export default Services;

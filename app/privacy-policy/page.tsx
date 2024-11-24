@@ -36,14 +36,14 @@ const Page = () => {
         <ul className="text-justify list-disc list-inside ml-4 md:ml-6 text-[#283544] text-md font-body font-normal leading-8 md:leading-10">
           <li>
             Contain any material which is defamatory of any person Information
-            that you provide by filling in forms on our site {" "}
-            <a href="mailto:info@nzuricares.co.uk" className="font-bold text-blue-800">
-            info@nzuricares.co.uk.
-          </a> This includes information
-            provided at the time of subscribing to our publications, enquiring
-            about our services, making a general enquiry, applying for jobs or
-            to become a volunteer. We may also ask you for information when you
-            report a problem with our site.{" "}
+            that you provide by filling in forms on our site{" "}
+            <strong>
+              <Link href="/">www.nzuricares.co.uk</Link>
+            </strong>
+            . This includes information provided at the time of subscribing to
+            our publications, enquiring about our services, making a general
+            enquiry, applying for jobs or to become a volunteer. We may also ask
+            you for information when you report a problem with our site.{" "}
           </li>
           <li>
             If you contact us, we may keep a record of that correspondence
@@ -184,8 +184,11 @@ const Page = () => {
           link at the bottom of any of our emails. We would rather you didn’t
           miss out, but we respect that this is your decision! <br /> To make
           changes to the type of communications you get from us and how often
-          you get it, please contact us on {" "}
-          <a href="mailto:info@nzuricares.co.uk" className="font-bold text-blue-800">
+          you get it, please contact us on{" "}
+          <a
+            href="mailto:info@nzuricares.co.uk"
+            className="font-bold text-blue-800"
+          >
             info@nzuricares.co.uk
           </a>{" "}
           or{" "}
@@ -218,8 +221,11 @@ const Page = () => {
         </div>
         <p className="mt-2 text-justify text-[#283544] text-md font-body font-normal leading-8 md:leading-10">
           Questions, comments and requests regarding this privacy policy are
-          welcomed and should be addressed to {" "}
-          <a href="mailto:info@nzuricares.co.uk" className="font-bold text-blue-800">
+          welcomed and should be addressed to{" "}
+          <a
+            href="mailto:info@nzuricares.co.uk"
+            className="font-bold text-blue-800"
+          >
             info@nzuricares.co.uk
           </a>
         </p>

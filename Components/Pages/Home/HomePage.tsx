@@ -7,7 +7,7 @@ import Shifts from "./Shifts";
 import Testimonial from "./Testimonial";
 import Subscribe from "@/Components/UI/Subscribe";
 import PrivacyBanner from "@/Components/UI/PrivacyBanner";
-import Profession from "./Profession";
+import Profession from "./Services";
 
 const Sliders = () => {
   const images = [

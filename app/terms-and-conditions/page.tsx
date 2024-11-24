@@ -189,7 +189,9 @@ const Page = () => {
             Advocate, promote or assist any unlawful act such as (by way of
             example only) copyright infringement or computer misuse. If you wish
             to make any use of material on our site other than that set out
-            above, please address your request to info@nzuricaresco.uk
+            above, please address your request to   <a href="mailto:info@nzuricares.co.uk" className="font-bold text-blue-800">
+            info@nzuricares.co.uk.
+          </a>
           </li>
         </ul>
         <div className="mt-2 md:mt-4 text-[#283544] text-lg font-semibold font-title">
