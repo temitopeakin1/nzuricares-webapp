@@ -8,6 +8,7 @@ import Testimonial from "./Testimonial";
 import Subscribe from "@/Components/UI/Subscribe";
 import PrivacyBanner from "@/Components/UI/PrivacyBanner";
 import Profession from "./Services";
+import Prompt from "./prompt";
 
 const Sliders = () => {
   const images = [
@@ -151,6 +152,7 @@ const HomePage = () => {
       <Profession />
       <Shifts />
       <Testimonial testimonials={[]} />
+      <Prompt />
       <Subscribe />
       <Footer />
       <PrivacyBanner />

@@ -31,6 +31,11 @@ interface FormData {
   postalCode: string;
 }
 
+interface countryOptions {
+  label: string;
+  value: string;
+}
+
 const Page = () => {
   const [showUnderline, setShowUnderline] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -55,20 +60,23 @@ const Page = () => {
     city: "",
     postalCode: "",
   });
-  const [countries, setCountries] = useState<any[]>([]);
+  const [countries, setCountries] = useState<countryOptions[]>([]); // Array of CountryOption objects
   const [cities, setCities] = useState<any[]>([]);
 
-  // useeffct to fecth countries using a public API or Predefined list
   useEffect(() => {
     const fetchCountries = async () => {
-      const response = await axios.get("https://restcountries.com/v3.1/all");
-      const countryOptions = response.data.map((country: any) => ({
+      debugger;
+      const res = await fetch("https://restcountries.com/v3.1/all");
+      const data = await res.json();
+      const countryOptions = data.map((country: any) => ({
         label: country.name.common,
         value: country.cca2,
       }));
       setCountries(countryOptions);
     };
+
     fetchCountries();
+    console.log(fetchCountries);
   }, []);
 
   // Fetch cities based on the selected country
@@ -96,15 +104,25 @@ const Page = () => {
   };
 
   // logic to handle country
-  const handleCountryChange = (selectedOption: any) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      country: selectedOption ? selectedOption.value : "",
-      city: "",
-      postalCode: "",
-    }));
-    fetchCities(selectedOption.value);
+  // const handleCountryChange = (selectedOption: any) => {
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     country: selectedOption ? selectedOption.value : "",
+  //     city: "",
+  //     postalCode: "",
+  //   }));
+  //   fetchCities(selectedOption.value);
+  // };
+
+  const handleCountryChange = (selectedOption: countryOptions | null) => {
+    if (selectedOption) {
+      setFormData({
+        ...formData,
+        country: selectedOption.value,
+      });
+    }
   };
+  
 
   const handleCityChange = (selectedOption: any) => {
     setFormData((prevData) => ({
@@ -169,7 +187,8 @@ const Page = () => {
     // for the checkbox
     if (!isChecked) {
       // Validate if checkbox is checked
-      newErrors.checkbox = "kindly tick the checkbox to agree consent to the terms and conditions.";
+      newErrors.checkbox =
+        "kindly tick the checkbox to agree consent to the terms and conditions.";
     }
 
     setErrors(newErrors);
@@ -414,12 +433,14 @@ const Page = () => {
                       <label className="block text-gray-700 text-sm font-bold mb-2">
                         City
                       </label>
-                      <input className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
-                      type="city" 
-                      placeholder="city"
-                      value={formData.city}
-                      onChange={(e) => handleFormChange(e, "city")}/>
-                       {errors.city && (
+                      <input
+                        className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
+                        type="city"
+                        placeholder="city"
+                        value={formData.city}
+                        onChange={(e) => handleFormChange(e, "city")}
+                      />
+                      {errors.city && (
                         <p className="text-red-500">{errors.city}</p>
                       )}
                     </div>
@@ -432,7 +453,6 @@ const Page = () => {
                         value={formData.postalCode}
                         onChange={(e) => handleFormChange(e, "postalCode")}
                         className="border rounded-md w-full py-2 px-3 text-gray-700 leading-normal focus:outline-none"
-                        
                       />
                       {errors.postalCode && (
                         <p className="text-red-500">{errors.postalCode}</p>
@@ -542,9 +562,9 @@ const Page = () => {
 
                     <p className="text-sm text-justify">
                       By submitting this form, I consent to the processing of my
-                      personal data by Nzuri Healthcare Recruitment Limited in accordance with data
-                      protection regulations, including GDPR, for recruitment
-                      purposes.
+                      personal data by Nzuri Healthcare Recruitment Limited in
+                      accordance with data protection regulations, including
+                      GDPR, for recruitment purposes.
                     </p>
                   </div>
                   <div className="flex justify-left">
