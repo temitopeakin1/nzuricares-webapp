@@ -11,14 +11,13 @@ const section_data = [
 const Content = () => {
   return (
     <div className="py-8 flex flex-row flex-wrap md:flex-nowrap">
-      <div className="m-8 md:m-24 flex flex-col items-center justify-centergap-[20px] sm:w-20px md:w-50px md:gap-[100px] rounded-md">
+      <div className="m-8 md:m-20 flex flex-col items-center justify-center gap-[100px] md:gap-[100px] rounded-md">
         <Image
           src={section_data[0].image}
           width={180}
           height={120} 
           alt="first image"
-          className="mb-2 w-full bg-[#F4F4F4] sm:w-[50px] md:w-[10px] lg:w-[200px]"
-          sizes="(max-width: 768px) 100vw, 33vw"
+          className="mb-2 w-full bg-[#F4F4F4]"
           layout="responsive" 
         />
         <Image
@@ -26,7 +25,7 @@ const Content = () => {
           width={180} 
           height={120} 
           alt="second image"
-          className="w-16 sm:w-[150px] md:w-[180px] lg:w-[200px] -mt-24 md:-mt-[95px] ml-[20px] md:ml-[150px] float-right"
+          className="bg-[#F4F4F4] w-16 md:w-full -mt-24 md:-mt-[95px] ml-[20px] md:ml-[150px] float-right"
           layout="responsive"
         />
         <Image
@@ -71,7 +70,7 @@ const Content = () => {
             Healthcare Assistants are available around the clock.
           </li>
         </ul>
-        <div className="flex justify-center mt-4 md:mt-8">
+        <div className="flex flex-row items-center justify-center mt-4 md:mt-8">
           <Button />
         </div>
       </div>
