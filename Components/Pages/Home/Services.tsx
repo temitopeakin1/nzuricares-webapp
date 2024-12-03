@@ -6,22 +6,27 @@ interface ServicesItemProps {
   imageUrl: string;
   title: string;
   description: string;
+  linkUrl: string;
 }
 
 const ServicesItem: React.FC<ServicesItemProps> = ({
   imageUrl,
   title,
   description,
+  linkUrl,
 }) => {
   return (
     <div className="flex flex-col items-center w-80 md:w-72 sm:w-72 p-4 mx-4 bg-white rounded-lg shadow-md">
-      <Image src={imageUrl} alt="Service" width={250} height={250} className="rounded-md" />
+      <Image
+        src={imageUrl}
+        alt="Service"
+        width={250}
+        height={250}
+        className="rounded-md"
+      />
       <p className="mt-4 text-md text-[#283544] font-semibold">{title}</p>
       <p className="mt-2 text-sm font-body text-justify">{description}</p>
-      <Link
-        href="/healthcare-professionals/professionals"
-        className="mt-4 text-blue-800 hover"
-      >
+      <Link href={linkUrl} className="mt-4 text-blue-800 hover">
         Learn more
       </Link>
     </div>
@@ -36,24 +41,28 @@ const Services = () => {
       </h1>
       <div className="mt-8 flex flex-wrap justify-center">
         <ServicesItem
-          imageUrl={"/images/imge.jpg"}
-          title="Registered Nurses"
-          description=" Our Registered Nurses at Nzuri healthcare provides direct healthcare, Drug Administration and complete medication to individuals and Families "
+          imageUrl={"/images/home-care.jpg"}
+          title="Home Care"
+          description="We Provide healthcare professionals for in-home care services, helping individuals maintain independence and comfort in their own environment. We match your needs with qualified healthcare assistants"
+          linkUrl="/company/services/home-care"
         />
         <ServicesItem
-          imageUrl={"/images/mission.jpg"}
-          title="Carers"
-          description="Our Carers provides essential personal care, support to individuals with chronic illnesses, disabilities, or aging-related needs and providing comfort"
+          imageUrl={"/images/home-care2.jpg"}
+          title="Personalized Care"
+          description="Our platform connects healthcare providers who offer customized care plans tailored to each patient’s unique medical needs, we ensure the right fit for every individuals needing our services"
+          linkUrl="/company/services/personalized-care"
         />
         <ServicesItem
           imageUrl={"/images/support-workers.jpg"}
-          title="Support Workers"
-          description="Nzuri Healthcare Support Workers assist individuals with physical, mental, or emotional needs, offering personalized care and helping with daily tasks"
+          title="infection Control and Hygiene"
+          description="With a focus on patient safety and wellness, we make provision for healthcare professionals skilled in infection control and maintaining stringent hygiene protocols be it in healthcare facilities, communities"
+          linkUrl="/company/services/infection-control-and-hygiene"
         />
         <ServicesItem
-          imageUrl={"/images/cleanerz.jpg"}
-          title="Cleaners"
-          description="Nzuri Healthcare Cleaners in healthcare environments are responsible for maintaining a safe, hygienic and sterile environment for both patients and staff. "
+          imageUrl={"/images/training-services.jpg"}
+          title="Training Services"
+          description="We provide comprehensive training services to healthcare professionals, covering essential skills from patient care to compliance with healthcare standards, in collaboration with top training providers"
+          linkUrl="/company/services/training"
         />
       </div>
     </div>

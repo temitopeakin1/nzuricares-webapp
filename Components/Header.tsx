@@ -52,7 +52,7 @@ const navigation = [
             href: "/company/services/infection-control-and-hygiene",
           },
           {
-            name: "Training",
+            name: "Training services",
             href: "/company/services/training",
           },
         ],
