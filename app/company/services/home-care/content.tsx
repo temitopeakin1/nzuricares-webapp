@@ -15,17 +15,17 @@ const Content = () => {
         <Image
           src={section_data[0].image}
           width={180}
-          height={120} 
+          height={120}
           alt="first image"
-          className="mb-2 w-full bg-[#F4F4F4]"
-          layout="responsive" 
+          className="mb-2 w-full bg-[#F4F4F4] mb-"
+          layout="responsive"
         />
         <Image
           src={section_data[1].image}
-          width={180} 
-          height={120} 
+          width={180}
+          height={120}
           alt="second image"
-          className="bg-[#F4F4F4] w-16 md:w-full -mt-24 md:-mt-[95px] ml-[20px] md:ml-[150px] float-right"
+          className="bg-[#F4F4F4] w-16 md:w-full -mt-[95px] md:-mt-[95px] ml-[20px] md:ml-[150px] float-right hidden md:block"
           layout="responsive"
         />
         <Image
@@ -33,12 +33,12 @@ const Content = () => {
           width={180}
           height={120}
           alt="third image"
-          className="w-full -mt-24 md:-mt-[85px] mr-[5px] md:mr-[10px]"
+          className="w-full -mt-[85px] md:-mt-[85px] mr-[5px] md:mr-[10px] hidden md:block"
           layout="responsive"
         />
       </div>
 
-      <div className="m-8 md:m-24 items-center justify-center w-full md:w-100">
+      <div className="p-8 md:p-0 -mt-12 md:m-24 mt items-center justify-center w-full md:w-100">
         <p className="leading-8 md:leading-10 text-justify font-body">
           <strong>Nzuri Healthcare Recruitment Limited</strong> offers
           comprehensive homecare services to ensure that individuals receive
