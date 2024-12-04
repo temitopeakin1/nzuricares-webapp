@@ -17,7 +17,7 @@ const Content = () => {
           width={180}
           height={120}
           alt="first image"
-          className="mb-2 w-full bg-[#F4F4F4] mb-"
+          className="mb-2 w-full "
           layout="responsive"
         />
         <Image
@@ -25,7 +25,7 @@ const Content = () => {
           width={180}
           height={120}
           alt="second image"
-          className="bg-[#F4F4F4] w-16 md:w-full -mt-[95px] md:-mt-[95px] ml-[20px] md:ml-[150px] float-right hidden md:block"
+          className="bg-[#F4F4F4] w-16 md:w-full -mt-[95px] md:-mt-[95px] ml-[20px] md:ml-[150px] float-right"
           layout="responsive"
         />
         <Image
@@ -33,7 +33,7 @@ const Content = () => {
           width={180}
           height={120}
           alt="third image"
-          className="w-full -mt-[85px] md:-mt-[85px] mr-[5px] md:mr-[10px] hidden md:block"
+          className="w-full -mt-[85px] md:-mt-[85px] mr-[5px] md:mr-[10px]"
           layout="responsive"
         />
       </div>
@@ -70,7 +70,7 @@ const Content = () => {
             Healthcare Assistants are available around the clock.
           </li>
         </ul>
-        <div className="flex flex-row items-center justify-center mt-4 md:mt-8">
+        <div className="flex items-center justify-center mt-4 md:mt-8 space-x-4">
           <Button />
         </div>
       </div>

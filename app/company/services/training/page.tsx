@@ -69,7 +69,7 @@ const Page = () => {
         className="w-full relative bg-cover bg-center h-[60vh] md:h-[100vh] sm:bg-contain sm:bg-center-15% md:bg-cover md:bg-center-[40%]"
         style={{
           backgroundImage: "url(/images/training-health.jpg)",
-          backgroundPosition: "center -30%",
+          backgroundPosition: "center -32%",
           backgroundSize: "cover",
         }}
       >
