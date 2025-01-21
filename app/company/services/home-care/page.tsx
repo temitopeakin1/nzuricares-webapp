@@ -42,7 +42,7 @@ const Page = () => {
       <div
         className="w-full relative bg-cover bg-center h-[60vh] md:h-[100vh] sm:bg-contain sm:bg-center-15% md:bg-cover md:bg-center-[40%]"
         style={{
-          backgroundImage: "url(/images/home-care-banner2.jpg)",
+          backgroundImage: "url(/images/services.jpg)",
           backgroundPosition: "center -30%",
           backgroundSize: "cover",
         }}
@@ -51,11 +51,13 @@ const Page = () => {
           <FadeIn duration={4}>
             <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
               Bringing&nbsp;
-              <span className="relative inline-block">Home Care
+              <span className="relative inline-block">
+                Home Care
                 {showUnderline && (
                   <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
                 )}
-              </span> <br />
+              </span>{" "}
+              <br />
               <span className="relative inline-block">to Your Doorstep</span>
             </h1>
           </FadeIn>

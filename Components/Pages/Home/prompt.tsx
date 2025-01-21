@@ -60,7 +60,7 @@ export default function Prompt() {
     <div className="fixed bottom-4 right-4">
       {/* Chat Interface */}
       {isOpen && (
-        <div className="w-80 md:w-96 bg-gray-800 shadow-lg rounded-lg overflow-hidden mt-4">
+        <div className="w-80 md:w-96 bg-gray-800 shadow-lg rounded-lg overflow-hidden -mt-20">
           <div className="flex flex-col items-center justify-right p-4 space-y-4">
             {/* Header with title and close button */}
             <div className="w-full flex justify-between items-center">

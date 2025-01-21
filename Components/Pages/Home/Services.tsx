@@ -50,7 +50,7 @@ const Services = () => {
           imageUrl={"/images/home-care2.jpg"}
           title="Personalized Care"
           description="Our platform connects healthcare providers who offer customized care plans tailored to each patient’s unique medical needs, we ensure the right fit for every individuals needing our services"
-          linkUrl="/company/services/personalized-care"
+          linkUrl="/company/services/personalised-care"
         />
         <ServicesItem
           imageUrl={"/images/support-workers.jpg"}

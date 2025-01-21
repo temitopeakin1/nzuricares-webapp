@@ -19,7 +19,7 @@ const navigation = [
         href: "/healthcare-professionals/how-it-works",
       },
       {
-        name: "Professionals",
+        name: "Our Professionals",
         href: "/healthcare-professionals/professionals",
       },
     ],
@@ -44,8 +44,8 @@ const navigation = [
         subMenus: [
           { name: "Home Care", href: "/company/services/home-care" },
           {
-            name: "Personalized Care",
-            href: "/company/services/personalized-care",
+            name: "Personalised Care",
+            href: "/company/services/personalised-care",
           },
           {
             name: "Infection Control and Hygiene",

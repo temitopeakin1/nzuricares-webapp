@@ -177,7 +177,7 @@ const Page = () => {
       </div>
       <div className="flex flex-col items-center justify-center mt-12 px-4 bg-gray-50">
         <div className="w-full md:w-[80%] mb-8">
-          <h2 className="text-2xl font-bold text-center mt-16 font-title">
+          <h2 className="text-2xl font-bold text-center mt-4 md:mt-8 font-title">
             Got questions? We’ve got answers
           </h2>
           <p className="text-lg mt-2 text-center mb-8 md:mb-4">
