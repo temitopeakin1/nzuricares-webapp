@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineClose } from "react-icons/ai";
 import { RiEqualLine } from "react-icons/ri";
-import { CgChevronDown, CgChevronRight, CgChevronUp } from "react-icons/cg";
+import { CgChevronDown, CgChevronRight, CgChevronUp } from "react-icons/cg"
 import { usePathname, useRouter } from "next/navigation";
 
 const navigation = [
