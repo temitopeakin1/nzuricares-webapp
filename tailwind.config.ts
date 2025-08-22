@@ -66,20 +66,20 @@ const config: Config = {
         pacifico: ["Pacifico", "cursive"],
         sans: ["Righteous", "sans-serif"],
       },
-      // fontSize: {
-      //   10: "10px",
-      //   12: "12px",
-      //   14: "14px",
-      //   16: "16px",
-      //   20: "20px",
-      // },
+      fontSize: {
+        10: "10px",
+        12: "12px",
+        14: "14px",
+        16: "16px",
+        20: "20px",
+      },
 
       colors: {
         primary: {
           DEFAULT: "#3A8766",
           dark: "#E6E6E6",
         },
-        secondary: {
+        secondary: {  
           DEFAULT: "#FFC700",
           dark: "#333333",
         },

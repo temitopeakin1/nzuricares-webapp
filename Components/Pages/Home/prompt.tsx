@@ -1,105 +1,107 @@
 import CloseCircle from "@/app/components/icons/closeCircle";
 import { FormEvent, useState } from "react";
 
-type Message = {
-  role: "user" | "model";
-  parts: { text: string }[];
+interface Message {
+  role: "user" | "assistant";
+  content: string;
 };
 
 export default function Prompt() {
-  const [messages, setMessages] = useState<Message[]>([]); 
-  const [inputText, setInputText] = useState<string>(""); 
-  const [loading, setLoading] = useState<boolean>(false); 
-  const [isOpen, setIsOpen] = useState<boolean>(false); 
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [inputText, setInputText] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!inputText.trim()) return;
 
-    const userMessage: Message = { role: "user", parts: [{ text: inputText }] };
-    setMessages((prev) => [...prev, userMessage]);
-    setInputText("");
+    const userMessage: Message = { role: "user", content: inputText };
+
+    setMessages((prev) => [
+      ...prev,
+      userMessage,
+      { role: "assistant", content: "..." },
+    ]);
+
+      setInputText("");
     setLoading(true);
 
-    // declare the api key connection with the env
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
-
     try {
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ contents: messages.concat(userMessage) }),
-        }
-      );
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: [...messages, userMessage] }),
+      });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      const modelResponse: Message = {
-        role: "model",
-        parts: [
-          { text: data?.generatedContent || "No response from the model." },
-        ],
+      const assistantMessage: Message = {
+        role: "assistant",
+        content: data.content || "No response from model.",
       };
 
-      setMessages((prev) => [...prev, modelResponse]);
+      setMessages((prev) => [...prev.slice(0, -1), assistantMessage]);
     } catch (error) {
-      console.error("Error communicating with the Gemini API:", error);
-      const errorResponse: Message = {
-        role: "model",
-        parts: [{ text: "An error occurred. Please try again." }],
-      };
-      setMessages((prev) => [...prev, errorResponse]);
+      setMessages((prev) => [
+        ...prev.slice(0, -1),
+        {
+          role: "assistant",
+          content: "An error occurred. Please try again.",
+        },
+      ]);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="fixed bottom-4 right-4">
-      {/* Chat Interface */}
+    <div className="fixed bottom-2 right-4 md:items-center justify-center">
       {isOpen && (
-        <div className="w-80 md:w-96 bg-gray-800 shadow-lg rounded-lg overflow-hidden -mt-20">
-          <div className="flex flex-col items-center justify-right p-4 space-y-4">
-            {/* Header with title and close button */}
+        <div className="w-80 md:w-80 md:h-100 bg-secondary-dark shadow-lg rounded-lg overflow-hidden items-center justify-center">
+          <div className="flex flex-col items-center justify-right p-4 space-y-1">
             <div className="w-full flex justify-between items-center">
-              <h1 className="text-sm font-semibold text-white">NzuriHealthcare AI Chatbot</h1>
-              <button
-                onClick={() => setIsOpen(false)} 
-              >
-                <CloseCircle/>
+              <h1 className="text-sm font-normal text-white">
+                NzuriHealthcare AI Chatbot
+              </h1>
+              <button onClick={() => setIsOpen(false)}>
+                <CloseCircle />
               </button>
             </div>
 
-            {/* Chat messages */}
             <div className="w-full border p-4 rounded-lg space-y-2 bg-gray-100 h-80 overflow-y-auto">
               {messages.map((msg, idx) => (
                 <div
                   key={idx}
-                  className={`p-2 rounded font-serif ${
+                  className={`p-2 rounded font-serif text-10 ${
                     msg.role === "user"
-                      ? "bg-blue-200 text-right"
+                      ? "bg-blue-400 text-right"
                       : "bg-green-200 text-left"
                   }`}
                 >
-                  {msg.parts.map((part, index) => (
-                    <p key={index}>{part.text}</p>
-                  ))}
+                  {msg.content === "..." ? (
+                    <span className="animate-pulse text-gray-500 italic text-10">
+                      Assistant is typing...
+                    </span>
+                  ) : (
+                    msg.content
+                  )}
                 </div>
               ))}
             </div>
 
-            {/* Input form */}
-            <form onSubmit={handleSubmit} className="w-full space-y-2">
+            <form
+              onSubmit={handleSubmit}
+              className="w-full md:items-center space-y-2 justify-center"
+            >
               <textarea
-                className="w-full border p-2 rounded-md focus:outline-none font-serif"
+                className="w-full border p-2 rounded-md focus:outline-none font-serif text-10"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyDown={(e) => {
-                  if(e.key === "Enter" && !e.shiftKey) {
+                  if (e.key === "Enter" && !e.shiftKey) {
                     e.preventDefault();
-                    handleSubmit(e as unknown as FormEvent<HTMLFormElement>)
+                    handleSubmit(e as unknown as FormEvent<HTMLFormElement>);
                   }
                 }}
                 rows={2}
@@ -118,11 +120,10 @@ export default function Prompt() {
         </div>
       )}
 
-      {/* Toggle button for opening the chat interface */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-blue-800 text-white p-3 rounded-full shadow-lg focus:outline-none hover:bg-blue-700"
+          className="bg-green-800 text-white p-3 rounded-full shadow-lg focus:outline-none"
         >
           💬
         </button>
