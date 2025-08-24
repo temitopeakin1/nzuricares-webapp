@@ -73,14 +73,14 @@ export default function Prompt() {
               {messages.map((msg, idx) => (
                 <div
                   key={idx}
-                  className={`p-2 rounded font-serif text-10 ${
+                  className={`p-2 rounded font-serif text-14 md:text-12 ${
                     msg.role === "user"
                       ? "bg-blue-400 text-right"
                       : "bg-green-200 text-left"
                   }`}
                 >
                   {msg.content === "..." ? (
-                    <span className="animate-pulse text-gray-500 italic text-10">
+                    <span className="animate-pulse text-gray-500 italic text-14 md:text-12">
                       Assistant is typing...
                     </span>
                   ) : (
@@ -95,7 +95,7 @@ export default function Prompt() {
               className="w-full md:items-center space-y-2 justify-center"
             >
               <textarea
-                className="w-full border p-2 rounded-md focus:outline-none font-serif text-10"
+                className="w-full border p-2 rounded-md focus:outline-none font-serif text-14 md:text-12"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyDown={(e) => {
