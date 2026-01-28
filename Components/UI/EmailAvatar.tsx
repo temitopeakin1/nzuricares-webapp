@@ -4,7 +4,7 @@ type EmailAvatarProps = {
   status: "loading" | "success" | "error";
 };
 
-const EmailAvatar = ({ status }: EmailAvatarProps) => {
+export default function EmailAvatar({ status }: EmailAvatarProps) {
   return (
     <div className="relative w-48 h-48 mx-auto mb-8">
       <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 animate-pulse"></div>
@@ -113,6 +113,4 @@ const EmailAvatar = ({ status }: EmailAvatarProps) => {
       )}
     </div>
   );
-};
-
-export default EmailAvatar;
+}
