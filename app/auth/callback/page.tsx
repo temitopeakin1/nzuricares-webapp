@@ -6,6 +6,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import EmailAvatar from "@/components/UI/EmailAvatar";
 import Spinner from "@/components/UI/Spinner";
 
+
 const AuthCallback = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
