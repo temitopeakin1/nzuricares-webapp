@@ -1,10 +1,10 @@
 "use client";
 
-import { Header } from "@/Components";
-import FadeIn from "@/Components/UI/FadeIn";
+import { Header } from "@/components";
+import FadeIn from "@/components/UI/FadeIn";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Image from "next/image";
-import Footer from "@/Components/UI/Footer";
+import Footer from "@/components/UI/Footer";
 import Link from "next/link";
 import { MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa";

@@ -5,8 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineClose } from "react-icons/ai";
 import { RiEqualLine } from "react-icons/ri";
-import { CgChevronDown, CgChevronRight, CgChevronUp } from "react-icons/cg"
+import { CgChevronDown, CgChevronRight, CgChevronUp } from "react-icons/cg";
 import { usePathname, useRouter } from "next/navigation";
+import { supabase } from "@/app/supabaseClient";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -71,9 +72,38 @@ const Header = () => {
   const [activeSubMenu, setActiveSubMenu] = useState<number | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSubSubMenu, setActiveSubSubMenu] = useState<number | null>(null);
+  const [user, setUser] = useState<any>(null);
+  const [username, setUsername] = useState<string>("");
 
   const navUrl = usePathname();
   const router = useRouter();
+
+  /* ------------------ AUTH STATE ------------------ */
+  useEffect(() => {
+    const getUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (data.user) {
+        setUser(data.user);
+        setUsername(data.user.user_metadata?.username ?? "User");
+      }
+    };
+
+    getUser();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+      setUsername(session?.user?.user_metadata?.username ?? "");
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.push("/auth/login");
+  };
 
   const handleScroll = () => {
     const scrollTop = window.scrollY;
@@ -112,11 +142,11 @@ const Header = () => {
   };
 
   const handleSignupClick = () => {
-    router.push("/signup");
+    router.push("/auth/signup");
   };
 
   const handleLoginClick = () => {
-    router.push("/login");
+    router.push("/auth/login");
   };
 
   return (
@@ -260,18 +290,34 @@ const Header = () => {
           );
         })}
 
-        <button
-          onClick={handleLoginClick}
-          className="bg-transparent border font-semibold border-primary text-primary px-4 py-2 rounded-full"
-        >
-          Login
-        </button>
-        <button
-          onClick={handleSignupClick}
-          className="bg-primary text-white px-4 py-2 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 rounded-full"
-        >
-          Sign Up
-        </button>
+        {user ? (
+          <div className="flex items-center gap-4">
+            <span className="font-semibold text-sm">
+              Welcome, <b>{username}</b> 👋
+            </span>
+            <button
+              onClick={handleLogout}
+              className="bg-red-600 text-white px-4 py-2 rounded-full"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <>
+            <button
+              onClick={handleLoginClick}
+              className="bg-transparent border font-semibold border-primary text-primary px-4 py-2 rounded-full"
+            >
+              Login
+            </button>
+            <button
+              onClick={handleSignupClick}
+              className="bg-primary text-white px-4 py-2 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 rounded-full"
+            >
+              Sign Up
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

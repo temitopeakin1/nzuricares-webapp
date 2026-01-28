@@ -34,12 +34,7 @@ export async function signup(prevState: any, formData: FormData) {
     password: formData.get("password"),
     confirmPassword: formData.get("confirmPassword"),
   });
-
-  // 2. Prepare data for insertion into database
-  //const { username, email, password, confirmPassword } = validatedFields.data
-  // e.g. Hash the user's password before storing it
-  //const hashedPassword = await bcrypt.hash(password, 10)
-
+  
   if (!validatedFields.success) {
     return {
       ...prevState,

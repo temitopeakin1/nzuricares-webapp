@@ -22,14 +22,14 @@ export default function Testimonial({}: { testimonials: Testimonial[] }) {
       image: "/images/user-7.jpg",
       quote:
         "I want to extend my heartfelt thanks to the entire team at Nzuri Healthcare. The care workers have been a lifeline for me during a challenging time. Their kindness, patience, and genuine care have made all the difference. I am grateful for their dedication and the positive impact they have had on my wellbeing.",
-      name: "John Doe",
+      name: "Johan simon",
       role: "Exec",
     },
     {
       image: "/images/avatar-4.jpg",
       quote:
         "I highly recommend Nzuri Healthcare to anyone in need of care services. From the initial consultation to the ongoing support, the team has been exceptional. The care workers are not only skilled and experienced but also compassionate and understanding. They have truly made a positive impact on my life.",
-      name: "Donald .T.",
+      name: "Rickson .T.",
       role: "Founder",
     },
     {
@@ -43,7 +43,7 @@ export default function Testimonial({}: { testimonials: Testimonial[] }) {
       image: "/images/user-10.jpg",
       quote:
         "Choosing Nzuri Healthcare was one of the best decisions I've made for my family. The care workers provided by the agency have become like family to us. They not only assist with daily tasks but also provide companionship and emotional support. I am impressed by their professionalism and commitment to excellence.",
-      name: "Theresa Doe",
+      name: "Theresa",
       role: "Lead",
     },
   ];

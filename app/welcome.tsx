@@ -9,7 +9,7 @@ export default async function Home() {
         <div>Welcome, <strong>Guest</strong>!</div>
 
         <div className="flex gap-2 text-sm mt-1">
-            <LinkButton href="/login">Login</LinkButton>
+            <LinkButton href="/auth/login">Login</LinkButton>
         </div>
       </div>            
     </main>

@@ -1,4 +1,4 @@
-import PlusAccordion from "@/Components/UI/PlusAccordion";
+import PlusAccordion from "@/components/UI/PlusAccordion";
 import React from "react";
 
 const accordion_data = [

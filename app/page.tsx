@@ -1,4 +1,4 @@
-import { HomePage } from "@/Components";
+import { HomePage } from "@/components";
 import React from "react";
 
 

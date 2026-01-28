@@ -1,10 +1,10 @@
 "use client";
 
-import { Header } from "@/Components";
-import FadeIn from "@/Components/UI/FadeIn";
+import { Header } from "@/components";
+import FadeIn from "@/components/UI/FadeIn";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Footer from "@/Components/UI/Footer";
+import Footer from "@/components/UI/Footer";
 
 const Section = ({
   title,

@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
-import { Header } from "@/Components";
-import Footer from "./Components/UI/Footer";
+import { Header } from "@/components";
+import Footer from "./components/UI/Footer";
 
 const AppWrapper = ({ children }: { children: ReactNode }) => {
   return (

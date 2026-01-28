@@ -1,14 +1,14 @@
 "use client";
 
-import { Header } from "@/Components";
-import FadeIn from "@/Components/UI/FadeIn";
+import { Header } from "@/components";
+import FadeIn from "@/components/UI/FadeIn";
 import { useEffect, useState } from "react";
 import { FaBed, FaHospital } from "react-icons/fa";
 import { IconType } from "react-icons/lib";
 import { PiMapPinLineFill, PiUserSwitchBold } from "react-icons/pi";
 import { HiMiniArrowsPointingIn } from "react-icons/hi2";
 import { MdOutlineLocalHospital } from "react-icons/md";
-import Footer from "@/Components/UI/Footer";
+import Footer from "@/components/UI/Footer";
 import Benefits from "./benefits";
 
 const careSettings = [

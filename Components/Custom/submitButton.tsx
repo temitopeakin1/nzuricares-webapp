@@ -37,7 +37,7 @@ export function SubmitButton({
       aria-disabled={status.pending || loading}
       disabled={status.pending || loading}
     //   className={cn(className)}
-      className="w-full mt-8 py-2 px-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
+      className="w-full mt-8 py-4 px-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
 
     >
       {status.pending || loading ? <Loader text={loadingText} /> : text}

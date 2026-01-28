@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { Header } from "@/Components";
-import Footer from "@/Components/UI/Footer";
+import { Header } from "@/components";
+import Footer from "@/components/UI/Footer";
 import {
   FaHeart,
   FaStar,
@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 import { IconType } from "react-icons/lib";
 // import { Description } from "@headlessui/react";
-import Subscribe from "@/Components/UI/Subscribe";
+import Subscribe from "@/components/UI/Subscribe";
 
 const section_data = [
   {
