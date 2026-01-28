@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import EmailAvatar from "@/components/UI/EmailAvatar";
 import { Spinner } from "@/components/UI/Spinner";
+import EmailAvatar from "@/components/UI/EmailAvatar";
 
 const AuthCallback = () => {
   const router = useRouter();
