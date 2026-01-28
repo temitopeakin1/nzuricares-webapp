@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import Footer from "@/components/UI/Footer";
+import Footer from "@/components/ui/Footer";
 import Link from "next/link";
 import React from "react";
 

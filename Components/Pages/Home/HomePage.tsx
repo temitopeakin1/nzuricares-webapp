@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Header } from "@/components";
-import Footer from "@/components/UI/Footer";
+import Footer from "@/components/ui/Footer";
 import Shifts from "./Shifts";
 import Testimonial from "./Testimonial";
-import Subscribe from "@/components/UI/Subscribe";
-import PrivacyBanner from "@/components/UI/PrivacyBanner";
+import Subscribe from "@/components/ui/Subscribe";
+import PrivacyBanner from "@/components/ui/PrivacyBanner";
 import Profession from "./Services";
 import Prompt from "./prompt";
 

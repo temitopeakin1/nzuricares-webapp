@@ -1,10 +1,10 @@
 "use client";
 
 import { Header } from "@/components";
-import FadeIn from "@/components/UI/FadeIn";
+import FadeIn from "@/components/ui/FadeIn";
 import { useEffect, useState } from "react";
 // import { IconType } from "react-icons/lib";
-import Footer from "@/components/UI/Footer";
+import Footer from "@/components/ui/Footer";
 import Personal from "./personal";
 import ChooseSection from "./chooseSection";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Header } from "@/components";
-import Footer from "@/components/UI/Footer";
+import Footer from "@/components/ui/Footer";
 
 const section_data = [
   {

@@ -1,10 +1,10 @@
 "use client";
 
 import { Header } from "@/components";
-import Accordion from "@/components/UI/Accordion";
-import FadeIn from "@/components/UI/FadeIn";
-import Footer from "@/components/UI/Footer";
-import Hero from "@/components/UI/Hero";
+import Accordion from "@/components/ui/Accordion";
+import FadeIn from "@/components/ui/FadeIn";
+import Footer from "@/components/ui/Footer";
+import Hero from "@/components/ui/Hero";
 import { useEffect, useState } from "react";
 
 const accordion_data = [
