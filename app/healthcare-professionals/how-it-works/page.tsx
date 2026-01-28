@@ -5,6 +5,7 @@ import Accordion from "@/components/ui/Accordion";
 import FadeIn from "@/components/ui/FadeIn";
 import Footer from "@/components/ui/Footer";
 import Hero from "@/components/ui/Hero";
+
 import { useEffect, useState } from "react";
 
 const accordion_data = [

@@ -7,6 +7,7 @@ import EmailAvatar from "@/components/ui/EmailAvatar";
 import Spinner from "@/components/ui/Spinner";
 
 
+
 const AuthCallback = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
