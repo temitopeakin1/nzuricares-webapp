@@ -36,7 +36,7 @@ const Login = () => {
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL || "",
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
   );
   const router = useRouter();
 
@@ -209,7 +209,7 @@ const Login = () => {
         />
 
         <p className="mt-4 text-center text-gray-600">
-          Don't have an account?{" "}
+          Don&apos;t have an account?
           <Link href="/auth/signup" className="text-blue-700 font-semibold">
             Click to Sign up
           </Link>
