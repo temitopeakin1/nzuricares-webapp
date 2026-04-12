@@ -61,18 +61,27 @@ const Page = () => {
   });
   const [countries, setCountries] = useState<countryOptions[]>([]); // Array of CountryOption objects
   const [cities, setCities] = useState<any[]>([]);
+  const [countriesLoading, setCountriesLoading] = useState(true);
+  const [countriesError, setCountriesError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchCountries = async () => {
+      setCountriesLoading(true);
+      setCountriesError(null);
       try {
-        const res = await fetch("https://restcountries.com/v3.1/all");
+        // v3.1 requires `fields` (max 10); bare /all returns 400.
+        const res = await fetch(
+          "https://restcountries.com/v3.1/all?fields=name,cca2"
+        );
         if (!res.ok) {
           setCountries([]);
+          setCountriesError("Could not load countries. Please try again.");
           return;
         }
         const data: unknown = await res.json();
         if (!Array.isArray(data)) {
           setCountries([]);
+          setCountriesError("Could not load countries. Please try again.");
           return;
         }
         const countryOptions: countryOptions[] = data
@@ -85,6 +94,9 @@ const Page = () => {
         setCountries(countryOptions);
       } catch {
         setCountries([]);
+        setCountriesError("Could not load countries. Please try again.");
+      } finally {
+        setCountriesLoading(false);
       }
     };
 
@@ -127,12 +139,10 @@ const Page = () => {
   // };
 
   const handleCountryChange = (selectedOption: countryOptions | null) => {
-    if (selectedOption) {
-      setFormData({
-        ...formData,
-        country: selectedOption.value,
-      });
-    }
+    setFormData((prev) => ({
+      ...prev,
+      country: selectedOption?.value ?? "",
+    }));
   };
   
 
@@ -413,12 +423,35 @@ const Page = () => {
                         Country
                       </label>
                       <Select
+                        instanceId="register-interest-country"
+                        inputId="register-interest-country-input"
                         options={countries}
+                        isLoading={countriesLoading}
+                        isDisabled={countriesLoading}
+                        placeholder={
+                          countriesLoading
+                            ? "Loading countries…"
+                            : "Select country"
+                        }
+                        isClearable
                         onChange={handleCountryChange}
                         value={countries.find(
                           (country) => country.value === formData.country
                         )}
+                        menuPortalTarget={
+                          typeof document !== "undefined"
+                            ? document.body
+                            : null
+                        }
+                        styles={{
+                          menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                        }}
                       />
+                      {countriesError && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {countriesError}
+                        </p>
+                      )}
                       {errors.country && (
                         <p className="text-red-500">{errors.country}</p>
                       )}

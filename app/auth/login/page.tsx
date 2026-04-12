@@ -3,16 +3,15 @@
 import type React from "react";
 import { type FormEvent, useState } from "react";
 import { useSupabaseBrowser } from "@/lib/supabase-browser";
-import Image from "next/image";
 import Link from "next/link";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
   AiOutlineWarning,
 } from "react-icons/ai";
-import { createBrowserClient } from "@supabase/ssr";
 import { useRouter } from "next/navigation";
 import { SubmitButton } from "@/components/Custom/submitButton";
+import { AuthSplitShell } from "@/components/auth/AuthSplitShell";
 
 interface FormData {
   email: string;
@@ -104,7 +103,7 @@ const Login = () => {
       }
 
       router.push("/");
-    } catch (err) {
+    } catch {
       setErrors({
         general: "An unexpected error occurred. Please try again.",
       });
@@ -113,107 +112,132 @@ const Login = () => {
     }
   };
 
+  const fieldClass =
+    "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900 shadow-sm transition placeholder:text-gray-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/25";
+  const passwordFieldClass = `${fieldClass} pr-12`;
+
   return (
-    <div className="relative bg-white px-4 py-12 rounded-lg shadow-lg w-full max-w-md md:max-w-2xl my-8">
-      <div className="flex flex-col items-center -mt-8">
-        <Image src="/images/logo.png" alt="logo" width={150} height={150} />
-        <p className="mt-2 font-serif">Welcome back,</p>
-        <p className="mt-2 text-2xl font-semibold">Login to register profile</p>
+    <AuthSplitShell>
+      <div className="mb-4 shrink-0">
+        <h2 className="font-title text-2xl font-bold text-gray-900 sm:text-3xl">
+          Welcome back
+        </h2>
+        <p className="mt-1 text-sm text-gray-600 sm:text-base">
+          Sign in to your account to continue
+        </p>
       </div>
 
       {errors.general && (
-        <p className="text-red-500 text-center my-4 font-semibold">
+        <div
+          className="mb-5 rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-medium text-red-800"
+          role="alert"
+        >
           {errors.general}
-        </p>
+        </div>
       )}
 
       {successMessage && (
-        <p className="text-green-600 text-center my-4 font-semibold">
+        <div
+          className="mb-5 rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-900"
+          role="status"
+        >
           {successMessage}
-        </p>
+        </div>
       )}
 
-      <form
-        onSubmit={handleSignIn}
-        className="mt-8 px-4 py-8 border rounded-sm shadow-lg bg-gray-50"
-      >
-        {/* Email */}
-        <div className="mb-4">
-          <label className="text-sm text-gray-600">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            placeholder="name@example.com"
-            onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
-          />
-          {errors.email && (
-            <p className="text-red-500 text-sm mt-2 flex items-center">
-              <AiOutlineWarning className="mr-2" />
-              {errors.email}
-            </p>
-          )}
-        </div>
-
-        {/* Password */}
-        <div className="mb-4">
-          <label className="text-sm text-gray-600">Password</label>
-          <div className="relative">
-            <input
-              type={passwordVisibility ? "text" : "password"}
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
-            />
-            <button
-              type="button"
-              onClick={togglePasswordVisibility}
-              className="absolute right-3 top-4 text-black"
-            >
-              {passwordVisibility ? (
-                <AiOutlineEye />
-              ) : (
-                <AiOutlineEyeInvisible />
+      <form onSubmit={handleSignIn} className="flex min-h-0 flex-1 flex-col space-y-4">
+            <div>
+              <label
+                htmlFor="email"
+                className="mb-1.5 block text-sm font-semibold text-gray-700"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                autoComplete="email"
+                value={formData.email}
+                placeholder="you@example.com"
+                onChange={handleChange}
+                className={fieldClass}
+              />
+              {errors.email && (
+                <p className="mt-2 flex items-start gap-2 text-sm text-red-600">
+                  <AiOutlineWarning className="mt-0.5 shrink-0" aria-hidden />
+                  {errors.email}
+                </p>
               )}
-            </button>
-          </div>
-          {errors.password && (
-            <p className="text-red-500 text-sm mt-2 flex items-center">
-              <AiOutlineWarning className="mr-2" />
-              {errors.password}
-            </p>
-          )}
-        </div>
+            </div>
 
-        {/* Forgot password */}
-        <div className="text-right mb-4">
+            <div>
+              <label
+                htmlFor="password"
+                className="mb-1.5 block text-sm font-semibold text-gray-700"
+              >
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  type={passwordVisibility ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  autoComplete="current-password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className={passwordFieldClass}
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-1.5 text-gray-500 transition hover:bg-gray-100 hover:text-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                  aria-label={
+                    passwordVisibility ? "Hide password" : "Show password"
+                  }
+                >
+                  {passwordVisibility ? (
+                    <AiOutlineEye className="text-xl" />
+                  ) : (
+                    <AiOutlineEyeInvisible className="text-xl" />
+                  )}
+                </button>
+              </div>
+              {errors.password && (
+                <p className="mt-2 flex items-start gap-2 text-sm text-red-600">
+                  <AiOutlineWarning className="mt-0.5 shrink-0" aria-hidden />
+                  {errors.password}
+                </p>
+              )}
+            </div>
+
+            <div className="flex justify-end">
+              <Link
+                href="/forgotPassword"
+                className="text-sm font-semibold text-primary underline-offset-4 transition hover:text-primary/80 hover:underline"
+              >
+                Forgot password?
+              </Link>
+            </div>
+
+            <SubmitButton
+              className="mt-4"
+              text="Sign in"
+              loadingText="Signing in…"
+              loading={loading}
+            />
+
+        <p className="pt-2 text-center text-sm text-gray-600 sm:text-base">
+          Don&apos;t have an account?{" "}
           <Link
-            href="/forgotPassword"
-            className="text-sm text-red-600 font-medium"
+            href="/auth/signup"
+            className="font-semibold text-primary underline-offset-2 transition hover:underline"
           >
-            Forgot password?
-          </Link>
-        </div>
-
-        <SubmitButton
-          className="w-full"
-          text="Login"
-          loadingText="Logging in..."
-          loading={loading}
-        />
-
-        <p className="mt-4 text-center text-gray-600">
-          Don&apos;t have an account?
-          <Link href="/auth/signup" className="text-blue-700 font-semibold">
-            Click to Sign up
+            Create an account
           </Link>
         </p>
       </form>
-    </div>
+    </AuthSplitShell>
   );
 };
 

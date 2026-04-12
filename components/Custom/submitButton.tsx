@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-// import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { Button } from "@headlessui/react";
 
@@ -36,9 +36,10 @@ export function SubmitButton({
       type="submit"
       aria-disabled={status.pending || loading}
       disabled={status.pending || loading}
-    //   className={cn(className)}
-      className="w-full mt-8 py-4 px-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
-
+      className={cn(
+        "mt-2 w-full rounded-xl bg-gradient-to-r from-blue-900 to-primary px-4 py-3.5 text-base font-semibold text-white shadow-md transition hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 sm:py-4",
+        className
+      )}
     >
       {status.pending || loading ? <Loader text={loadingText} /> : text}
     </Button>

@@ -66,6 +66,46 @@ const navigation = [
   { name: "Contact Us", href: "/contact" },
 ];
 
+type NavSubItem = {
+  name: string;
+  href: string;
+  subMenus?: NavSubItem[];
+};
+
+function isPathUnderHref(pathname: string, href: string): boolean {
+  if (!href) return false;
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function isActiveViaSubmenus(items: NavSubItem[], pathname: string): boolean {
+  for (const item of items) {
+    if (item.href && isPathUnderHref(pathname, item.href)) {
+      return true;
+    }
+    if (item.subMenus?.length && isActiveViaSubmenus(item.subMenus, pathname)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function isTopNavItemActive(
+  link: (typeof navigation)[number],
+  pathname: string
+): boolean {
+  if (link.href === "/") {
+    return pathname === "/";
+  }
+  if (link.href) {
+    return isPathUnderHref(pathname, link.href);
+  }
+  if (link.subMenus) {
+    return isActiveViaSubmenus(link.subMenus, pathname);
+  }
+  return false;
+}
+
 /** Delay before closing desktop (sub)menus so users can move cursor through gaps. */
 const SUBMENU_CLOSE_DELAY_MS = 280;
 
@@ -245,9 +285,7 @@ const Header = () => {
         </button>
 
         {navigation.map((link, index) => {
-          const isActive =
-            (link.href === "/" && navUrl === "/") ||
-            (link.href !== "/" && navUrl.includes(link.href));
+          const isActive = isTopNavItemActive(link, navUrl);
 
           return (
             <div
