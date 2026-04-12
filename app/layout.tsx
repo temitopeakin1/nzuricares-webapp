@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+
+const Prompt = dynamic(() => import("@/components/Pages/Home/prompt"), {
+  ssr: false,
+  loading: () => null,
+});
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +26,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Header />
         <main className="pt-24">{children}</main> {/* pt-24 to offset fixed header */}
+        <Prompt />
       </body>
     </html>
   );

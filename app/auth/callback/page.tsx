@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useRouter } from "next/navigation";
+import { useSupabaseBrowser } from "@/lib/supabase-browser";
 import EmailAvatar from "@/components/ui/EmailAvatar";
 import Spinner from "@/components/ui/Spinner";
 
@@ -10,8 +10,7 @@ import Spinner from "@/components/ui/Spinner";
 
 const AuthCallback = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const supabase = createClientComponentClient();
+  const supabase = useSupabaseBrowser();
 
   const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
   const [errorMessage, setErrorMessage] = useState("");
@@ -42,7 +41,7 @@ const AuthCallback = () => {
     };
 
     verifyEmail();
-  }, [router, supabase, searchParams]);
+  }, [router, supabase]);
 
   return (
     <div className="fixed inset-0 w-screen h-screen bg-gradient-to-br from-teal-50 via-emerald-50 to-cyan-50 flex items-center justify-center px-4">

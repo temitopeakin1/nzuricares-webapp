@@ -1,6 +1,5 @@
 "use client";
 
-import { Header } from "@/components";
 import FadeIn from "@/components/ui/FadeIn";
 import { useEffect, useState } from "react";
 import { FaBed, FaHospital } from "react-icons/fa";
@@ -64,7 +63,6 @@ const Page = () => {
 
   return (
     <div>
-      <Header />
       <div
         className="w-full relative bg-cover bg-center h-[60vh] md:h-[100vh] sm:bg-contain sm:bg-center-15% md:bg-cover md:bg-center-[40%]"
         style={{

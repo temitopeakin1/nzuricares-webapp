@@ -9,8 +9,8 @@ import {
   AiOutlineWarning,
 } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
+import { useSupabaseBrowser } from "@/lib/supabase-browser";
 import { SubmitButton } from "@/components/Custom/submitButton";
 
 interface FormData {
@@ -21,7 +21,7 @@ interface FormData {
 }
 
 const Signup = () => {
-  const supabase = createClientComponentClient();
+  const supabase = useSupabaseBrowser();
   const router = useRouter();
 
   const [formData, setFormData] = useState<FormData>({

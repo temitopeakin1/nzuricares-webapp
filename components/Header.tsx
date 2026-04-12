@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineClose } from "react-icons/ai";
@@ -66,6 +66,9 @@ const navigation = [
   { name: "Contact Us", href: "/contact" },
 ];
 
+/** Delay before closing desktop (sub)menus so users can move cursor through gaps. */
+const SUBMENU_CLOSE_DELAY_MS = 280;
+
 const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -77,6 +80,48 @@ const Header = () => {
 
   const navUrl = usePathname();
   const router = useRouter();
+  const submenuCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const nestedSubCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearSubmenuCloseTimer = useCallback(() => {
+    if (submenuCloseTimer.current) {
+      clearTimeout(submenuCloseTimer.current);
+      submenuCloseTimer.current = null;
+    }
+  }, []);
+
+  const clearNestedSubmenuCloseTimer = useCallback(() => {
+    if (nestedSubCloseTimer.current) {
+      clearTimeout(nestedSubCloseTimer.current);
+      nestedSubCloseTimer.current = null;
+    }
+  }, []);
+
+  const scheduleCloseSubmenu = useCallback(() => {
+    clearSubmenuCloseTimer();
+    submenuCloseTimer.current = setTimeout(() => {
+      setActiveSubMenu(null);
+      setActiveSubSubMenu(null);
+      clearNestedSubmenuCloseTimer();
+      submenuCloseTimer.current = null;
+    }, SUBMENU_CLOSE_DELAY_MS);
+  }, [clearSubmenuCloseTimer, clearNestedSubmenuCloseTimer]);
+
+  const scheduleCloseNestedSubmenu = useCallback(() => {
+    clearNestedSubmenuCloseTimer();
+    nestedSubCloseTimer.current = setTimeout(() => {
+      setActiveSubSubMenu(null);
+      nestedSubCloseTimer.current = null;
+    }, SUBMENU_CLOSE_DELAY_MS);
+  }, [clearNestedSubmenuCloseTimer]);
+
+  useEffect(
+    () => () => {
+      clearSubmenuCloseTimer();
+      clearNestedSubmenuCloseTimer();
+    },
+    [clearSubmenuCloseTimer, clearNestedSubmenuCloseTimer]
+  );
 
   /* ------------------ AUTH STATE ------------------ */
   useEffect(() => {
@@ -206,12 +251,25 @@ const Header = () => {
 
           return (
             <div
-              className={`relative flex-col items-center justify-center ${
+              className={`relative flex flex-col items-center justify-center ${
                 link.subMenus &&
                 activeSubMenu === index &&
                 "text-center mb-8 md:mb-0"
               }`}
               key={index}
+              onMouseEnter={() => {
+                if (!isMobile && link.subMenus) {
+                  clearSubmenuCloseTimer();
+                  clearNestedSubmenuCloseTimer();
+                  setActiveSubSubMenu(null);
+                  setActiveSubMenu(index);
+                }
+              }}
+              onMouseLeave={() => {
+                if (!isMobile && link.subMenus) {
+                  scheduleCloseSubmenu();
+                }
+              }}
             >
               <div
                 onClick={() => {
@@ -236,54 +294,110 @@ const Header = () => {
 
               {link.subMenus && activeSubMenu === index && (
                 <div
-                  className={`relative ${
-                    isMobile ? "flex flex-col w-full" : "md:absolute top-8"
-                  } bg-white shadow-md transition-all flex flex-col w-full md:w-[15em] text-center duration-300`}
+                  className={`relative flex w-full flex-col text-center md:z-50 ${
+                    isMobile
+                      ? "shadow-md"
+                      : "md:absolute md:left-1/2 md:top-full md:min-w-[16rem] md:-translate-x-1/2 md:pt-2"
+                  }`}
                 >
-                  {link.subMenus.map((item, subIndex) => (
-                    <div key={item.name} className="relative group">
+                  {/* Invisible hover bridge: no gap between label and panel on desktop */}
+                  <div
+                    className={`flex flex-col bg-white shadow-md transition-all duration-200 md:rounded-lg md:border md:border-gray-100 md:text-left md:shadow-xl ${
+                      isMobile ? "w-full" : "md:w-full md:py-1"
+                    }`}
+                  >
+                  {link.subMenus.map((item, subIndex) => {
+                    const hasNested = Boolean(item.subMenus?.length);
+                    const nestedOpen = activeSubSubMenu === subIndex;
+
+                    if (hasNested) {
+                      return (
+                        <div
+                          key={item.name}
+                          className="relative"
+                          onMouseEnter={() => {
+                            if (!isMobile) {
+                              clearNestedSubmenuCloseTimer();
+                              setActiveSubSubMenu(subIndex);
+                            }
+                          }}
+                          onMouseLeave={() => {
+                            if (!isMobile) {
+                              scheduleCloseNestedSubmenu();
+                            }
+                          }}
+                        >
+                          {isMobile ? (
+                            <button
+                              type="button"
+                              className="flex w-full items-center px-4 py-2 text-left text-base font-semibold text-primary hover:bg-gray-50 hover:text-secondary"
+                              aria-expanded={nestedOpen}
+                              onClick={() => toggleSubSubMenu(subIndex)}
+                            >
+                              {item.name}
+                              {nestedOpen ? (
+                                <CgChevronDown className="ml-auto shrink-0 opacity-80" />
+                              ) : (
+                                <CgChevronRight className="ml-auto shrink-0 opacity-80" />
+                              )}
+                            </button>
+                          ) : (
+                            <div className="flex cursor-default select-none items-center px-4 py-2 text-base font-semibold text-primary">
+                              <span>{item.name}</span>
+                              <CgChevronDown
+                                className={`ml-auto shrink-0 opacity-70 transition ${
+                                  nestedOpen ? "rotate-180" : ""
+                                }`}
+                                aria-hidden
+                              />
+                            </div>
+                          )}
+
+                          {nestedOpen && item.subMenus && (
+                            <div
+                              className={
+                                isMobile
+                                  ? "flex flex-col border-l-2 border-emerald-200/80 pl-3 ml-2 mb-1"
+                                  : "absolute left-full top-0 z-[60] flex pl-2"
+                              }
+                            >
+                              {/* Desktop: horizontal hover bridge into nested panel */}
+                              <div
+                                className={
+                                  isMobile
+                                    ? "flex w-full flex-col gap-0.5"
+                                    : "min-w-[14.5rem] max-w-[18rem] rounded-lg border border-gray-100 bg-white py-1 shadow-xl"
+                                }
+                              >
+                                {item.subMenus.map((subItem) => (
+                                  <Link
+                                    href={subItem.href}
+                                    key={subItem.name}
+                                    className="block px-4 py-2 text-left text-[0.95rem] font-semibold text-primary hover:bg-emerald-50/80 hover:text-secondary md:py-2.5"
+                                    onClick={() => isMobile && toggleMenu()}
+                                  >
+                                    {subItem.name}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+
+                    return (
                       <Link
+                        key={item.name}
                         href={item.href}
-                        className="flex items-center text-base font-semibold text-primary hover:text-secondary px-4 py-2"
-                        onClick={() =>
-                          item.subMenus
-                            ? toggleSubSubMenu(subIndex)
-                            : isMobile && toggleMenu()
-                        }
+                        className="flex items-center px-4 py-2 text-base font-semibold text-primary hover:bg-gray-50 hover:text-secondary"
+                        onClick={() => isMobile && toggleMenu()}
                       >
                         {item.name}
-                        {item.subMenus && (
-                          <>
-                            {activeSubSubMenu === subIndex ? (
-                              <CgChevronDown className="ml-auto" />
-                            ) : (
-                              <CgChevronRight className="ml-auto" />
-                            )}
-                          </>
-                        )}
                       </Link>
-
-                      {item.subMenus && activeSubSubMenu === subIndex && (
-                        <div
-                          className={`${
-                            isMobile
-                              ? "pl-6 flex flex-col"
-                              : "absolute left-full top-0 w-[15em] bg-white shadow-md py-2 flex flex-col text-center"
-                          } bg-white shadow-md py-2`}
-                        >
-                          {item.subMenus.map((subItem) => (
-                            <Link
-                              href={subItem.href}
-                              key={subItem.name}
-                              className="text-base text-primary text-center font-semibold hover:text-secondary px-4 py-2"
-                            >
-                              {subItem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                    );
+                  })}
+                  </div>
                 </div>
               )}
             </div>

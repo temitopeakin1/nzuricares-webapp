@@ -1,6 +1,5 @@
 "use client";
 
-import { Header } from "@/components";
 import FadeIn from "@/components/ui/FadeIn";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Image from "next/image";
@@ -65,18 +64,31 @@ const Page = () => {
 
   useEffect(() => {
     const fetchCountries = async () => {
-      debugger;
-      const res = await fetch("https://restcountries.com/v3.1/all");
-      const data = await res.json();
-      const countryOptions = data.map((country: any) => ({
-        label: country.name.common,
-        value: country.cca2,
-      }));
-      setCountries(countryOptions);
+      try {
+        const res = await fetch("https://restcountries.com/v3.1/all");
+        if (!res.ok) {
+          setCountries([]);
+          return;
+        }
+        const data: unknown = await res.json();
+        if (!Array.isArray(data)) {
+          setCountries([]);
+          return;
+        }
+        const countryOptions: countryOptions[] = data
+          .map((country: { name?: { common?: string }; cca2?: string }) => ({
+            label: country.name?.common ?? "",
+            value: country.cca2 ?? "",
+          }))
+          .filter((c) => c.label && c.value)
+          .sort((a, b) => a.label.localeCompare(b.label));
+        setCountries(countryOptions);
+      } catch {
+        setCountries([]);
+      }
     };
 
-    fetchCountries();
-    console.log(fetchCountries);
+    void fetchCountries();
   }, []);
 
   // Fetch cities based on the selected country
@@ -233,7 +245,6 @@ const Page = () => {
 
   return (
     <div>
-      <Header />
       <div
         className="w-full relative bg-cover bg-center"
         style={{

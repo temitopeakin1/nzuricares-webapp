@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { Header } from "@/components";
 import Footer from "@/components/ui/Footer";
 
 const section_data = [
@@ -69,7 +68,6 @@ const Section = ({
 const page = () => {
   return (
     <div>
-      <Header />
       <div className="flex flex-col items-center justify-center">
         <div className="bg-[#FAFAFA] flex flex-col items-center justify-center py-0 md:py-10 w-full">
           {/* <div className="text-blue-800 pt-24 sm:pt-28 md:pt-28 lg:pt-32 xl:pt-36 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold font-title">

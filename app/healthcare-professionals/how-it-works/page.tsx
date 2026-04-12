@@ -1,6 +1,5 @@
 "use client";
 
-import { Header } from "@/components";
 import Accordion from "@/components/ui/Accordion";
 import FadeIn from "@/components/ui/FadeIn";
 import Footer from "@/components/ui/Footer";
@@ -48,7 +47,6 @@ const Page = () => {
 
   return (
     <div>
-      <Header />
       <div
         className="w-full relative bg-cover bg-center"
         style={{

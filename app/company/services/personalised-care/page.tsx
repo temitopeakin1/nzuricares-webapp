@@ -1,6 +1,5 @@
 "use client";
 
-import { Header } from "@/components";
 import FadeIn from "@/components/ui/FadeIn";
 import { useEffect, useState } from "react";
 // import { IconType } from "react-icons/lib";
@@ -34,34 +33,33 @@ const Page = () => {
   }, []);
 
   return (
-    <div>
-      <Header />
+    <div className="w-full overflow-x-hidden">
       <div
-        className="w-full relative bg-cover bg-center h-[60vh] md:h-[100vh] sm:bg-contain sm:bg-center-15% md:bg-cover md:bg-center-[40%]"
+        className="relative w-full min-h-[50vh] sm:min-h-[55vh] md:min-h-[70vh] lg:min-h-[85vh]"
         style={{
           backgroundImage: "url(/images/holistic.jpg)",
-          backgroundPosition: "center 20%",
+          backgroundPosition: "center 25%",
           backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="absolute inset-0 flex items-center justify-start bg-black bg-opacity-20">
+        <div className="absolute inset-0 flex items-end bg-black/25 pb-12 pt-28 sm:items-center sm:pb-16 sm:pt-24 md:pb-20 md:pt-28">
           <FadeIn duration={4}>
-            <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
+            <h1 className="max-w-[min(100%,42rem)] px-4 text-3xl font-normal leading-tight text-white sm:max-w-none sm:px-8 sm:text-4xl md:px-12 md:text-5xl lg:px-16 lg:text-6xl font-sans">
               Where&nbsp;
               <span className="relative inline-block">
                 Personalised Care
                 {showUnderline && (
-                  <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
+                  <span className="absolute bottom-0 left-0 h-1.5 w-full bg-yellow-500 animate-underline sm:h-2" />
                 )}
               </span>{" "}
               <br />
-              <span className="relative inline-block">
+              <span className="relative mt-1 inline-block sm:mt-0">
                 Meets Trusted Support
               </span>
             </h1>
           </FadeIn>
         </div>
-        <div className="h-[80vh]"></div>
       </div>
       <Personal />
       <ChooseSection />

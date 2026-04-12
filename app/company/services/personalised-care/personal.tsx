@@ -1,3 +1,4 @@
+import type { ElementType } from "react";
 import {
   FaClipboardList,
   FaHandsHelping,
@@ -36,28 +37,28 @@ const Section = ({
 }: {
   title: string;
   desc: string;
-  Icon: React.ElementType;
+  Icon: ElementType;
   index: number;
 }) => {
   const isReverse = index % 2 === 0;
   return (
     <div
-      className={`flex flex-col items-center justify-center p-2 md:p-8 gap-[20px] md:gap-[98px] ${
-        isReverse ? " md:flex-row-reverse" : "md:flex-row"
+      className={`flex w-full max-w-6xl flex-col items-stretch justify-center gap-6 px-3 py-6 sm:gap-8 sm:px-4 sm:py-8 md:gap-12 lg:gap-16 xl:gap-24 ${
+        isReverse ? "lg:flex-row-reverse" : "lg:flex-row"
       }`}
     >
-      <div className="flex-1 bg-[#8E9CE0] w-full flex items-center justify-center rounded-md p-4 ">
-        <div className="flex flex-col items-center w-full bg-[#E5EBF5] p-12 rounded-lg">
-          <div className="flex items-center justify-center bg-[#8E9CE0] text-white rounded-full p-6">
-            <Icon size={100} />
+      <div className="flex w-full flex-1 items-center justify-center rounded-lg bg-[#8E9CE0] p-3 sm:p-4">
+        <div className="flex w-full flex-col items-center rounded-lg bg-[#E5EBF5] px-6 py-8 sm:px-10 sm:py-10 md:p-12">
+          <div className="flex items-center justify-center rounded-full bg-[#8E9CE0] p-4 text-white sm:p-5 md:p-6">
+            <Icon className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24" />
           </div>
         </div>
       </div>
-      <div className="flex-1">
-        <p className="font-bold text-[#283544] text-xl md:text-4xl text-center md:text-justify leading-none font-title">
+      <div className="min-w-0 flex-1 px-1 sm:px-0">
+        <p className="text-center font-title text-lg font-bold leading-snug text-[#283544] sm:text-xl md:text-left md:text-2xl lg:text-3xl xl:text-4xl">
           {title}
         </p>
-        <p className=" text-[16px] md:text-[18px] text-justify md:text-justify mt-2 px-4 sm:px-0 md:px-0 font-body">
+        <p className="mt-3 text-justify font-body text-sm leading-relaxed text-[#283544] sm:text-base md:mt-4 md:text-lg">
           {desc}
         </p>
       </div>
@@ -67,27 +68,28 @@ const Section = ({
 
 const Personal = () => {
   return (
-    <div>
-      <div className="flex flex-col items-center justify-center">
-        <div className=" flex flex-col gap-6 items-center justify-center py-0 md:py-8 w-full md:w-[50%]">
-          {/* <div className="border-t-primary border-b-primary border-t-2 border-b-2 p-4 md:p-6"> */}
-          <p className="regular mt-4 md:mt-0 text-xl font-semibold items-center justify-center text-justify md:text-justify p-8 md:p-8 ">
+    <div className="w-full">
+      <div className="flex flex-col items-center justify-center px-3 sm:px-4">
+        <div className="flex w-full max-w-3xl flex-col items-center justify-center gap-4 py-6 md:py-10">
+          <p className="text-justify font-body text-base font-semibold leading-relaxed text-[#283544] sm:text-lg md:text-xl">
             At Nzuri Healthcare Recruitment limited, We believe that every
             individual deserves care tailored specifically to their needs,
             preferences, and circumstances.
-            <br /> Our Personalised Care Services are designed to put
-            individuals at the heart of their care journey, ensuring a truly
-            bespoke experience that promotes dignity, independence, and overall
-            well-being.
+            <br className="hidden sm:block" />{" "}
+            <span className="sm:inline">
+              Our Personalised Care Services are designed to put individuals at
+              the heart of their care journey, ensuring a truly bespoke
+              experience that promotes dignity, independence, and overall
+              well-being.
+            </span>
           </p>
-          {/* </div> */}
         </div>
 
-        <h1 className="mt-2 font-bold text-xl md:text-4xl  text-blue-800 font-title ">
+        <h1 className="mt-2 px-2 text-center font-title text-xl font-bold text-blue-800 sm:text-2xl md:mt-4 md:text-3xl lg:text-4xl">
           How we Deliver Personalised Care
         </h1>
-        <div className="flex item-center justify-center mt-12">
-          <div className="w-full md:w-[80%]">
+        <div className="mt-8 flex w-full max-w-6xl justify-center sm:mt-10 md:mt-12">
+          <div className="flex w-full flex-col items-center">
             {section_data.map((item, index) => (
               <Section
                 key={item?.title}

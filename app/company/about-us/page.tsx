@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { Header } from "@/components";
 import Footer from "@/components/ui/Footer";
 import {
   FaHeart,
@@ -141,7 +140,6 @@ const CoreItem: React.FC<CoreItemProps> = ({
 const Page = () => {
   return (
     <div>
-      <Header />
       <div className="flex flex-col items-center justify-center">
         <div className="bg-[#FAFAFA] flex flex-col items-center justify-center py-0 md:py-10 w-full">
           <Image

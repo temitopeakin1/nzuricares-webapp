@@ -1,6 +1,5 @@
 "use client";
 
-import { Header } from "@/components";
 import FadeIn from "@/components/ui/FadeIn";
 import { ChangeEvent, useEffect, useState } from "react";
 import Image from "next/image";
@@ -82,7 +81,6 @@ const Page = () => {
 
   return (
     <div>
-      <Header />
       <div
         className="w-full relative bg-cover bg-center"
         style={{

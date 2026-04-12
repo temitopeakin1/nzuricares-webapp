@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import Footer from "@/components/ui/Footer";
 import Link from "next/link";
 import React from "react";
@@ -6,7 +5,6 @@ import React from "react";
 const Page = () => {
   return (
     <>
-      <Header />
       <div className="mx-8 md:mx-36 mt-28 md:mt-36 mb-16 md:mb-20">
         <div className="text-xl md:text-4xl font-serif font-semibold text-blue-800 text-left">
           Privacy Policy

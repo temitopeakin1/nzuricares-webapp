@@ -26,18 +26,17 @@ const accordion_data = [
 
 const CareAccordion = () => {
   return (
-    <div className="mt-2 md:mt-8">
+    <div className="mt-2 w-full min-w-0 md:mt-8">
       {accordion_data.map((item, index) => (
-        <div key={item.title} className="flex items-center gap-4 mb-2">
-          <span className="text-blue-800 font-bold text-2xl">
+        <div
+          key={item.title}
+          className="mb-3 flex items-start gap-2 sm:mb-4 sm:items-center sm:gap-4"
+        >
+          <span className="shrink-0 pt-2 font-title text-lg font-bold text-blue-800 tabular-nums sm:pt-0 sm:text-2xl">
             {String(index + 1).padStart(2, "0")}.
           </span>
-          <div className="flex-1">
-            <PlusAccordion
-              key={item.title}
-              title={item?.title}
-              detail={item?.detail}
-            />
+          <div className="min-w-0 flex-1">
+            <PlusAccordion title={item.title} detail={item.detail} />
           </div>
         </div>
       ))}
