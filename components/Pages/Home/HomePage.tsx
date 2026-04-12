@@ -80,7 +80,7 @@ const Sliders = () => {
         backgroundImage: `url(${bgImage})`,
         backgroundPosition: "center top 20%",
       }}
-      className={`${bgImage} bg-cover bg-center h-[50vh] md:h-[90vh] flex justify-center items-center relative transition-all duration-500 ease-in-out`}
+      className="relative flex w-full min-h-[50vh] items-center justify-center bg-cover bg-center transition-all duration-500 ease-in-out sm:min-h-[55vh] md:min-h-[70vh] lg:min-h-[78vh]"
     >
         <div className="absolute inset-0 bg-black bg-opacity-10"/> 
       <div className="w-full ">

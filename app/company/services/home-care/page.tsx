@@ -38,14 +38,15 @@ const Page = () => {
   return (
     <div>
       <div
-        className="w-full relative bg-cover bg-center h-[60vh] md:h-[100vh] sm:bg-contain sm:bg-center-15% md:bg-cover md:bg-center-[40%]"
+        className="relative w-full min-h-[50vh] bg-cover bg-center sm:min-h-[55vh] md:min-h-[70vh] lg:min-h-[78vh]"
         style={{
-          backgroundImage: "url(/images/services.jpg)",
-          backgroundPosition: "center -30%",
+          backgroundImage: "url(/images/home-care.jpg)",
+          backgroundPosition: "center 35%",
           backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="absolute inset-0 flex items-center justify-start bg-black bg-opacity-20">
+        <div className="absolute inset-0 flex items-center justify-start bg-black/20">
           <FadeIn duration={4}>
             <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
               Bringing&nbsp;
@@ -60,7 +61,6 @@ const Page = () => {
             </h1>
           </FadeIn>
         </div>
-        <div className="h-[80vh]"></div>
       </div>
       <Content />
 

@@ -8,8 +8,6 @@ import {
   FaSyncAlt,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import Button from "@/app/components/shared/button";
-
 interface BenefitItemProps {
   Icon: React.ElementType;
   title: string;
@@ -38,7 +36,7 @@ const BenefitItem: React.FC<BenefitItemProps> = ({
         ease: "anticipate",
       }}
       layoutId={layoutId}
-      className="flex flex-col items-center w-80 md:w-100 sm:w-100 mx-4 pb-8 rounded-lg shadow-md cursor-pointer"
+      className="flex h-full min-w-0 flex-col items-center w-full pb-8 rounded-lg shadow-md cursor-pointer"
       onClick={onClick}
     >
       {/* Upper part with icon and background color */}
@@ -108,13 +106,14 @@ const Benefits = () => {
   };
 
   return (
-    <div className="py-8 md:py-16 text-center">
-      <h1 className="mt-2 font-bold text-xl md:text-4xl text-blue-800 font-title">
-        Training Benefits
-      </h1>
+    <section className="border-b border-gray-100 bg-white px-4 py-12 text-center sm:px-6 sm:py-16 md:px-10 md:py-20 lg:px-14">
+      <div className="mx-auto max-w-7xl">
+        <h2 className="mt-2 font-title text-xl font-bold text-blue-800 md:text-4xl">
+          Training Benefits
+        </h2>
 
-      {/* Benefits Items */}
-      <div className="mt-8 gap-16 flex flex-wrap justify-center">
+      {/* Benefits Items — full-width grid to match max-w-7xl sections below */}
+      <div className="mt-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 md:gap-5 lg:gap-6">
         {currentItems.map((item, index) => (
           <BenefitItem
             key={startIndex + index}
@@ -172,10 +171,8 @@ const Benefits = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="flex justify-center mt-4 md:mt-8">
-        <Button />
       </div>
-    </div>
+    </section>
   );
 };
 

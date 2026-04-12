@@ -35,7 +35,7 @@ const Page = () => {
   return (
     <div className="w-full overflow-x-hidden">
       <div
-        className="relative w-full min-h-[50vh] sm:min-h-[55vh] md:min-h-[70vh] lg:min-h-[85vh]"
+        className="relative w-full min-h-[50vh] sm:min-h-[55vh] md:min-h-[70vh] lg:min-h-[78vh]"
         style={{
           backgroundImage: "url(/images/holistic.jpg)",
           backgroundPosition: "center 25%",

@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Button from "@/app/components/shared/button";
 
 const section_data = [
   { image: "/images/home-care.jpg" },
@@ -70,9 +69,6 @@ const Content = () => {
             Healthcare Assistants are available around the clock.
           </li>
         </ul>
-        <div className="flex items-center justify-center mt-4 md:mt-8 space-x-4">
-          <Button />
-        </div>
       </div>
     </div>
   );
