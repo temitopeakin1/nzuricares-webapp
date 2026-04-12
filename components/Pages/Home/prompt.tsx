@@ -329,7 +329,7 @@ export default function Prompt() {
                   }
                 }}
                 rows={3}
-                placeholder="Message Nzuri AI…"
+                placeholder="Chat with Nzuri AI"
                 disabled={loading}
               />
               <button
