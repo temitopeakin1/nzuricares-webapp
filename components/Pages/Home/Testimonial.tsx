@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Transition } from "@headlessui/react";
+import { MotionSection } from "@/components/motion/MotionSection";
 
 interface Testimonial {
   image: string;
@@ -68,12 +69,12 @@ export default function Testimonial({}: { testimonials: Testimonial[] }) {
   }, []);
 
   return (
-    <div className="py-8 md:py-16 mx-4 md:mx-36 text-center">
-      <h1 className="mt-2 font-bold text-xl md:text-4xl  text-blue-800 font-title">
-      Testimonials
-      </h1>
-      <p className="mt-2 lg:text-sm md:text-sm font-body">
-      Read what our valued clients are saying about us
+    <MotionSection className="mx-4 py-8 text-center md:mx-36 md:py-16">
+      <h2 className="mt-2 font-title text-xl font-bold text-blue-800 md:text-4xl">
+        Testimonials
+      </h2>
+      <p className="mt-2 font-body text-sm md:text-sm lg:text-sm">
+        Read what our valued clients are saying about us
       </p>
       {/* Testimonial image */}
       <div className="relative h-40 mt-10 overflow-hidden">
@@ -152,6 +153,6 @@ export default function Testimonial({}: { testimonials: Testimonial[] }) {
           </button>
         ))}
       </div>
-    </div>
+    </MotionSection>
   );
 }

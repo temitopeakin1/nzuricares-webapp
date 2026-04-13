@@ -1,9 +1,11 @@
 "use client";
 
-import FadeIn from "@/components/ui/FadeIn";
 import Footer from "@/components/ui/Footer";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { MarketingHero } from "@/components/motion/MarketingHero";
+import { MotionSection } from "@/components/motion/MotionSection";
 import {
   FaClipboardCheck,
   FaHospital,
@@ -13,7 +15,10 @@ import {
 import { MdCleanHands, MdOutlineHealthAndSafety } from "react-icons/md";
 import { HiOutlineShieldCheck } from "react-icons/hi";
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
 const Page = () => {
+  const reduceMotion = useReducedMotion();
   const [showUnderline, setShowUnderline] = useState(false);
 
   useEffect(() => {
@@ -70,29 +75,22 @@ const Page = () => {
 
   return (
     <div className="w-full overflow-x-hidden">
-      <div
-        className="relative w-full min-h-[50vh] sm:min-h-[55vh] md:min-h-[70vh] lg:min-h-[78vh]"
-        style={{
-          backgroundImage: "url(/images/infections.jpg)",
-          backgroundPosition: "center 20%",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-        }}
+      <MarketingHero
+        backgroundImage="/images/infections.jpg"
+        backgroundPosition="center 20%"
+        overlayClassName="absolute inset-0 bg-black/35"
+        contentClassName="absolute inset-0 flex items-end justify-start pb-12 pt-28 sm:items-center sm:pb-16 sm:pt-24 md:pb-20 md:pt-28"
       >
-        <div className="absolute inset-0 flex items-end bg-black/35 pb-12 pt-28 sm:items-center sm:pb-16 sm:pt-24 md:pb-20 md:pt-28">
-          <FadeIn duration={4}>
-            <h1 className="relative mt-12 px-4 font-sans text-[2.5rem] font-normal leading-tight text-white sm:px-8 sm:text-[3rem] md:px-16 md:text-[3.5rem] lg:px-24 lg:text-[4rem]">
-              Expert Staffing solutions for <br />
-              <span className="relative inline-block">
-                {showUnderline && (
-                  <span className="absolute bottom-0 left-0 h-2 bg-yellow-500 animate-underline" />
-                )}
-                Infection Control{" "}
-              </span>
-            </h1>
-          </FadeIn>
-        </div>
-      </div>
+        <h1 className="relative mt-12 px-4 font-sans text-[2.5rem] font-normal leading-tight text-white sm:px-8 sm:text-[3rem] md:px-16 md:text-[3.5rem] lg:px-24 lg:text-[4rem]">
+          Expert Staffing solutions for <br />
+          <span className="relative inline-block">
+            {showUnderline && (
+              <span className="absolute bottom-0 left-0 h-2 bg-yellow-500 animate-underline" />
+            )}
+            Infection Control{" "}
+          </span>
+        </h1>
+      </MarketingHero>
 
       {/* Why it matters — split grid + stat strip */}
       <section className="relative border-b border-emerald-900/10 bg-gradient-to-b from-slate-50 via-white to-emerald-50/30 px-4 py-16 sm:px-6 sm:py-20 md:px-10 lg:px-14">
@@ -105,7 +103,7 @@ const Page = () => {
           aria-hidden
         />
 
-        <div className="relative mx-auto max-w-7xl">
+        <MotionSection className="relative mx-auto max-w-7xl">
           <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-5">
               <p className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/80 px-4 py-1.5 font-title text-xs font-semibold uppercase tracking-[0.2em] text-primary shadow-sm backdrop-blur-sm">
@@ -158,12 +156,12 @@ const Page = () => {
               </div>
             </div>
           </div>
-        </div>
+        </MotionSection>
       </section>
 
       {/* Pillars — asymmetric bento */}
       <section className="relative bg-white px-4 py-16 sm:px-6 sm:py-20 md:px-10 lg:px-14">
-        <div className="mx-auto max-w-7xl">
+        <MotionSection className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-8">
             <div className="max-w-xl">
               <p className="font-title text-sm font-semibold uppercase tracking-wide text-primary">
@@ -239,7 +237,7 @@ const Page = () => {
               </p>
             </article>
           </div>
-        </div>
+        </MotionSection>
       </section>
 
       {/* Environments + CTA — split columns + angled panel */}
@@ -253,9 +251,15 @@ const Page = () => {
           aria-hidden
         />
 
-        <div className="relative mx-auto max-w-7xl">
+        <MotionSection className="relative mx-auto max-w-7xl">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10">
-            <div className="lg:col-span-5">
+            <motion.div
+              className="lg:col-span-5"
+              initial={reduceMotion ? false : { opacity: 0, x: -18 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-12% 0px" }}
+              transition={{ duration: 0.5, ease, delay: reduceMotion ? 0 : 0.05 }}
+            >
               <h2 className="font-title text-3xl font-bold leading-tight sm:text-4xl">
                 Built for high-trust care environments
               </h2>
@@ -286,9 +290,15 @@ const Page = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            <div className="lg:col-span-7">
+            <motion.div
+              className="lg:col-span-7"
+              initial={reduceMotion ? false : { opacity: 0, x: 22 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-12% 0px" }}
+              transition={{ duration: 0.5, ease, delay: reduceMotion ? 0 : 0.12 }}
+            >
               <div className="relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/12 to-white/5 p-8 shadow-2xl backdrop-blur-md sm:p-10 md:p-12">
                 <div className="absolute -right-6 -top-6 hidden h-24 w-24 rounded-2xl border border-emerald-400/30 bg-emerald-500/10 md:block" aria-hidden />
                 <p className="font-title text-lg font-semibold text-white sm:text-xl">
@@ -314,9 +324,9 @@ const Page = () => {
                   </Link>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </MotionSection>
       </section>
 
       <Footer />

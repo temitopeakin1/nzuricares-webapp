@@ -1,10 +1,12 @@
 "use client";
 
-import FadeIn from "@/components/ui/FadeIn";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Footer from "@/components/ui/Footer";
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import Footer from "@/components/ui/Footer";
+import { MarketingHero } from "@/components/motion/MarketingHero";
+import { MotionSection } from "@/components/motion/MotionSection";
 
 const careers = [
   {
@@ -27,6 +29,8 @@ const careers = [
   },
 ];
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
 const Section = ({
   title,
   image,
@@ -38,95 +42,110 @@ const Section = ({
   text: string;
   index: number;
 }) => {
+  const reduceMotion = useReducedMotion();
   const isReverse = index % 2 === 0;
+
   return (
-    <div
-      className={`flex flex-col items-center justify-center p-2 md:p-8 gap-[20px] md:gap-[98px] ${
-        isReverse ? "md:flex-row" : "md:flex-row-reverse"
-      }`}
-    >
-      <div className="flex-1 bg-[#F4F4F4] w-full flex items-center justify-center rounded-md p-4">
-        <Image
-          width={400}
-          height={400}
-          src={image}
-          alt={title}
-          className="object-cover h-full w-full"
-        />
+    <MotionSection className="w-full">
+      <div
+        className={`flex flex-col items-center justify-center gap-[20px] p-2 md:gap-[98px] md:p-8 ${
+          isReverse ? "md:flex-row" : "md:flex-row-reverse"
+        }`}
+      >
+        <motion.div
+          className="flex w-full flex-1 items-center justify-center rounded-md bg-[#F4F4F4] p-4"
+          initial={
+            reduceMotion ? false : { opacity: 0, x: isReverse ? -28 : 28 }
+          }
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={{
+            duration: 0.5,
+            ease,
+            delay: reduceMotion ? 0 : 0.06,
+          }}
+        >
+          <Image
+            width={400}
+            height={400}
+            src={image}
+            alt={title}
+            className="h-full w-full object-cover"
+          />
+        </motion.div>
+        <motion.div
+          className="flex-1"
+          initial={
+            reduceMotion ? false : { opacity: 0, x: isReverse ? 22 : -22 }
+          }
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={{
+            duration: 0.5,
+            ease,
+            delay: reduceMotion ? 0 : 0.14,
+          }}
+        >
+          <p className="text-center text-[24px] font-bold sm:text-[20px] md:text-start md:text-[28px]">
+            {title}
+          </p>
+          <p
+            className="text-[16px] px-4 text-justify md:px-0 md:text-[18px]"
+            dangerouslySetInnerHTML={{ __html: text }}
+          />
+        </motion.div>
       </div>
-      <div className="flex-1">
-        <p className="font-bold text-[24px] sm:text-[20px] md:text-[28px] text-center md:text-start sm:text-start">
-          {title}
-        </p>
-        <p
-          className="text-[16px] md:text-[18px] text-justify md:text-justify px-4 md:px-0 sm:px-0"
-          dangerouslySetInnerHTML={{ __html: text }}
-        ></p>
-      </div>
-    </div>
+    </MotionSection>
   );
 };
 
 const Page = () => {
   const [showUnderline, setShowUnderline] = useState(false);
 
-  // underline animation
   useEffect(() => {
-    setTimeout(() => {
-      setShowUnderline(true);
-    }, 2000); // Adjust the delay as needed
+    const t = setTimeout(() => setShowUnderline(true), 2000);
+    return () => clearTimeout(t);
   }, []);
 
   return (
-    <div>
-      <div
-        className="w-full relative bg-cover bg-center"
-        style={{
-          backgroundImage: "url(/images/caregiver.jpg)",
-          backgroundPosition: "center top -10%",
-          backgroundSize: "cover",
-        }}
+    <div className="w-full overflow-x-hidden">
+      <MarketingHero
+        backgroundImage="/images/caregiver.jpg"
+        backgroundPosition="center top -10%"
+        overlayClassName="absolute inset-0 bg-black/40"
+        contentClassName="absolute inset-0 flex items-center justify-start"
       >
-        <div className="absolute inset-0 flex items-center justify-start bg-black bg-opacity-40">
-          <FadeIn duration={4}>
-            <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
-              Careers at
-              <br />
-              <span className="relative inline-block">
-                Nzuri Healthcare
-                {showUnderline && (
-                  <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
-                )}
-              </span>
-            </h1>
-            <Link href={"/company/careers/#"} passHref>
-              <button className="mt-8 px-[2em] py-[.5em] mx-24 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans">
-                Open roles
-              </button>
-            </Link>
-          </FadeIn>
-        </div>
-        <div className="h-[80vh]"></div>
-      </div>
+        <h1 className="relative mt-12 px-4 font-sans text-[2.5rem] font-normal leading-tight text-white sm:px-8 sm:text-[3rem] md:px-16 md:text-[3.5rem] lg:px-24 lg:text-[4rem]">
+          Careers at
+          <br />
+          <span className="relative inline-block">
+            Nzuri Healthcare
+            {showUnderline && (
+              <span className="absolute bottom-0 left-0 h-2 bg-yellow-500 animate-underline" />
+            )}
+          </span>
+        </h1>
+      </MarketingHero>
 
-      <div className="flex items-center justify-center mt-12">
+      <div className="mt-12 flex items-center justify-center">
         <div className="w-full md:w-[80%]">
           {careers.map((item, index) => (
             <Section
-              key={item?.title}
-              title={item?.title}
-              text={item?.text}
-              image={item?.image}
+              key={item.title}
+              title={item.title}
+              text={item.text}
+              image={item.image}
               index={index}
             />
           ))}
         </div>
       </div>
-      <div className="flex justify-center mt-4">
-        <Link href="/auth/signup">
-          <h2 className="mt-2 px-[2em] py-[.5em] mx-2 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 text-white rounded-full md:text-xl text-base duration-300 hover:scale-110 transform transition-all ease-in-out font-sans inline-block">
-            Sign up today
-          </h2>
+      <div className="mt-4 flex justify-center">
+        <Link
+          href="/auth/signup"
+          className="mx-2 mt-2 inline-block transform rounded-full bg-gradient-to-r from-blue-900 to-green-700 px-[2em] py-[.5em] font-sans text-base text-white transition-all duration-300 hover:scale-110 hover:bg-red-400 md:text-xl"
+        >
+          <span className="font-title text-2xl font-semibold">Sign up today</span>
         </Link>
       </div>
 

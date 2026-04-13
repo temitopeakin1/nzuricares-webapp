@@ -1,12 +1,18 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Footer from "@/components/ui/Footer";
 import Shifts from "./Shifts";
 import Testimonial from "./Testimonial";
 import Subscribe from "@/components/ui/Subscribe";
 import PrivacyBanner from "@/components/ui/PrivacyBanner";
 import Profession from "./Services";
+import { easeOutExpo } from "@/components/motion/transitions";
+
+const slideTransition = { duration: 0.42, ease: easeOutExpo };
+
 const Sliders = () => {
   const images = [
     "/images/slider-1.jpg",
@@ -15,15 +21,12 @@ const Sliders = () => {
     "/images/slider-5.jpg",
   ];
 
-  // set states
   const [index, setIndex] = useState(0);
   const bgImage = images[index];
+  const reduceMotion = useReducedMotion();
 
-  // create some side effect on the image slider
   useEffect(() => {
-    // autoslide every 5 secs
     const interval = setInterval(() => {
-      // cyclical index increment
       setIndex((prevIndex) => (prevIndex + 1) % 4);
     }, 10000);
     return () => clearInterval(interval);
@@ -60,7 +63,6 @@ const Sliders = () => {
     }
   })();
 
-  // to have the Learn more button on all slider
   const renderButton = () => {
     if (index === 0 || index === 1 || index === 2 || index === 3) {
       return (
@@ -82,34 +84,49 @@ const Sliders = () => {
       }}
       className="relative flex w-full min-h-[50vh] items-center justify-center bg-cover bg-center transition-all duration-500 ease-in-out sm:min-h-[55vh] md:min-h-[70vh] lg:min-h-[78vh]"
     >
-        <div className="absolute inset-0 bg-black bg-opacity-10"/> 
-      <div className="w-full ">
-        <div className="relative z-60 px-8 md:px-24 mt-36 md:mt-32 text-white font-normal justify-left text-center md:text-left">
-          <h1 className="text-[2em] lg:text-[3em] md:text-[2rem] leading-[.9em] font-sans  ">
-            {text?.header}
-          </h1>
-          <div className="flex items-center font-normal -mt-4 justify-left ">
-            <p className="my-8 text-base md:text-xl w-full md:w-auto">
-              {text.tagline}
-            </p>
-          </div>
-          {renderButton()}
+      <div className="absolute inset-0 bg-black bg-opacity-10" />
+      <div className="w-full">
+        <div className="relative z-[60] mt-36 justify-left px-8 text-center font-normal text-white md:mt-32 md:px-24 md:text-left">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              initial={
+                reduceMotion ? false : { opacity: 0, y: 14 }
+              }
+              animate={{ opacity: 1, y: 0 }}
+              exit={
+                reduceMotion ? undefined : { opacity: 0, y: -10 }
+              }
+              transition={slideTransition}
+            >
+              <h1 className="font-sans text-[2em] leading-[.9em] md:text-[2rem] lg:text-[3em]">
+                {text?.header}
+              </h1>
+              <div className="-mt-4 flex items-center justify-left">
+                <p className="my-8 w-full text-base md:w-auto md:text-xl">
+                  {text.tagline}
+                </p>
+              </div>
+              {renderButton()}
+            </motion.div>
+          </AnimatePresence>
         </div>
-     
 
-        <div className="w-full flex justify-center items-center absolute bottom-2 md:bottom-5 mt-8">
+        <div className="absolute bottom-2 mt-8 flex w-full items-center justify-center md:bottom-5">
           <div className="flex items-center gap-4">
             {Array(images.length)
               .fill(0)
               .map((_, index_) => (
-                <div
+                <button
+                  type="button"
+                  aria-label={`Show slide ${index_ + 1}`}
                   onClick={() => setIndex(index_)}
                   key={index_}
-                  className={`h-[1em] ${
+                  className={`h-[1em] rounded-full transition-all duration-200 ease-linear hover:scale-125 hover:bg-primary/70 ${
                     index_ === index
-                      ? "bg-primary w-[2em]"
-                      : "bg-gray-400/45 w-[1em]"
-                  } rounded-full cursor-pointer hover:scale-125 hover:bg-primary/70 transition-all duration-200 ease-linear`}
+                      ? "w-[2em] bg-primary"
+                      : "w-[1em] bg-gray-400/45"
+                  }`}
                 />
               ))}
           </div>
@@ -120,30 +137,8 @@ const Sliders = () => {
 };
 
 const HomePage = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [showNotification, setShowNotification] = useState(true);
-  const [slider, setSlider] = useState(2);
-
-  const handleScroll = () => {
-    const scrollTop = window.scrollY;
-    const scrollThreshold = 100; // Adjust this threshold as needed
-
-    setIsScrolled(scrollTop > scrollThreshold);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   return (
     <main>
-      <div className="sticky top-0 z-40">
-        {/* {showNotification && <Notification setShowNotification={setShowNotification} />} */}
-      </div>
       <Sliders />
       <Profession />
       <Shifts />

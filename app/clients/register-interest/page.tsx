@@ -1,8 +1,8 @@
 "use client";
 
-import FadeIn from "@/components/ui/FadeIn";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
+import { MotionSection } from "@/components/motion/MotionSection";
 import Footer from "@/components/ui/Footer";
 import Link from "next/link";
 import { MdEmail } from "react-icons/md";
@@ -35,7 +35,10 @@ interface countryOptions {
   value: string;
 }
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
 const Page = () => {
+  const reduceMotion = useReducedMotion();
   const [showUnderline, setShowUnderline] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isChecked, setIsChecked] = useState(false);
@@ -248,55 +251,67 @@ const Page = () => {
 
   // Underline animation on text background image
   useEffect(() => {
-    setTimeout(() => {
-      setShowUnderline(true);
-    }, 500); // Adjust the delay as needed
+    const t = setTimeout(() => setShowUnderline(true), 500);
+    return () => clearTimeout(t);
   }, []);
 
   return (
-    <div>
+    <div className="w-full overflow-x-hidden">
       <div
-        className="w-full relative bg-cover bg-center"
+        className="relative w-full min-h-[50vh] bg-cover bg-center sm:min-h-[55vh] md:min-h-[65vh] lg:min-h-[70vh]"
         style={{
           backgroundImage: "url(/images/nurse.jpg)",
           backgroundPosition: "center top",
           backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="absolute inset-0 flex items-center justify-start bg-black bg-opacity-50">
-          <FadeIn duration={4}>
-            <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/35 to-black/15" />
+        <div className="absolute inset-0 flex items-center justify-start">
+          <motion.div
+            className="w-full"
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease }}
+          >
+            <h1 className="relative mt-12 px-4 font-sans text-[2.5rem] font-normal leading-tight text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)] sm:px-8 sm:text-[3rem] md:px-16 md:text-[3.5rem] lg:px-24 lg:text-[4rem]">
               <span className="relative inline-block">
                 Register
                 {showUnderline && (
-                  <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
+                  <span className="absolute bottom-0 left-0 h-2 bg-yellow-500 animate-underline" />
                 )}
               </span>{" "}
-              <span>your Interest</span>
+              <span>your interest</span>
             </h1>
 
-            <div className="mt-4 px-4 sm:px-8 md:px-16 lg:px-24 text-white font-sans flex items-center">
-              <MdEmail className="mr-2" />
-              <Link href="mailto:info@nzurihealthcare.com" passHref>
-                info@nzuricares.co.uk
-              </Link>
-              <div className="flex items-center ml-4">
-                <FaPhone className="mr-2" />
-                <a href={`tel:${formData.phoneNumber}`} className="text-white">
-                  02080502662
+            <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 px-4 font-sans text-white sm:px-8 md:px-16 lg:px-24">
+              <div className="flex items-center">
+                <MdEmail className="mr-2 shrink-0" aria-hidden />
+                <Link href="mailto:info@nzuricares.co.uk" className="underline-offset-2 hover:underline">
+                  info@nzuricares.co.uk
+                </Link>
+              </div>
+              <div className="flex items-center">
+                <FaPhone className="mr-2 shrink-0" aria-hidden />
+                <a href="tel:+442080502662" className="hover:underline">
+                  020 8050 2662
                 </a>
               </div>
             </div>
-          </FadeIn>
+          </motion.div>
         </div>
-        <div className="h-[80vh]"></div>
       </div>
-      <div className="py-8 md:py-16 flex flex-col items-center justify-center w-full">
-        {/* toggle button */}
-        <div className="w-full md:w-[80%] px-4 md:px-0 mt-8 relative">
-          <div className="w-full flex flex-col md:flex-row-reverse items-center justify-center">
-            {/* Form Container */}
-            <div className="p-6 md:p-12 w-full md:w-[90%] mb-[1em] md:mb-[4em] bg-white rounded-md shadow-md items-center justify-center">
+
+      <MotionSection className="mx-auto flex w-full flex-col items-center justify-center px-4 py-8 md:py-16 md:px-6 lg:px-8">
+        <div className="relative mt-4 w-full max-w-5xl md:mt-8">
+          <div className="flex w-full flex-col items-center justify-center md:flex-row-reverse">
+            <motion.div
+              className="mb-[1em] w-full items-center justify-center rounded-md bg-white p-6 shadow-md md:mb-[4em] md:w-[90%] md:p-12"
+              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-8% 0px" }}
+              transition={{ duration: 0.5, ease, delay: reduceMotion ? 0 : 0.06 }}
+            >
               <h2 className="font-bold text-xl md:text-4xl text-center -mt-8 text-primary">
                 Register your interest today
               </h2>
@@ -307,7 +322,8 @@ const Page = () => {
               {/* toggle options between individual and company */}
               <div className="flex space-x-4 mt-4 mb-16 items-center justify-center">
                 <button
-                  className={`px-4 py-2 rounded-full ${
+                  type="button"
+                  className={`rounded-full px-4 py-2 ${
                     formType === "individual"
                       ? "bg-blue-800 text-white"
                       : "bg-gray-200 text-black"
@@ -317,7 +333,8 @@ const Page = () => {
                   Individual
                 </button>
                 <button
-                  className={`px-4 py-2 rounded-full ${
+                  type="button"
+                  className={`rounded-full px-4 py-2 ${
                     formType === "company"
                       ? "bg-blue-800 text-white"
                       : "bg-gray-200 text-black"
@@ -643,10 +660,10 @@ const Page = () => {
                   </div>
                 </div>
               </form>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </MotionSection>
       <Footer />
     </div>
   );

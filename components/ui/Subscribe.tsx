@@ -1,13 +1,16 @@
 "use client";
 
 import React, { FormEvent, useState, useEffect } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { supabase } from "@/app/supabaseClient";
+import { MotionSection } from "@/components/motion/MotionSection";
 
 interface Formdata {
   email: string;
 }
 
 const Subscribe = () => {
+  const reduceMotion = useReducedMotion();
   const [formData, setFormData] = useState<Formdata>({
     email: "",
   });
@@ -75,22 +78,32 @@ const Subscribe = () => {
   
 
   return (
-    <div className="bg-primary border-secondary my-16 border-b-8 w-full px-4 py-8 md:px-8 md:py-8 md:w-[80%] lg:w-[75%] flex flex-col items-center max-w-screen-md mx-auto rounded-lg space-y-8">
+    <MotionSection className="mx-auto my-16 flex w-full max-w-screen-md flex-col items-center space-y-8 rounded-lg border-b-8 border-secondary bg-primary px-4 py-8 md:w-[80%] md:px-8 md:py-8 lg:w-[75%]">
       {successMessage && (
-        <p className="text-white text-center font-normal font-body">
+        <p className="text-center font-body font-normal text-white">
           {successMessage}
         </p>
       )}
       {errors.general && (
-        <p className="text-white text-center">{errors.general}</p>
+        <p className="text-center text-white">{errors.general}</p>
       )}
-      <div className="w-full text-center">
-        <div className="text-white text-2xl py-4 font-sans font-normal">
+      <motion.div
+        className="w-full text-center"
+        initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{
+          duration: 0.45,
+          ease: [0.22, 1, 0.36, 1],
+          delay: reduceMotion ? 0 : 0.08,
+        }}
+      >
+        <div className="py-4 font-sans text-2xl font-normal text-white">
           Subscribe to receive updates
         </div>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-wrap sm:flex-nowrap items-center justify-center w-full px-2 py-2 border rounded-sm bg-white"
+          className="flex w-full flex-wrap items-center justify-center rounded-sm border bg-white px-2 py-2 sm:flex-nowrap"
         >
           <input
             type="email"
@@ -99,18 +112,18 @@ const Subscribe = () => {
             placeholder="name@domain.com"
             onChange={handleChange}
             value={formData.email}
-            className="flex-grow px-3 py-2 border rounded-md"
+            className="flex-grow rounded-md border px-3 py-2"
           />
           {errors.email && <p className="text-red-500">{errors.email}</p>}
           <button
             type="submit"
-            className="ml-2 py-2 px-8 bg-gradient-to-r from-blue-900 to-yellow-700 hover:bg-red-400 text-white font-normal rounded-md transition duration-300"
+            className="ml-2 rounded-md bg-gradient-to-r from-blue-900 to-yellow-700 px-8 py-2 font-normal text-white transition duration-300 hover:bg-red-400"
           >
             Subscribe
           </button>
         </form>
-      </div>
-    </div>
+      </motion.div>
+    </MotionSection>
   );
 };
 

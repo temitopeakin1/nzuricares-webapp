@@ -458,13 +458,13 @@ const Header = () => {
           <>
             <button
               onClick={handleLoginClick}
-              className="bg-transparent border font-semibold border-primary text-primary px-4 py-2 rounded-full"
+              className="bg-transparent border font-semibold border-primary text-dark px-4 py-2 rounded-md hover:bg-gradient-to-r from-blue-900 to-green-700"
             >
               Login
             </button>
             <button
               onClick={handleSignupClick}
-              className="bg-primary text-white px-4 py-2 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 rounded-full"
+              className="bg-primary text-white px-4 py-2 bg-gradient-to-r from-blue-900 to-green-700 hover:bg-red-400 rounded-md"
             >
               Sign Up
             </button>

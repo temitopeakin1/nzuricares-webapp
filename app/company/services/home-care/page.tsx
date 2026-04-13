@@ -1,68 +1,42 @@
 "use client";
 
-import FadeIn from "@/components/ui/FadeIn";
 import { useEffect, useState } from "react";
-import { FaBed, FaHospital } from "react-icons/fa";
-import { IconType } from "react-icons/lib";
-import { PiMapPinLineFill, PiUserSwitchBold } from "react-icons/pi";
-import { HiMiniArrowsPointingIn } from "react-icons/hi2";
-import { MdOutlineLocalHospital } from "react-icons/md";
 import Footer from "@/components/ui/Footer";
-import Benefits from "../training/benefits";
 import Content from "./content";
-
-interface CareSettingsProps {
-  icon: IconType;
-  title: string;
-}
-
-const CareSettings: React.FC<CareSettingsProps> = ({ icon: Icon, title }) => {
-  return (
-    <div className="flex flex-col items-center w-full p-4 mx-4 my-2">
-      <Icon size={64} className="text-white" />
-      <p className="mt-2 text-lg font-semibold text-white">{title}</p>
-    </div>
-  );
-};
+import { MarketingHero } from "@/components/motion/MarketingHero";
+import { MotionSection } from "@/components/motion/MotionSection";
 
 const Page = () => {
   const [showUnderline, setShowUnderline] = useState(false);
 
-  // for the underline animation on text
   useEffect(() => {
-    setTimeout(() => {
-      setShowUnderline(true);
-    }, 2000); // Adjust the delay as needed
+    const t = setTimeout(() => setShowUnderline(true), 2000);
+    return () => clearTimeout(t);
   }, []);
 
   return (
-    <div>
-      <div
-        className="relative w-full min-h-[50vh] bg-cover bg-center sm:min-h-[55vh] md:min-h-[70vh] lg:min-h-[78vh]"
-        style={{
-          backgroundImage: "url(/images/home-care.jpg)",
-          backgroundPosition: "center 35%",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-        }}
+    <div className="w-full overflow-x-hidden">
+      <MarketingHero
+        backgroundImage="/images/home-care.jpg"
+        backgroundPosition="center 35%"
+        overlayClassName="absolute inset-0 bg-black/20"
+        contentClassName="absolute inset-0 flex items-center justify-start"
       >
-        <div className="absolute inset-0 flex items-center justify-start bg-black/20">
-          <FadeIn duration={4}>
-            <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight mt-12 px-4 sm:px-8 md:px-16 lg:px-24 font-sans font-normal text-white relative">
-              Bringing&nbsp;
-              <span className="relative inline-block">
-                Home Care
-                {showUnderline && (
-                  <span className="absolute left-0 bottom-0 h-2 bg-yellow-500 animate-underline"></span>
-                )}
-              </span>{" "}
-              <br />
-              <span className="relative inline-block">to Your Doorstep</span>
-            </h1>
-          </FadeIn>
-        </div>
-      </div>
-      <Content />
+        <h1 className="relative mt-12 px-4 font-sans text-[2.5rem] font-normal leading-tight text-white sm:px-8 sm:text-[3rem] md:px-16 md:text-[3.5rem] lg:px-24 lg:text-[4rem]">
+          Bringing&nbsp;
+          <span className="relative inline-block">
+            Home Care
+            {showUnderline && (
+              <span className="absolute bottom-0 left-0 h-2 bg-yellow-500 animate-underline" />
+            )}
+          </span>{" "}
+          <br />
+          <span className="relative inline-block">to Your Doorstep</span>
+        </h1>
+      </MarketingHero>
+      <MotionSection>
+        <Content />
+      </MotionSection>
 
       <Footer />
     </div>

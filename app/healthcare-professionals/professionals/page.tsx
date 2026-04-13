@@ -1,6 +1,10 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Footer from "@/components/ui/Footer";
+import { motion, useReducedMotion } from "framer-motion";
+import { MotionSection } from "@/components/motion/MotionSection";
 
 const section_data = [
   {
@@ -23,7 +27,9 @@ const section_data = [
     text: "Our Cleaners in healthcare environments are dedicated to maintaining high standards of cleanliness and hygiene. They play a vital role in preventing infections by thoroughly cleaning and disinfecting patient rooms, medical equipment, and communal areas, ensuring a safe and sterile environment for both patients and staff.",
     image: "/images/cleanerz.jpg",
   },
-];
+] as const;
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 const Section = ({
   title,
@@ -36,89 +42,109 @@ const Section = ({
   image: string;
   index: number;
 }) => {
+  const reduceMotion = useReducedMotion();
   const isReverse = index % 2 === 0;
+
   return (
-    <div
-      className={`flex flex-col items-center justify-center p-2 md:p-8 gap-[20px] md:gap-[98px] ${
-        isReverse ? " md:flex-row-reverse" : "md:flex-row"
-      }`}
-    >
-      <div className="flex-1 bg-[#F4F4F4] w-full flex items-center justify-center rounded-md p-4 ">
-        <Image
-          width={200}
-          height={200}
-          src={image}
-          alt={title}
-          className="h-full w-full"
-          layout="responsive"
-        />
+    <MotionSection className="w-full">
+      <div
+        className={`flex flex-col items-center justify-center gap-[20px] p-2 md:gap-[98px] md:p-8 ${
+          isReverse ? "md:flex-row-reverse" : "md:flex-row"
+        }`}
+      >
+        <motion.div
+          className="flex w-full flex-1 items-center justify-center rounded-md bg-[#F4F4F4] p-4"
+          initial={
+            reduceMotion ? false : { opacity: 0, x: isReverse ? 28 : -28 }
+          }
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={{
+            duration: 0.5,
+            ease,
+            delay: reduceMotion ? 0 : 0.06,
+          }}
+        >
+          <Image
+            width={400}
+            height={300}
+            src={image}
+            alt={title}
+            className="h-full w-full rounded-md object-cover"
+          />
+        </motion.div>
+        <motion.div
+          className="flex-1"
+          initial={
+            reduceMotion ? false : { opacity: 0, x: isReverse ? -22 : 22 }
+          }
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={{
+            duration: 0.5,
+            ease,
+            delay: reduceMotion ? 0 : 0.14,
+          }}
+        >
+          <p className="text-center font-title text-xl font-bold leading-none text-[#283544] md:text-justify md:text-4xl">
+            {title}
+          </p>
+          <p className="mt-2 justify-center px-4 text-justify font-body text-[16px] sm:px-0 md:px-0 md:text-[18px]">
+            {text}
+          </p>
+        </motion.div>
       </div>
-      <div className="flex-1">
-        <p className="font-bold text-[#283544] text-xl md:text-4xl text-center md:text-justify leading-none font-title" >
-          {title}
-        </p>
-        <p className=" text-[16px] md:text-[18px] text-justify md:text-justify mt-2 px-4 sm:px-0 md:px-0 font-body">
-          {text}
-        </p>
-      </div>
-    </div>
+    </MotionSection>
   );
 };
 
-const page = () => {
+const Page = () => {
   return (
-    <div>
-      <div className="flex flex-col items-center justify-center">
-        <div className="bg-[#FAFAFA] flex flex-col items-center justify-center py-0 md:py-10 w-full">
-          {/* <div className="text-blue-800 pt-24 sm:pt-28 md:pt-28 lg:pt-32 xl:pt-36 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold font-title">
-            <p className="text-base ">Nzuricare Services</p>
-            <hr className="my-2 h-1 bg-primary" />
-            <p className="text-2xl md:text-5xl font-bold uppercase">
-              Our Services
-            </p>
-          </div> */}
+    <div className="w-full overflow-x-hidden">
+      <MotionSection className="flex w-full flex-col items-center justify-center bg-[#FAFAFA] py-0 md:py-10">
+        <div className="flex w-full flex-col items-center justify-center">
           <Image
-            src={"/images/slider-1.jpg"}
-            width={400}
-            height={400}
-            className="w-full md:w-[70%] mt-20 sm:mt-2 md:mt-4 lg:mt-4"
-            alt="services"
+            src="/images/slider-1.jpg"
+            width={1200}
+            height={600}
+            className="mt-20 w-full sm:mt-2 md:mt-4 md:w-[70%] lg:mt-4"
+            alt="Nzuri Healthcare professionals supporting clients"
+            priority
           />
         </div>
+      </MotionSection>
 
-        <div className=" flex flex-col gap-6 items-center justify-center py-0 md:py-8 w-full md:w-[50%]">
-          {/* <div className="border-t-primary border-b-primary border-t-2 border-b-2 p-4 md:p-6"> */}
-          <p className="regular mt-4 md:mt-0 text-xl font-semibold items-center justify-center text-justify md:text-justify p-8 md:p-8 ">
-            At Nzuri HealthCare, we believe that exceptional care begins with a
-            compassionate heart and a professional touch. Our dedicated team of
-            carers is committed to providing personalised, high-quality care
-            that enhances the quality of life for you and your loved ones.
-            Whether its assistance with daily activities, specialized medical
-            care, or simply a friendly companion, we are here to support you
-            every step of the way. Our professional carers, Nurses, and Support
-            Workers are here to provide the compassionate, reliable assistance
-            that makes a meaningful difference in your life.
-          </p>
-          {/* </div> */}
-        </div>
+      <MotionSection className="mx-auto flex w-full max-w-4xl flex-col items-center justify-center py-0 md:py-8">
+        <p className="regular items-center justify-center p-8 text-justify text-xl font-semibold md:mt-0 md:p-8 md:text-justify">
+          At Nzuri HealthCare, we believe that exceptional care begins with a
+          compassionate heart and a professional touch. Our dedicated team of
+          carers is committed to providing personalised, high-quality care that
+          enhances the quality of life for you and your loved ones. Whether its
+          assistance with daily activities, specialized medical care, or simply a
+          friendly companion, we are here to support you every step of the way.
+          Our professional carers, Nurses, and Support Workers are here to provide
+          the compassionate, reliable assistance that makes a meaningful difference
+          in your life.
+        </p>
+      </MotionSection>
 
-        <div className="flex item-center justify-center mt-12">
-          <div className="w-full md:w-[80%]">
-            {section_data.map((item, index) => (
-              <Section
-                key={item?.title}
-                title={item?.title}
-                text={item?.text}
-                image={item?.image}
-                index={index}
-              />
-            ))}
-          </div>
+      <div className="mt-12 flex items-center justify-center">
+        <div className="w-full md:w-[80%]">
+          {section_data.map((item, index) => (
+            <Section
+              key={item.title}
+              title={item.title}
+              text={item.text}
+              image={item.image}
+              index={index}
+            />
+          ))}
         </div>
       </div>
+
       <Footer />
     </div>
   );
 };
 
-export default page;
+export default Page;

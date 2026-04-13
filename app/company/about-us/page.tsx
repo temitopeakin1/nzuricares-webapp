@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import Footer from "@/components/ui/Footer";
 import {
   FaHeart,
@@ -12,8 +15,9 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 import { IconType } from "react-icons/lib";
-// import { Description } from "@headlessui/react";
 import Subscribe from "@/components/ui/Subscribe";
+import { MotionSection } from "@/components/motion/MotionSection";
+import { serviceGridVariants } from "@/components/motion/home-variants";
 
 const section_data = [
   {
@@ -129,77 +133,96 @@ const CoreItem: React.FC<CoreItemProps> = ({
   description,
 }) => {
   return (
-    <div className="flex flex-col items-center w-80 md:w-72 sm:w-72 p-4 mx-4 my-8 bg-white rounded-lg shadow-md">
-      <Icon size={64} className="text-primary" />
+    <div className="mx-4 my-8 flex w-80 flex-col items-center rounded-lg bg-white p-4 shadow-md sm:w-72 md:w-72">
+      <Icon size={64} className="text-primary" aria-hidden />
       <p className="mt-4 text-lg font-semibold">{title}</p>
-      <p className="mt-2 text-sm font-body text-justify md:text-justify">{description}</p>
+      <p className="mt-2 text-justify font-body text-sm md:text-justify">
+        {description}
+      </p>
     </div>
   );
 };
 
 const Page = () => {
+  const reduceMotion = useReducedMotion();
+  const { container, item } = serviceGridVariants(reduceMotion);
+
   return (
-    <div>
+    <div className="w-full overflow-x-hidden">
       <div className="flex flex-col items-center justify-center">
-        <div className="bg-[#FAFAFA] flex flex-col items-center justify-center py-0 md:py-10 w-full">
+        <MotionSection className="flex w-full flex-col items-center justify-center bg-[#FAFAFA] py-0 md:py-10">
           <Image
             src="/images/slider-5.jpg"
-            width={400}
-            height={400}
-            className="w-full md:w-[70%] mt-20 sm:mt-2 md:mt-4 lg:mt-4 "
-            alt="services"
+            width={1200}
+            height={600}
+            className="mt-20 w-full sm:mt-2 md:mt-4 md:w-[70%] lg:mt-4"
+            alt="Nzuri Healthcare services overview"
+            priority
           />
-        </div>
+        </MotionSection>
         <div className="flex flex-col items-center justify-center">
           {section_data.map((section, index) => (
-            <div key={index} className="flex items-center justify-center py-8">
-              <div className="w-[92%] md:w-[80%] md:grid grid-cols-3 items-center">
-                <h1 className="text-blue-800 font-bold text-xl md:text-4xl mb-3 md:mb-0 font-title">
+            <MotionSection
+              key={section.title}
+              className="flex w-full items-center justify-center py-8"
+            >
+              <div className="w-[92%] items-center md:grid md:w-[80%] md:grid-cols-3">
+                <h2 className="mb-3 font-title text-xl font-bold text-blue-800 md:mb-0 md:text-4xl">
                   {section.title}
-                </h1>
-                <p className="leading-8 md:leading-10 text-justify col-span-2 font-body">
+                </h2>
+                <p className="col-span-2 font-body leading-8 text-justify md:leading-10">
                   {section.Description}
                 </p>
               </div>
-            </div>
+            </MotionSection>
           ))}
         </div>
       </div>
-      <div className="py-8 md:py-16 text-center bg-gray-100">
-        <h1 className="mt-2 font-bold text-xl md:text-4xl text-blue-800 font-title">
+      <MotionSection className="bg-gray-100 py-8 text-center md:py-16">
+        <h2 className="mt-2 font-title text-xl font-bold text-blue-800 md:text-4xl">
           Our Core Values
-        </h1>
-        <div className="mt-8 flex flex-wrap justify-center">
+        </h2>
+        <motion.div
+          className="mt-8 flex flex-wrap justify-center"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px 0px" }}
+        >
           {coreValues.map((value, index) => (
-            <CoreItem
-              key={index}
-              icon={value.icon}
-              title={value.title}
-              description={value.description}
-            />
+            <motion.div key={value.title} variants={item}>
+              <CoreItem
+                icon={value.icon}
+                title={value.title}
+                description={value.description}
+              />
+            </motion.div>
           ))}
-        </div>
-      </div>
-      <div className="py-8 text-center">
-        <h1 className="mt-2 font-bold text-xl md:text-4xl text-blue-800 font-title">
+        </motion.div>
+      </MotionSection>
+      <MotionSection className="py-8 text-center">
+        <h2 className="mt-2 font-title text-xl font-bold text-blue-800 md:text-4xl">
           Target Audience
-        </h1>
-        <p className="mt-2 lg:text-sm md:text-sm font-body">
+        </h2>
+        <p className="mt-2 font-body text-sm md:text-sm lg:text-sm">
           Adults within the Ages 18 - 65
         </p>
-      </div>
+      </MotionSection>
       <div className="flex flex-col items-center justify-center">
-        {target_audience.map((section, index) => (
-          <div key={index} className="flex items-center justify-center my-2">
-            <div className="w-[92%] md:w-[80%] md:grid grid-cols-3 items-center">
-              <h1 className="text-black font-bold lg:text-2xl md:text-3xl mb-3 md:mb-0 font-title">
+        {target_audience.map((section) => (
+          <MotionSection
+            key={section.title}
+            className="my-2 flex w-full items-center justify-center"
+          >
+            <div className="w-[92%] items-center md:grid md:w-[80%] md:grid-cols-3">
+              <h2 className="mb-3 font-title text-xl font-bold text-black md:mb-0 md:text-3xl lg:text-2xl">
                 {section.title}
-              </h1>
-              <p className="leading-8 md:leading-10 text-justify col-span-2 font-body">
+              </h2>
+              <p className="col-span-2 font-body leading-8 text-justify md:leading-10">
                 {section.description}
               </p>
             </div>
-          </div>
+          </MotionSection>
         ))}
       </div>
       <Subscribe />

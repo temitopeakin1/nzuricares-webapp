@@ -1,10 +1,12 @@
 "use client";
 
 import Accordion from "@/components/ui/Accordion";
-import FadeIn from "@/components/ui/FadeIn";
 import Footer from "@/components/ui/Footer";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { MotionSection } from "@/components/motion/MotionSection";
+import { serviceGridVariants } from "@/components/motion/home-variants";
 import type { User } from "@supabase/supabase-js";
 import { useSupabaseBrowser } from "@/lib/supabase-browser";
 import {
@@ -84,6 +86,10 @@ const Page = () => {
   const [showUnderline, setShowUnderline] = useState(false);
   const supabase = useSupabaseBrowser();
   const [authUser, setAuthUser] = useState<User | null | undefined>(undefined);
+  const reduceMotion = useReducedMotion();
+  const { container: stepContainer, item: stepItem } =
+    serviceGridVariants(reduceMotion);
+  const ease = [0.22, 1, 0.36, 1] as const;
 
   useEffect(() => {
     const t = setTimeout(() => setShowUnderline(true), 1000);
@@ -127,7 +133,12 @@ const Page = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/35 to-black/15" />
         <div className="absolute inset-0 flex items-center justify-start">
-          <FadeIn duration={4}>
+          <motion.div
+            className="w-full"
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease }}
+          >
             <h1 className="relative mt-12 max-w-4xl px-4 font-sans text-[2.5rem] font-normal leading-tight text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)] sm:px-8 sm:text-[3rem] md:px-16 md:text-[3.5rem] lg:px-24 lg:text-[4rem]">
               Discover how our{" "}
               <span className="relative inline-block">
@@ -138,13 +149,13 @@ const Page = () => {
               </span>{" "}
               process makes the difference
             </h1>
-          </FadeIn>
+          </motion.div>
         </div>
       </div>
 
       {/* Intro */}
       <section className="border-b border-gray-200/80 bg-[#FAFAFA] px-4 py-14 sm:px-6 sm:py-16 md:px-10 md:py-20 lg:px-14">
-        <div className="mx-auto max-w-7xl">
+        <MotionSection className="mx-auto max-w-7xl">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-14">
             <div className="lg:col-span-4">
               <p className="font-title text-sm font-semibold uppercase tracking-wide text-primary">
@@ -169,11 +180,11 @@ const Page = () => {
               </p>
             </div>
           </div>
-        </div>
+        </MotionSection>
       </section>
 
       <section className="border-b border-gray-100 bg-white px-4 py-14 sm:px-6 sm:py-16 md:px-10 md:py-20 lg:px-14">
-        <div className="mx-auto max-w-7xl">
+        <MotionSection className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-2xl text-center">
             <p className="font-title text-sm font-semibold uppercase tracking-wide text-primary">
               Simple steps
@@ -188,12 +199,19 @@ const Page = () => {
             </p>
           </div>
 
-          <ol className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+          <motion.ol
+            className="mt-14 grid list-none gap-6 p-0 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5"
+            variants={stepContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px 0px" }}
+          >
             {processSteps.map((item) => {
               const Icon = item.Icon;
               return (
-                <li
+                <motion.li
                   key={item.step}
+                  variants={stepItem}
                   className="flex min-h-full flex-col rounded-2xl border border-gray-200/90 bg-slate-50/80 p-6 shadow-sm transition hover:border-primary/25 hover:shadow-md sm:p-7"
                 >
                   <div
@@ -249,16 +267,16 @@ const Page = () => {
                       folder.
                     </p>
                   )}
-                </li>
+                </motion.li>
               );
             })}
-          </ol>
-        </div>
+          </motion.ol>
+        </MotionSection>
       </section>
 
       {/* FAQ */}
       <section className="bg-gray-50 px-4 py-14 sm:px-6 sm:py-16 md:px-10 md:py-20 lg:px-14">
-        <div className="mx-auto max-w-7xl">
+        <MotionSection className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-title text-2xl font-bold text-gray-900 sm:text-3xl">
               Got questions? We have answers
@@ -277,7 +295,7 @@ const Page = () => {
               />
             ))}
           </div>
-        </div>
+        </MotionSection>
       </section>
 
       {/* Closing CTA — replaces generic Hero for clearer layout */}
@@ -290,9 +308,15 @@ const Page = () => {
           className="pointer-events-none absolute bottom-0 left-1/3 h-56 w-56 rounded-full bg-teal-400/15 blur-3xl"
           aria-hidden
         />
-        <div className="relative mx-auto max-w-7xl">
+        <MotionSection className="relative mx-auto max-w-7xl">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
-            <div className="lg:col-span-6">
+            <motion.div
+              className="lg:col-span-6"
+              initial={reduceMotion ? false : { opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-12% 0px" }}
+              transition={{ duration: 0.5, ease, delay: reduceMotion ? 0 : 0.05 }}
+            >
               <p className="font-title text-sm font-semibold uppercase tracking-wide text-emerald-200/90">
                 Next step
               </p>
@@ -305,8 +329,14 @@ const Page = () => {
                 present your experience clearly and get matched to the right
                 opportunities.
               </p>
-            </div>
-            <div className="lg:col-span-6">
+            </motion.div>
+            <motion.div
+              className="lg:col-span-6"
+              initial={reduceMotion ? false : { opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-12% 0px" }}
+              transition={{ duration: 0.5, ease, delay: reduceMotion ? 0 : 0.12 }}
+            >
               <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/12 to-white/5 p-8 shadow-2xl backdrop-blur-md sm:p-10">
                 <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <Link
@@ -329,9 +359,9 @@ const Page = () => {
                   </Link>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </MotionSection>
       </section>
 
       <Footer />
